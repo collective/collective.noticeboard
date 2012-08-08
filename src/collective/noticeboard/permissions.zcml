@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"    
+    i18n_domain="collective.noticeboard">
+
+    <include package="Products.CMFCore" zcml:condition="have plone-41" file="permissions.zcml" />
+
+     <!-- permission for managing galleries -->
+    <permission
+        id="collective.noticeboard.manage"
+        title="collective.noticeboard: manage noticeboards"
+        />
+</configure>

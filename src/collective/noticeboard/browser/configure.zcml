@@ -1,0 +1,36 @@
+
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="collective.noticeboard">
+
+    <include package="plone.app.contentmenu" />
+
+    <browser:page
+        name="noticeboard-settings"
+        for="collective.noticeboard.interfaces.INoticeboard"
+        class=".settings.NoticeboardSettingsView"
+        permission="collective.noticeboard.manage"
+    />
+
+    <browser:page
+        for="collective.noticeboard.interfaces.INoticeboard"
+        name="noticeboardview"
+        class=".noticeboardview.NoticeboardView"
+        template="templates/noticeboard.pt"
+        permission="zope2.View" />
+
+    <!-- non-displaytype views -->
+    <browser:menuItem
+            for="collective.noticeboard.interfaces.INoticeboard"
+            menu="plone_displayviews"
+            title="Noticeboard View"
+            action="noticeboardview"
+            description="Displays a noticeboard."
+            i18n:attributes="title; description" />
+
+</configure>
+

@@ -1,4 +1,1 @@
-collective.noticeboard
-======================
-
-A fancy noticeboard
+README.txt
