@@ -13,6 +13,12 @@
 <!--  <include file="indexers.zcml" /> -->
 
   <includeDependencies package="." />
+
+  <browser:resourceDirectory
+      name="collective.noticeboard"
+      directory="resources"
+      />
+
   
   <include package=".browser" />
 <!--  <include package=".action" />

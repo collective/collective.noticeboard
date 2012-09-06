@@ -37,6 +37,8 @@ setup(name='collective.noticeboard',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'collective.js.backbone',
+          'collective.js.underscore',
           # -*- Extra requirements: -*-
       ],
       extras_require={'test': ['plone.app.testing']},
