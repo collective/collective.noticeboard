@@ -12,13 +12,28 @@
             NoteView = Backbone.View.extend({
                 events: {
                     "startmove": "startmove",
-                    "stopmove": "stopmove"
+                    "stopmove": "stopmove",
                 },
                 template: Mustache.compile(template.html()),
                 initialize: function () {
                     this.model.bind("change", this.render, this);
                     this.model.bind("destroy", this.remove, this);
                     _.bindAll(this);
+                    $("#add a").prepOverlay({
+                        subtype: 'ajax',
+                        filter: '#content>*',
+                        formselector: 'form'
+                    });
+                    $("#notesettings a").prepOverlay({
+                        subtype: 'ajax',
+                        filter: '#content>*',
+                        formselector: 'form'
+                    });
+                    $("#viewsettings a").prepOverlay({
+                        subtype: 'ajax',
+                        filter: '#content>*',
+                        formselector: 'form'
+                    });
                 },
                 render: function () {
                     var data = {
