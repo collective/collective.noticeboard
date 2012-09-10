@@ -2,4 +2,6 @@
 <object name="portal_javascripts">
     <javascript id="++resource++collective.noticeboard/noticeboard.js" 
         insert-after="++resource++collective.js.backbone/backbone.min.js"/>
+    <javascript id="++resource++collective.noticeboard/mustache.js" 
+        insert-after="++resource++collective.js.backbone/backbone.min.js"/>
 </object>

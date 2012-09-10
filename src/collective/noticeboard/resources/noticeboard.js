@@ -1,9 +1,6 @@
 /*jslint nomen: true */
 (function init(noticeboard, $, _, Backbone) {
     "use strict"; /*global _: true, jQuery: true, Backbone: true, window: true */
-    _.templateSettings = {
-        interpolate: /\{\{(.+?)\}\}/g
-    };
     noticeboard.init = function (canvas, template) {
         var Note = Backbone.Model.extend({
 
@@ -14,7 +11,7 @@
             }),
             NoteView = Backbone.View.extend({
                 events: {},
-                template: _.template(template.html()),
+                template: Mustache.compile(template.html()),
                 initialize: function () {
                     this.model.bind("change", this.render, this);
                     this.model.bind("destroy", this.remove, this);
@@ -24,6 +21,10 @@
                         text: "No text"
                     };
                     $.extend(data, this.model.toJSON());
+                    if(data.image_url){
+                        data.image_url = '<img src="' + data.image_url + '" />'
+                    }
+                    data.css = "position: absolute; left:" + this.model.get("position_x") + "px ;top:" + this.model.get("position_y") + "px;"
                     this.$el.html(this.template(data));
                     return this;
                 }
@@ -47,7 +48,7 @@
                 },
                 addAll: function () {
                     this.notes.each(this.addOne, this);
-                },
+                }
             }),
             app = new App();
     };
