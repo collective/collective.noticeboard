@@ -5,23 +5,17 @@ from zope.interface import Interface, Attribute
 
 
 class INoticeboard(Interface):
-
-    '''
-    Marker interface for content types that can display a noticeboard
+    '''Marker interface for content types that can display a noticeboard
     '''
 
 
 class INoticeboardSettings(Interface):
-
-    '''
-    Marker interface for content types that can be configured for noticeboards
+    '''Marker interface for content types that can be configured for noticeboards
     '''
 
 
 class INote(Interface):
-
-    '''
-    Interface for objects that can be displayed as a note
+    '''Interface for objects that can be displayed as a note
     '''
 
     text = Attribute('The text to display')
@@ -32,6 +26,5 @@ class INote(Interface):
 
 
 class INoteMarker(Interface):
-
     '''
     '''

@@ -3,5 +3,6 @@
   <version>0001</version>
   <dependencies>
     <dependency>profile-collective.js.underscore:default</dependency>
+    <dependency>profile-collective.js.backbone:default</dependency>
   </dependencies>
 </metadata>
