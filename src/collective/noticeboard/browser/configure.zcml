@@ -14,7 +14,7 @@
         for="collective.noticeboard.interfaces.INoticeboard"
         class=".settings.NoticeboardSettingsView"
         permission="collective.noticeboard.manage"
-    />
+        />
 
     <browser:page
         for="collective.noticeboard.interfaces.INoticeboard"
