@@ -4,10 +4,12 @@
     xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:xmlrpc="http://namespaces.zope.org/xmlrpc"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="collective.noticeboard">
 
     <include package="plone.app.contentmenu" />
+    <include package="zope.app.publisher.xmlrpc" file="meta.zcml" />
 
     <browser:page
         name="noticeboard-settings"
@@ -28,6 +30,21 @@
         name="noticeboardnotes"
         class=".noticeboardview.NoticeboardNotes"
         permission="zope2.View" />
+
+    <browser:page
+        for="collective.noticeboard.interfaces.INoteMarker"
+        name="PUT"
+        class=".noteviews.NoticePUTView"
+        permission="zope2.View" />
+
+    <view
+        for="collective.noticeboard.interfaces.INoticeboard"
+        type="zope.publisher.interfaces.browser.IBrowserRequest"
+        provides="zope.publisher.interfaces.browser.IBrowserPublisher"
+        factory=".traversers.BoardTraverser"
+        permission="zope2.View"
+        />
+
 
     <!-- non-displaytype views -->
     <browser:menuItem
