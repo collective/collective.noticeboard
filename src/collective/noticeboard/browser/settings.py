@@ -22,7 +22,7 @@ class MainSettingsGroup(plonegroup.Group):
     label = _(u'Main')
 
 
-class GallerySettingsForm(group.GroupForm, form.EditForm):
+class NoticeBoardSettingsForm(group.GroupForm, form.EditForm):
 
     '''
     The page that holds all the noticeboard settings
@@ -63,7 +63,7 @@ class GallerySettingsForm(group.GroupForm, form.EditForm):
             group.fields = field.Fields(group.fields, *toadd)
 
     def update(self):
-        super(GallerySettingsForm, self).update()
+        super(NoticeBoardSettingsForm, self).update()
 
     def set_status_message(self, settings, has_changes):
         msg = has_changes and self.successMessage \
@@ -90,4 +90,4 @@ class GallerySettingsForm(group.GroupForm, form.EditForm):
         return self.request.response.redirect(self.context.absolute_url())
 
 
-NoticeboardSettingsView = wrap_form(GallerySettingsForm)
+NoticeboardSettingsView = wrap_form(NoticeBoardSettingsForm)

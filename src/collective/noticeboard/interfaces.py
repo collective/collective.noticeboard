@@ -21,7 +21,7 @@ class INote(Interface):
     '''
     Interface for objects that can be displayed as a note
     '''
-    text = Attribute()
-    image_url = Attribute()
-    position_x = Attribute()
-    position_y = Attribute()
+    text = Attribute("The text to display")
+    image_url = Attribute("The image link")
+    position_x = Attribute("Position X")
+    position_y = Attribute("Position Y")
