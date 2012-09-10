@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object name="portal_css" meta_type="Stylesheets Registry">
+ <stylesheet title="" applyPrefix="False" authenticated="False" bundle="" cacheable="True" compression="safe" conditionalcomment="" cookable="True" enabled="True" expression="" id="++resource++collective.noticeboard/noticeboard.css" media="" rel="stylesheet" rendering="import"/>
+</object>

@@ -25,3 +25,7 @@ class INote(Interface):
     image_url = Attribute("The image link")
     position_x = Attribute("Position X")
     position_y = Attribute("Position Y")
+
+class INoteMarker(Interface):
+    """
+    """

@@ -71,4 +71,11 @@
       profile="collective.noticeboard:default"
       /> -->      
 
+<interface interface=".interfaces.INoteMarker" />
+
+<adapter for=" Products.ATContentTypes.interfaces.news.IATNewsItem"
+         provides=".interfaces.INote"
+         factory=".adapters.NewsAdapter" />
+
+
 </configure>
