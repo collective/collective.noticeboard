@@ -9,6 +9,18 @@
   <body>
     <metal:core fill-slot="content-core">
       <tal:core-macro metal:define-macro="content-core">
+        <div class="templates">
+          <div id="note_template" class="hiddenStructure">
+            <img />
+            <span>{{text}}</span>
+        </div>
+        <div id="noticeboardcanvas" data-href=""
+          tal:attributes="data-href string:${context/absolute_url}/noticeboardnotes" />
+        <script type="text/javascript">
+          $(document).ready(function(){
+            noticeboard.init($("#noticeboardcanvas"), $("#note_template"));
+          });
+        </script>
       </tal:core-macro>
     </metal:core>
   </body>
