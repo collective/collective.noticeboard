@@ -37,6 +37,7 @@ setup(name='collective.noticeboard',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'Products.CMFPlone',
           'collective.js.backbone',
           'collective.js.underscore',
           # -*- Extra requirements: -*-

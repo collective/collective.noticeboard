@@ -19,7 +19,7 @@
       directory="resources"
       />
 
-  
+
   <include package=".browser" />
 <!--  <include package=".action" />
   <include package=".behaviors" />
@@ -69,13 +69,23 @@
       handler=".setuphandlers.upgradeTechnicalPictureRelations"
       sortkey="1"
       profile="collective.noticeboard:default"
-      /> -->      
+      /> -->
 
 <interface interface=".interfaces.INoteMarker" />
 
-<adapter for=" Products.ATContentTypes.interfaces.news.IATNewsItem"
+<adapter for="Products.ATContentTypes.interfaces.interfaces.IATContentType"
          provides=".interfaces.INote"
-         factory=".adapters.NewsAdapter" />
+         factory=".adapters.ArchetypesNoteAdapter" />
 
+<!--
+<adapter for="plone.dexterity.interfaces.IDexterityContent"
+         provides=".interfaces.INote"
+         factory=".adapters.DexterityNoteAdapter" />
+
+
+<adapter for="plone.app.contentlisting.interfaces.IContentListingObject"
+         provides=".interfaces.INote"
+         factory=".adapters.BrainNoteAdapter" />
+-->
 
 </configure>
