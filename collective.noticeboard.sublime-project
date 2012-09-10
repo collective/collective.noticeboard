@@ -5,7 +5,7 @@
 			"file_exclude_patterns":
 			[
 				".*",
-				"*sublime*"
+				"*sublime-workspace*"
 			],
 			"folder_exclude_patterns":
 			[
@@ -16,7 +16,8 @@
 				"lib",
 				"local",
 				"parts",
-				"var"
+				"var",
+				"src"
 			],
 			"path": "./"
 		},
@@ -29,6 +30,13 @@
 		},
 		{
 			"path": "src-mrd"
+		},
+		{
+			"path": "parts/omelette",
+			"folder_exclude_patterns":
+			[
+				"collective/noticeboard"
+			]
 		}
 	]
 }
