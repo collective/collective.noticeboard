@@ -72,11 +72,14 @@
 
         <div class="templates">
           <div id="note_template" class="hiddenStructure">
-            <div class="note">
-              <img />
+            <div class="note" style="{{css}}">
+              {{{image_url}}}
               <span>{{text}}</span>
             </div>
         </div>
+        <span id="viewsettings"><a href="select_default_view">layout</a></span>
+        <span id="notesettings"><a href="noticeboard-settings">board settings</a></span>
+        <span id="viewsettings"><a href="createObject?type_name=News+Item">Add</a></span>
         <div id="noticeboardcanvas" data-href=""
           tal:attributes="data-href string:${context/absolute_url}/noticeboardnotes"></div>
         <script type="text/javascript">

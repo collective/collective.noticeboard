@@ -22,17 +22,18 @@
                     $("#add a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*',
-                        formselector: 'form'
+                        formselector: 'form',
+                        afterpost: this.model.fetch
                     });
                     $("#notesettings a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*',
-                        formselector: 'form'
+                        formselector: 'form',
+                        noform: 'close'
                     });
                     $("#viewsettings a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*',
-                        formselector: 'form'
                     });
                 },
                 render: function () {
