@@ -37,14 +37,11 @@
                     });
                 },
                 render: function () {
-                    var data = {
-                        text: "No text"
-                    };
+                    var data = {};
                     $.extend(data, this.model.toJSON());
-                    if (data.image_url) {
-                        data.image_url = '<img src="' + data.image_url + '" />';
-                    }
-                    data.css = "position: absolute; left:" + this.model.get("position_x") + "px ;top:" + this.model.get("position_y") + "px;";
+                    var position_x = this.model.get("position_x");
+                    var position_y = this.model.get("position_y");
+                    data.css = "position: absolute; left:" + position_x + "px ;top:" + position_y + "px;";
                     this.$el.html(this.template(data));
                     return this;
                 },

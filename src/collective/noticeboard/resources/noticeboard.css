@@ -1,4 +1,11 @@
 .note {
-    border-width: 1px;
-    border-style: solid;
+    border: 1px solid #ccc;
+    width: 350px;
+    padding: 0.5em;
+    max-height: 500px;
+    overflow: auto;
+}
+
+#content .note .documentDescription {
+    font-size: 1.1em;
 }

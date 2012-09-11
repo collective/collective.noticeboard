@@ -69,12 +69,21 @@
 </div>
         </div>
 
-
+<div id="content">
         <div class="templates">
           <div id="note_template" class="hiddenStructure">
             <div class="note" style="{{css}}">
-              {{{image_url}}}
-              <span>{{text}}</span>
+              <h3>{{title}}</h3>
+              {{#description}}
+                <p class="documentDescription">{{description}}</p>
+              {{/description}}
+
+              {{#image_tag}}
+              <div class="newsImageContainer">{{{image_tag}}}</div>
+              {{/image_tag}}
+
+              {{{text}}}
+              <a href="{{url}}/edit">edit</a>
             </div>
         </div>
         <span id="viewsettings"><a href="select_default_view">layout</a></span>
@@ -88,6 +97,8 @@
           });
         </script>
       </div>
+
+</div>
   </body>
 </html>
 </metal:page>

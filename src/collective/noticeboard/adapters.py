@@ -2,8 +2,20 @@
 # -*- coding: utf-8 -*-
 from persistent.dict import PersistentDict
 from zope.annotation.interfaces import IAnnotations
+from zope.component import getMultiAdapter
 
 ANNOTATION_KEY = 'collective.noticeboard'
+
+
+def image_tag(object, field):
+    scale = "mini"
+    scales = getMultiAdapter((object, object.REQUEST), name="images")
+    if scales:
+        scale = scales.scale(field, scale)
+        if scale:
+            tag = scale.tag()
+            return tag
+    return False
 
 
 class BaseNoteAdapter(object):
@@ -37,6 +49,10 @@ class BaseNoteAdapter(object):
     def id_(self):
         return self.context.id
 
+    @property
+    def url(self):
+        return self.context.absolute_url()
+
 
 class ArchetypesNoteAdapter(BaseNoteAdapter):
 
@@ -50,18 +66,16 @@ class ArchetypesNoteAdapter(BaseNoteAdapter):
 
     @property
     def text(self):
-        return self.context.id
         text = getattr(self.context, 'getText')
         if text:
             return text()
 
     @property
-    def image_url(self):
+    def image_tag(self):
         if getattr(self.context, 'getImage', None):
-            scale = "mini"
-            url = self.context.absolute_url() + "/@@images/" + scale
-            return url
-        return False
+            tag = image_tag(self.context, 'image')
+            if tag:
+                return tag
 
 
 class DexterityNoteAdapter(BaseNoteAdapter):
@@ -81,9 +95,8 @@ class DexterityNoteAdapter(BaseNoteAdapter):
             return text.render()
 
     @property
-    def image_url(self):
+    def image_tag(self):
         if getattr(self.context, 'image', None):
-            scale = "mini"
-            url = self.context.absolute_url() + "/@@images/" + scale
-            return url
-        return False
+            tag = image_tag(self.context, 'image')
+            if tag:
+                return tag

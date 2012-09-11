@@ -35,10 +35,11 @@ class NoticeboardNotes(BrowserView):
 #            if INoteMarker.providedBy(item):
             note = INote(item)
             retval.append(dict(
+                        url=note.url,
                         title=note.title,
-                        descripton=note.description,
+                        description=note.description,
                         text=note.text,
-                        image_url=note.image_url,
+                        image_tag=note.image_tag,
                         position_x=note.position_x,
                         position_y=note.position_y))
         return json.dumps(retval)
@@ -52,3 +53,6 @@ class NoticeboardNotes(BrowserView):
         else:
             items = context.getFolderContents(full_objects=True)
         return items
+
+    def handle_change(self):
+        pass

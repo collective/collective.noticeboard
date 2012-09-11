@@ -31,7 +31,7 @@ class INote(Interface):
     '''
 
     text = Attribute('The text to display')
-    image_url = Attribute('The image link')
+    image_tag = Attribute('The image tag')
     position_x = Attribute('Position X')
     position_y = Attribute('Position Y')
     id_ = Attribute('An identifier to recognize an object again')
