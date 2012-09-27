@@ -71,8 +71,6 @@
       profile="collective.noticeboard:default"
       /> -->
 
-<interface interface=".interfaces.INoteMarker" />
-
 <adapter for="Products.ATContentTypes.interfaces.interfaces.IATContentType"
          provides=".interfaces.INote"
          factory=".adapters.ArchetypesNoteAdapter" />

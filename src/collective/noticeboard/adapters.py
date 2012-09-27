@@ -3,6 +3,8 @@
 from persistent.dict import PersistentDict
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
+from zope.interface import implements
+from collective.noticeboard.interfaces import INote
 
 ANNOTATION_KEY = 'collective.noticeboard'
 
@@ -19,6 +21,7 @@ def image_tag(object, field):
 
 
 class BaseNoteAdapter(object):
+    implements(INote)
     def __init__(self, context):
         self.context = context
         try:
@@ -46,6 +49,22 @@ class BaseNoteAdapter(object):
         self.annotations['position_y'] = int(value)
 
     @property
+    def height(self):
+        return self.annotations.get('height', 50)
+
+    @height.setter
+    def height(self, value):
+        self.annotations['height'] = int(value)
+
+    @property
+    def width(self):
+        return self.annotations.get('width', 200)
+
+    @width.setter
+    def width(self, value):
+        self.annotations['width'] = int(value)
+
+    @property
     def id_(self):
         return self.context.id
 
@@ -53,6 +72,20 @@ class BaseNoteAdapter(object):
     def url(self):
         return self.context.absolute_url()
 
+    @property
+    def jsonable(self):
+        return dict(
+                title=self.title,
+                url=self.context.absolute_url() + '/xx',
+                id=self.id_,
+                description=self.description,
+                text=self.text,
+                image_tag=self.image_tag,
+                height=self.height,
+                width=self.width,
+                position_x=self.position_x,
+                position_y=self.position_y,
+                )
 
 class ArchetypesNoteAdapter(BaseNoteAdapter):
 

@@ -35,8 +35,3 @@ class INote(Interface):
     position_x = Attribute('Position X')
     position_y = Attribute('Position Y')
     id_ = Attribute('An identifier to recognize an object again')
-
-
-class INoteMarker(Interface):
-    '''
-    '''

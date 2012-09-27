@@ -40,6 +40,7 @@ setup(name='collective.noticeboard',
           'Products.CMFPlone',
           'collective.js.backbone',
           'collective.js.underscore',
+          'collective.js.jqueryui',
           # -*- Extra requirements: -*-
       ],
       extras_require={'test': ['plone.app.testing']},
