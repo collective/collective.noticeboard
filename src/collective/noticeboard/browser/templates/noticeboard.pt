@@ -58,50 +58,54 @@
                     dir python:isRTL and 'rtl' or 'ltr'"
     i18n:domain="collective.noticeboard">
 
-<div id="visual-portal-wrapper">
+  <div id="visual-portal-wrapper">
 
-        <div id="portal-top"
+    <div id="portal-top"
             class="row"
             i18n:domain="plone"
             tal:condition="not:ajax_load">
-<div class="cell width-full position-0">
-            <div tal:replace="structure provider:plone.portaltop" />
-</div>
-        </div>
+      <div class="cell width-full position-0">
+        <div tal:replace="structure provider:plone.portaltop" />
+      </div>
+    </div>
 
-<div id="content">
-        <div class="templates">
-          <div id="note_template" class="hiddenStructure">
-            <ul class="actions">
+    <div id="content">
+      <div class="templates">
+        <div id="note_template" class="hiddenStructure">
+          <ul class="actions">
             {{#actions}}
               <li class="{{class_}}"><a href="{{url}}">{{title}}</a></li>
             {{/actions}}
-            </ul>
-              <h3>{{title}}</h3>
-              {{#description}}
-                <p class="documentDescription">{{description}}</p>
-              {{/description}}
-
-              {{#image_tag}}
-              <div class="newsImageContainer">{{{image_tag}}}</div>
-              {{/image_tag}}
-
-              {{{text}}}
+          </ul>
+          <h3>{{title}}</h3>
+          {{#description}}
+            <p class="documentDescription">{{description}}</p>
+          {{/description}}
+          {{#image_tag}}
+            <div class="newsImageContainer">{{{image_tag}}}</div>
+          {{/image_tag}}
+          {{{text}}}
+          <div class="shadow"></div>
         </div>
+
         <span id="viewsettings"><a href="select_default_view">layout</a></span>
         <span id="notesettings"><a href="noticeboard-settings">board settings</a></span>
         <span id="add"><a href="createObject?type_name=News+Item">Add</a></span>
-        <div id="noticeboardcanvas" data-href=""
-          tal:attributes="data-href string:${context/absolute_url}/noticeboardnotes;
-          data-hrefitem context/absolute_url"></div>
+        <div id="noticeboardcanvas"
+             data-href=""
+             tal:attributes="data-href string:${context/absolute_url}/noticeboardnotes;
+                             data-hrefitem context/absolute_url">
+        </div>
+
         <script type="text/javascript">
           $(document).ready(function(){
             noticeboard.init($("#noticeboardcanvas"), $("#note_template"));
           });
         </script>
-      </div>
 
-</div>
-  </body>
+      </div>
+    </div>
+  </div>
+</body>
 </html>
 </metal:page>

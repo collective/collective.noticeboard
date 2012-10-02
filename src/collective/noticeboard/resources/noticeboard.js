@@ -55,6 +55,9 @@
 
                     this.$el.draggable({
                         handle: "h3",
+                        containment: "window",
+                        cursor: "move",
+                        stack: ".note",
                         stop: function (object, event) {
                             console.log(event.position.left);
                             console.log(event.position.top);
@@ -72,6 +75,9 @@
                         left: position_y
                     };
                     this.$el.resizable({
+                        minHeight: 70,
+                        minWidth: 100,
+                        autoHide: true,
                         stop: function (object, event) {
                             model.set({
                                 width: event.size.width,
