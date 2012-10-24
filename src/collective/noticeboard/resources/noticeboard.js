@@ -33,6 +33,7 @@
                 render: function () {
                     var data = {},
                         model = this.model,
+                        color = this.model.get("color"),
                         position_x = this.model.get("position_x"),
                         position_y = this.model.get("position_y"),
                         width = this.model.get("width"),
@@ -50,6 +51,7 @@
                     this.$el.css("width", width);
                     this.$el.css("height", height);
                     this.$el.css("position", "absolute");
+                    this.$el.addClass(color);
 
 
 
@@ -73,7 +75,7 @@
                         left: position_y
                     };
                     this.$el.resizable({
-                        minHeight: 70,
+                        minHeight:150,
                         minWidth: 100,
                         autoHide: true,
                         stop: function (object, event) {

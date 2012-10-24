@@ -34,23 +34,23 @@ class BaseNoteAdapter(object):
 
     @property
     def position_x(self):
-        return self.annotations.get('position_x', 50)
+        return self.annotations.get('position_x', '50%')
 
     @position_x.setter
     def position_x(self, value):
-        self.annotations['position_x'] = int(value)
+        self.annotations['position_x'] = value
 
     @property
     def position_y(self):
-        return self.annotations.get('position_y', 50)
+        return self.annotations.get('position_y', '50%')
 
     @position_y.setter
     def position_y(self, value):
-        self.annotations['position_y'] = int(value)
+        self.annotations['position_y'] = value
 
     @property
     def height(self):
-        return self.annotations.get('height', 50)
+        return self.annotations.get('height', 150)
 
     @height.setter
     def height(self, value):
@@ -63,6 +63,14 @@ class BaseNoteAdapter(object):
     @width.setter
     def width(self, value):
         self.annotations['width'] = int(value)
+
+    @property
+    def color(self):
+        return self.annotations.get('color', 'yellow')
+
+    @color.setter
+    def color(self, value):
+        self.annotations['color'] = str(value)
 
     @property
     def id_(self):
@@ -81,6 +89,7 @@ class BaseNoteAdapter(object):
                 description=self.description,
                 text=self.text,
                 image_tag=self.image_tag,
+                color=self.color,
                 height=self.height,
                 width=self.width,
                 position_x=self.position_x,
