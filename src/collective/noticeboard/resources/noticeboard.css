@@ -88,12 +88,6 @@
     display: none;
 }
 
-.overlay .mceIframeContainer iframe {
-    box-shadow: None;
-    -moz-box-shadow: None;
-    -webkit-box-shadow: None;
-}
-
 /* Colors */
 .yellow {
     background: #f2edab;
@@ -140,4 +134,78 @@
     background: -o-linear-gradient(68deg,rgba(255,255,255,0.5) 7%,rgba(255,255,255,0) 26%),-o-linear-gradient(top,#be6ada 0,#d688ec 15%,#d688ec 82%,#be6ada 100%);
     background: -ms-linear-gradient(68deg,rgba(255,255,255,0.5) 7%,rgba(255,255,255,0) 26%),-ms-linear-gradient(top,#be6ada 0,#d688ec 15%,#d688ec 82%,#be6ada 100%);
     background: linear-gradient(68deg,rgba(255,255,255,0.5) 7%,rgba(255,255,255,0) 26%),linear-gradient(top,#be6ada 0,#d688ec 15%,#d688ec 82%,#be6ada 100%)
+}
+
+/* Popup */
+.template-noticeboardview .overlay .mceIframeContainer iframe {
+    box-shadow: None;
+    -moz-box-shadow: None;
+    -webkit-box-shadow: None;
+}
+
+.template-noticeboardview .overlay .suppressVisualEditor {
+    display: none;
+}
+
+.template-noticeboardview .overlay ul.formTabs {
+    background-color: #DDDDDD;
+    border-style: solid solid none;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    border-width: 3px 3px 0 3px;
+    border-color: #ddd;
+    display: block;
+    margin-left: 0;
+}
+
+.template-noticeboardview .overlay li.formTab {
+    display: inline;
+    margin-right: 0.25em;
+}
+
+.template-noticeboardview .overlay li.formTab a {
+    display: inline-block;
+}
+
+.template-noticeboardview .overlay li.formTab a {
+    border: medium none;
+    line-height: 2em;
+    margin: 0;
+    padding: 0 0.75em;
+    text-decoration: none;
+}
+
+.template-noticeboardview .overlay li.formTab a.selected {
+    font-weight: bold;
+}
+
+.template-noticeboardview .overlay li.formTab a.selected,
+.template-noticeboardview .overlay li.formTab a:hover {
+    background: none repeat scroll 0 0 White;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    color: Black;
+}
+
+.template-noticeboardview .overlay li.formTab a.notify {
+    background-color: red;
+    color: White;
+}
+
+.template-noticeboardview .overlay li.formTab a.required span:after {
+    color: Red;
+    content: "■";
+    padding-left: 0.2em;
+}
+
+.template-noticeboardview .overlay fieldset.formPanel {
+    border: medium none;
+}
+
+.template-noticeboardview .overlay fieldset.formPanel.hidden {
+    display: none;
+}
+
+.template-noticeboardview .overlay div.formControls input.hidden {
+    display: none;
 }
