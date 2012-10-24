@@ -71,22 +71,22 @@
 
     <div id="content">
       <div class="templates">
-        <div id="note_template" class="hiddenStructure">
-          <div class="overflowhidden">
+        <div id="note_template" class="hiddenStructure yellow">
           <ul class="actions">
             {{#actions}}
               <li class="{{class_}}"><a href="{{url}}">{{title}}</a></li>
             {{/actions}}
           </ul>
-          <h3>{{title}}</h3>
-          {{#description}}
-            <p class="documentDescription">{{description}}</p>
-          {{/description}}
-          {{#image_tag}}
-            <div class="newsImageContainer">{{{image_tag}}}</div>
-          {{/image_tag}}
-          {{{text}}}
-        </div>
+          <div class="notecontent">
+            <h3>{{title}}</h3>
+            {{#description}}
+              <p class="documentDescription">{{description}}</p>
+            {{/description}}
+            {{#image_tag}}
+              <div class="newsImageContainer">{{{image_tag}}}</div>
+            {{/image_tag}}
+            {{{text}}}
+          </div>
           <div class="shadow"></div>
         </div>
 
