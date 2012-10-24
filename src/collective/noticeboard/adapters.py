@@ -34,7 +34,7 @@ class BaseNoteAdapter(object):
 
     @property
     def position_x(self):
-        return self.annotations.get('position_x', 0)
+        return self.annotations.get('position_x', 50)
 
     @position_x.setter
     def position_x(self, value):
@@ -42,7 +42,7 @@ class BaseNoteAdapter(object):
 
     @property
     def position_y(self):
-        return self.annotations.get('position_y', 0)
+        return self.annotations.get('position_y', 50)
 
     @position_y.setter
     def position_y(self, value):
