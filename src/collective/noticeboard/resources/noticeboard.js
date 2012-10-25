@@ -10,25 +10,51 @@
 
         }),
             Notes = Backbone.Collection.extend({
-                model: Note
-
+                initialize: function () {
+                    this.on("updateZIndex", this.updateZIndex);
+                },
+                model: Note,
+                updateZIndex: function () {
+                    _.each(_.sortBy(this.models, function (note) {
+                        return note.get("zIndex");
+                    }), function (note, index) {
+                        note.set({
+                            zIndex: index
+                        });
+                        note.save();
+                    });
+                }
             }),
             NoteView = Backbone.View.extend({
-                events: {
-                    //                    "startmove": "startmove",
-                    //                    "stopmove": "stopmove",
-                },
                 className: "note",
                 template: Mustache.compile(template.html()),
                 initialize: function () {
                     this.model.bind("change", this.render, this);
                     this.model.bind("destroy", this.remove, this);
+                    _.bindAll(this);
                 },
                 update: function () {
                     this.model.fetch();
                 },
                 remove: function () {
                     this.$el.remove();
+                },
+                updateZIndex: function () {
+                    var biggest = _.reduce($(".note"), function (a, b) {
+                        return Math.max($(b).zIndex(), a);
+                    }, 0);
+                    console.log(biggest);
+                    if(this.model.get("zIndex") !== biggest) {
+                        this.model.set({
+                            zIndex: biggest + 1
+                        });
+                        if(Math.random() * 1001 > 1000 || biggest > 30) {
+                            this.model.trigger("updateZIndex");
+                        } else {
+                            this.model.save();
+                        }
+                    }
+
                 },
                 render: function () {
                     var data = {},
@@ -39,6 +65,7 @@
                         width = this.model.get("width"),
                         height = this.model.get("height");
                     $.extend(data, this.model.toJSON());
+                    this.$el.unbind();
 
                     this.$el.empty();
                     this.$el.removeClass("ui-resizable");
@@ -77,7 +104,7 @@
                         left: position_y
                     };
                     this.$el.resizable({
-                        minHeight:150,
+                        minHeight: 150,
                         minWidth: 100,
                         autoHide: true,
                         stop: function (object, event) {
@@ -113,6 +140,7 @@
                             }
                         }
                     });
+                    this.$el.bind("click.zindex", this.updateZIndex);
                     return this;
                 }
             }),
