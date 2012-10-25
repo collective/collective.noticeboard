@@ -54,6 +54,8 @@ class NoticeboardNotes(BrowserView):
         return json.dumps(retval)
 
     def contents(self):
+        """ Get the contents of the folder/collection.
+        """
         context = aq_inner(self.context)
         if IATTopic.providedBy(context):
             items = context.queryCatalog()
@@ -62,3 +64,6 @@ class NoticeboardNotes(BrowserView):
         else:
             items = context.getFolderContents(full_objects=True)
         return items
+
+    def default_type(self):
+        pass

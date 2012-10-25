@@ -23,7 +23,7 @@ class INoticeboardSettings(Interface):
             u" content types can actually be created. Check the required"
             u" fields!"),
         vocabulary="plone.app.vocabularies.ReallyUserFriendlyTypes",
-        default="basic")
+        default="News Item")
 
 
 class INote(Interface):

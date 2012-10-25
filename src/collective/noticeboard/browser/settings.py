@@ -23,10 +23,8 @@ class MainSettingsGroup(plonegroup.Group):
 
 
 class NoticeBoardSettingsForm(group.GroupForm, form.EditForm):
-
-    '''
-    The page that holds all the noticeboard settings
-    '''
+    """ The page that holds all the noticeboard settings
+    """
 
     fields = field.Fields(INothing)
     groups = [MainSettingsGroup]
