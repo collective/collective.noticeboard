@@ -73,6 +73,14 @@ class BaseNoteAdapter(object):
         self.annotations['color'] = str(value)
 
     @property
+    def zIndex(self):
+        return self.annotations.get('zIndex', '0')
+
+    @zIndex.setter
+    def zIndex(self, value):
+        self.annotations['zIndex'] = str(value)
+
+    @property
     def id_(self):
         return self.context.id
 
@@ -90,6 +98,7 @@ class BaseNoteAdapter(object):
                 text=self.text,
                 image_tag=self.image_tag,
                 color=self.color,
+                zIndex=self.zIndex,
                 height=self.height,
                 width=self.width,
                 position_x=self.position_x,

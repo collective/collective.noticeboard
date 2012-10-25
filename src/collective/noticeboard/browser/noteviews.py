@@ -34,5 +34,7 @@ class NoticeJSONView(BrowserView):
         note.position_y = data['position_y']
         note.height = data['height']
         note.width = data['width']
+        note.color = data['color']
+        note.zIndex = data['zIndex']
         logging.info('Object updated %s' % str(data))
         return True

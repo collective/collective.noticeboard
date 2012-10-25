@@ -45,6 +45,7 @@
                     this.$el.removeClass("ui-draggable");
                     this.$el.removeData();
                     this.$el.html(this.template(data));
+                    this.$el.zIndex(this.model.get("zIndex"));
 
                     this.$el.css("top", position_y);
                     this.$el.css("left", position_x);
@@ -63,7 +64,8 @@
                         stop: function (object, event) {
                             model.set({
                                 position_x: event.position.left,
-                                position_y: event.position.top
+                                position_y: event.position.top,
+                                zIndex: event.helper.zIndex()
                             }, {
                                 silent: true
                             });
