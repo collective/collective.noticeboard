@@ -12,6 +12,7 @@
             Notes = Backbone.Collection.extend({
                 initialize: function () {
                     this.on("updateZIndex", this.updateZIndex);
+                    this.on("hide_edit", this.hideEdit);
                 },
                 model: Note,
                 updateZIndex: function () {
@@ -22,6 +23,13 @@
                             zIndex: index
                         });
                         note.save();
+                    });
+                },
+                hideEdit: function(){
+                    this.each(function(note){
+                        if (note.get("show_edit")){
+                            note.set({show_edit: 0});
+                        }
                     });
                 }
             }),
@@ -48,13 +56,17 @@
                         this.model.set({
                             zIndex: biggest + 1
                         });
-                        if(Math.random() * 1001 > 1000 || biggest > 30) {
+                        if(Math.random() * 1001 > 1000 || biggest > 1000) {
                             this.model.trigger("updateZIndex");
                         } else {
                             this.model.save();
                         }
                     }
 
+                },
+                updateEditBar: function(){
+                    this.model.trigger("hide_edit");
+                    this.model.set({'show_edit': 1});
                 },
                 render: function () {
                     var data = {},
@@ -73,6 +85,9 @@
                     this.$el.removeData();
                     this.$el.html(this.template(data));
                     this.$el.zIndex(this.model.get("zIndex"));
+                    if(this.model.get("show_edit")){
+                        this.$el.find(".actions").show();
+                    }
 
                     this.$el.css("top", position_y);
                     this.$el.css("left", position_x);
@@ -141,6 +156,7 @@
                         }
                     });
                     this.$el.bind("click.zindex", this.updateZIndex);
+                    this.$el.bind("click.edit", this.updateEditBar);
                     return this;
                 }
             }),

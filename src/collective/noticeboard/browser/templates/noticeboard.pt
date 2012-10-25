@@ -72,7 +72,7 @@
     <div id="content">
       <div class="templates">
         <div id="note_template" class="hiddenStructure">
-          <ul class="actions">
+          <ul class="actions" style="display: None">
             {{#actions}}
               <li class="{{class_}}"><a href="{{url}}">{{title}}</a></li>
             {{/actions}}

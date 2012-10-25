@@ -49,10 +49,6 @@
     top: -25px;
 }
 
-#content .note:hover ul.actions {
-    display: block;
-}
-
 #content .note ul.actions li {
     display: inline;
 }
