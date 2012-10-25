@@ -159,7 +159,7 @@
                     this.notes.bind("all", this.render, this);
                     _.bindAll(this);
                     this.notes.fetch();
-                    $("#add a").prepOverlay({
+                    $(".add_note a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*',
                         formselector: 'form[name=edit_form]',

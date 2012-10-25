@@ -90,10 +90,31 @@
           <div class="shadow"></div>
         </div>
 
-        <span id="viewsettings"><a i18n:domain="plone" i18n:attributes="title title_choose_default_view" href="select_default_view" title="">layout</a></span>
-        <span id="notesettings"><a href="noticeboard-settings" title="Modify the settings of the notice-board">board settings</a></span>
-        <span id="add"><a href="createObject?type_name=News+Item" title="Add new note">Add Note</a></span>
-        <span id="add"><a href="createObject?type_name=Image" title="Add new image">Add Image</a></span>
+        <span id="viewsettings">
+          <a i18n:domain="plone"
+             i18n:attributes="title title_choose_default_view"
+             href="select_default_view"
+             title="">
+             layout
+          </a>
+        </span>
+        <span id="notesettings">
+          <a href="noticeboard-settings"
+             title="Modify the settings of the notice-board">board settings</a>
+        </span>
+        <span class="add_note">
+          <a href="createObject?type_name=News+Item"
+             tal:attributes="href string:createObject?type_name=${view/note_type}"
+             title="Add new note">
+              Add Note
+          </a>
+        </span>
+        <span class="add_note">
+          <a href="createObject?type_name=Image"
+             title="Add new image">
+              Add Image
+          </a>
+        </span>
         <script type="text/javascript">
           $(document).ready(function(){
             noticeboard.init($("#noticeboardcanvas"), $("#note_template"));

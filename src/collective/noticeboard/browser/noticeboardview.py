@@ -26,6 +26,9 @@ class NoticeboardView(BrowserView):
         self.settings = NoticeboardSettings(self.context)
         return self.index()
 
+    def note_type(self):
+        return self.settings.note_type.replace(' ', '+')
+
 
 class NoticeboardNotes(BrowserView):
 
@@ -64,6 +67,3 @@ class NoticeboardNotes(BrowserView):
         else:
             items = context.getFolderContents(full_objects=True)
         return items
-
-    def default_type(self):
-        pass
