@@ -3,10 +3,13 @@
 }
 
 .notecontent {
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
     height: 85%;
-    padding: 0 6px 6px;
+    padding: 0 6px 0px 6px;
+}
+
+.note:hover .notecontent {
+    overflow-y: auto;
 }
 
 #noticeboardcanvas {
@@ -45,18 +48,50 @@
 }
 
 #content .note ul.actions {
-    background: none no-repeat scroll 0 0 #DDDDDD;
-    border-radius: 10px 10px 10px 10px;
+    background-color: #999999;
+    border-radius: 10px 10px 0 0;
     display: none;
+    height: 20px;
     list-style: none outside none;
-    padding: 3px 9px;
+    padding: 2px 10px;
     position: absolute;
-    right: 5px;
-    top: -25px;
+    right: 0;
+    top: -24px;
 }
 
 #content .note ul.actions li {
     display: inline;
+    padding-left: 0.5em;
+    color: #fff;
+}
+
+#content .note ul.actions li.confirm {
+    color: transparent;
+    cursor: pointer;
+    background-image: url("++resource++collective.noticeboard/yes.png");
+    background-repeat: no-repeat;
+    background-position: -5px -13px;
+}
+
+#content .note ul.actions li.not_confirm {
+    color: transparent;
+    cursor: pointer;
+    background-image: url("++resource++collective.noticeboard/no.png");
+    background-repeat: no-repeat;
+    background-position: -5px -13px;
+}
+
+#content ul.actions a:link {
+    color: #fff;
+    border-bottom-style: none !important;
+}
+
+#content .note ul.actions li:first-child {
+    padding-left: 0;
+}
+
+#content .note ul.actions a:hover {
+    color: #000 !important;
 }
 
 #portal-header {
