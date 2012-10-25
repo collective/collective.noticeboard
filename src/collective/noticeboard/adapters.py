@@ -76,7 +76,7 @@ class BaseNoteAdapter(object):
 
     @property
     def zIndex(self):
-        return self.annotations.get('zIndex', '0')
+        return self.annotations.get('zIndex', 'top')
 
     @zIndex.setter
     def zIndex(self, value):

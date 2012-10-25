@@ -39,6 +39,8 @@ class NoticeboardNotes(BrowserView):
 # if self.request.REQUEST_METHOD == 'POST': return self.handle_change()
 
         retval = []
+        new = []
+        max_zindex = 0
         items = self.contents()
         check_perm = getSecurityManager().checkPermission
         delete_url = None
@@ -48,20 +50,29 @@ class NoticeboardNotes(BrowserView):
                 actions.append(dict(title=PMF('Edit'), class_='edit',
                                url=item.absolute_url() + '/edit'))
             if check_perm(permissions.DeleteObjects, item):
-                delete_url = item.absolute_url() + "/delete_confirmation"
+                delete_url = item.absolute_url() \
+                    + '/delete_confirmation'
                 actions.append(dict(title=PMF('Delete'), class_='delete'
                                , url=delete_url))
             note = INote(item)
             notedata = note.jsonable
+            try:
+                max_zindex = max(max_zindex, int(note.zIndex))
+            except ValueError:
+                new.append(notedata)
             notedata.update(dict(actions=actions))
             if delete_url:
                 notedata.update(dict(delete_url=delete_url))
             retval.append(notedata)
+        for (new_note, new_index) in zip(new, range(max_zindex + 1,
+                max_zindex + len(new) + 1)):
+            new_note['zIndex'] = new_index
         return json.dumps(retval)
 
     def contents(self):
         """ Get the contents of the folder/collection.
         """
+
         context = aq_inner(self.context)
         if IATTopic.providedBy(context):
             items = context.queryCatalog()
