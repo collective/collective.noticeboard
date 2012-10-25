@@ -25,10 +25,12 @@
                         note.save();
                     });
                 },
-                hideEdit: function(){
-                    this.each(function(note){
-                        if (note.get("show_edit")){
-                            note.set({show_edit: 0});
+                hideEdit: function () {
+                    this.each(function (note) {
+                        if(note.get("show_edit")) {
+                            note.set({
+                                show_edit: 0
+                            });
                         }
                     });
                 }
@@ -64,23 +66,30 @@
                     }
 
                 },
-                updateEditBar: function(){
+                updateEditBar: function () {
                     this.model.trigger("hide_edit");
-                    this.model.set({'show_edit': 1});
+                    this.model.set({
+                        'show_edit': 1
+                    });
                 },
-                delete1: function(){
+                delete1: function () {
                     var model = this.model;
-                    this.$el.find(".delete_confirm").show("slide", {direction: "right"}, function(){
+                    this.$el.find(".delete_confirm").show("slide", {
+                        direction: "right"
+                    }, function () {
                         var $this = $(this);
-                        $this.find(".question, .not_confirm").click(function(){
+                        $this.find(".question, .not_confirm").click(function () {
                             model.trigger("hide_edit");
                             return false;
                         });
-                        $this.find(".confirm").click(function(){
+                        $this.find(".confirm").click(function () {
                             var href = $(this).attr("href");
-                            $.get(href, function(reply){
+                            $.get(href, function (reply) {
                                 var token = $(reply).find("input[name=_authenticator]").val();
-                                $.post(href, {_authenticator: token, "form.submitted": 1}, function(){
+                                $.post(href, {
+                                    _authenticator: token,
+                                    "form.submitted": 1
+                                }, function () {
                                     model.destroy();
                                 })
                             });
@@ -105,7 +114,7 @@
                     this.$el.removeData();
                     this.$el.html(this.template(data));
                     this.$el.zIndex(this.model.get("zIndex"));
-                    if(this.model.get("show_edit")){
+                    if(this.model.get("show_edit")) {
                         this.$el.find(".actions_first").show();
                     }
 
@@ -183,6 +192,7 @@
             App = Backbone.View.extend({
                 el: canvas,
                 events: {
+                    "click": "addAnonymous"
                     //                    "mousedown": "down"
                 },
                 initialize: function () {
@@ -227,6 +237,20 @@
                         model: note
                     });
                     this.$el.append(view.render().el);
+                },
+                addAnonymous: function (event) {
+                    if(event.target.id !== 'noticeboardcanvas'){
+                        return true;
+                    }
+                    var add_link = $(".add_note a").attr("href"),
+                        update = this.update;
+                    $.get(add_link, function (response) {
+                        var edit_form = $(response).find("form[name=edit_form]");
+                        edit_form.find("input[name=title]").val($(".anonymoustitle").text());
+                        $.get(edit_form.attr("action") + "?" + edit_form.serialize(), function () {
+                            update();
+                        });
+                    });
                 },
                 reset: function () {
                     this.$el.empty();
