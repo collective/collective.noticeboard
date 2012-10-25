@@ -68,6 +68,26 @@
                     this.model.trigger("hide_edit");
                     this.model.set({'show_edit': 1});
                 },
+                delete1: function(){
+                    var model = this.model;
+                    this.$el.find(".delete_confirm").show("slide", {direction: "right"}, function(){
+                        var $this = $(this);
+                        $this.find(".question, .not_confirm").click(function(){
+                            model.trigger("hide_edit");
+                            return false;
+                        });
+                        $this.find(".confirm").click(function(){
+                            var href = $(this).attr("href");
+                            $.get(href, function(reply){
+                                var token = $(reply).find("input[name=_authenticator]").val();
+                                $.post(href, {_authenticator: token, "form.submitted": 1}, function(){
+                                    model.destroy();
+                                })
+                            });
+                        });
+                    });
+                    return false;
+                },
                 render: function () {
                     var data = {},
                         model = this.model,
@@ -86,7 +106,7 @@
                     this.$el.html(this.template(data));
                     this.$el.zIndex(this.model.get("zIndex"));
                     if(this.model.get("show_edit")){
-                        this.$el.find(".actions").show();
+                        this.$el.find(".actions_first").show();
                     }
 
                     this.$el.css("top", position_y);
@@ -95,8 +115,6 @@
                     this.$el.css("height", height);
                     this.$el.css("position", "absolute");
                     this.$el.addClass(color);
-
-
 
                     this.$el.draggable({
                         handle: "h3",
@@ -132,7 +150,7 @@
                             model.save();
                         }
                     });
-                    this.$el.find(".delete a").prepOverlay({
+                    this.$el.find(".deletex a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*',
                         noform: 'close',
@@ -155,8 +173,10 @@
                             }
                         }
                     });
+
                     this.$el.bind("click.zindex", this.updateZIndex);
                     this.$el.bind("click.edit", this.updateEditBar);
+                    this.$el.find(".delete a").click(this.delete1);
                     return this;
                 }
             }),

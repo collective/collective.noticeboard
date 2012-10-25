@@ -72,10 +72,15 @@
     <div id="content">
       <div class="templates">
         <div id="note_template" class="hiddenStructure">
-          <ul class="actions" style="display: None">
+          <ul class="actions actions_first" style="display: None">
             {{#actions}}
               <li class="{{class_}}"><a href="{{url}}">{{title}}</a></li>
             {{/actions}}
+          </ul>
+          <ul class="actions delete_confirm" style="display: None">
+            <li classs="question" i18n:translate="">Are you sure</li>
+            <li class="confirm" href="{{delete_url}}">Yes</li>
+            <li class="not_confirm">No</li>
           </ul>
           <h3>{{title}}</h3>
           <div class="notecontent portaltype-{{portal_type}}">

@@ -41,18 +41,21 @@ class NoticeboardNotes(BrowserView):
         retval = []
         items = self.contents()
         check_perm = getSecurityManager().checkPermission
+        delete_url = None
         for item in items:
             actions = []
-            if check_perm(permissions.DeleteObjects, item):
-                actions.append(dict(title=PMF('Delete'), class_='delete'
-                               , url=item.absolute_url()
-                               + '/delete_confirmation'))
             if check_perm(permissions.ModifyPortalContent, item):
                 actions.append(dict(title=PMF('Edit'), class_='edit',
                                url=item.absolute_url() + '/edit'))
+            if check_perm(permissions.DeleteObjects, item):
+                delete_url = item.absolute_url() + "/delete_confirmation"
+                actions.append(dict(title=PMF('Delete'), class_='delete'
+                               , url=delete_url))
             note = INote(item)
             notedata = note.jsonable
             notedata.update(dict(actions=actions))
+            if delete_url:
+                notedata.update(dict(delete_url=delete_url))
             retval.append(notedata)
         return json.dumps(retval)
 
