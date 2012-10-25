@@ -11,6 +11,8 @@ ANNOTATION_KEY = 'collective.noticeboard'
 
 def image_tag(object, field):
     scale = "mini"
+    if object.portal_type == 'Image':
+        scale = "preview"
     scales = getMultiAdapter((object, object.REQUEST), name="images")
     if scales:
         scale = scales.scale(field, scale)
@@ -91,6 +93,7 @@ class BaseNoteAdapter(object):
     @property
     def jsonable(self):
         return dict(
+                portal_type=self.context.portal_type.lower(),
                 title=self.title,
                 url=self.context.absolute_url() + '/xx',
                 id=self.id_,
@@ -105,6 +108,7 @@ class BaseNoteAdapter(object):
                 position_y=self.position_y,
                 )
 
+
 class ArchetypesNoteAdapter(BaseNoteAdapter):
 
     @property
@@ -117,7 +121,7 @@ class ArchetypesNoteAdapter(BaseNoteAdapter):
 
     @property
     def text(self):
-        text = getattr(self.context, 'getText')
+        text = getattr(self.context, 'getText', None)
         if text:
             return text()
 
@@ -141,7 +145,7 @@ class DexterityNoteAdapter(BaseNoteAdapter):
 
     @property
     def text(self):
-        text = getattr(self.context, 'text')
+        text = getattr(self.context, 'text', None)
         if text:
             return text.render()
 

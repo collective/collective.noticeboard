@@ -88,6 +88,11 @@
     display: none;
 }
 
+#content .note .portaltype-image div.newsImageContainer {
+    float: none;
+    margin: 0;
+}
+
 /* Colors */
 .yellow {
     background: #f2edab;
