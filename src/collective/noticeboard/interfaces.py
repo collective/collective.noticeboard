@@ -25,6 +25,11 @@ class INoticeboardSettings(Interface):
         vocabulary="plone.app.vocabularies.ReallyUserFriendlyTypes",
         default="News Item")
 
+    create_on_click = schema.Bool(
+        title=_(u"label_Create_on_click", default="Create a new note when clicking on the canvas"),
+        description=_(u"label_Create_on_click", default="Create a new note when clicking on the canvas."),
+        default=False)
+
 
 class INote(Interface):
     '''Interface for objects that can be displayed as a note

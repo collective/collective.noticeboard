@@ -192,8 +192,9 @@
             App = Backbone.View.extend({
                 el: canvas,
                 events: {
-                    "click": "addAnonymous"
-                    //                    "mousedown": "down"
+                    // TODO: make addAnonymous optional (dependend on setting 'create_on_click')
+                    // "click": "addAnonymous"
+                    // "mousedown": "down"
                 },
                 initialize: function () {
                     var notes = this.notes = new Notes(),
