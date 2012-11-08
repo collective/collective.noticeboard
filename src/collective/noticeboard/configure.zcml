@@ -53,6 +53,12 @@
   <class class="Products.CMFPlone.Portal.PloneSite">
       <implements interface=".interfaces.INoticeboard" />
   </class>
+
+  <subscriber
+      for="Products.CMFCore.interfaces._content.IContentish
+           zope.app.container.interfaces.IObjectAddedEvent"
+      handler=".events.auto_publish" />
+
   <genericsetup:registerProfile
       name="default"
       title="collective.noticeboard"

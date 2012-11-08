@@ -27,9 +27,19 @@ class INoticeboardSettings(Interface):
 
     create_on_click = schema.Bool(
         title=_(u"label_Create_on_click", default="Create a new note when clicking on the canvas"),
-        description=_(u"label_Create_on_click", default="Create a new note when clicking on the canvas."),
+        description=_(u"description_Create_on_click", default="Create a new note when clicking on the canvas."),
         default=False)
 
+    publish_on_creation = schema.Bool(
+        title=_(u"label_Publish_on_create", default="Auto-publish on creation"),
+        description=_(u"description_Publish_on_create", default="Attempt to publish new items on saving."),
+        default=False)
+
+    hide_after_days = schema.Int(
+        title=_(u"label_Hide_after_days", default="Hide items after x days"),
+        description=_(u"description_Hide_after_days", default="Leave '0' to never hide items."),
+        default = 0,
+        )
 
 class INote(Interface):
     '''Interface for objects that can be displayed as a note

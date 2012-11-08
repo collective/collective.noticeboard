@@ -2,9 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from Acquisition import aq_inner
-
-# from Products.CMFPlone.utils import getToolByName
-
 from Products.Five.browser import BrowserView
 import json
 
@@ -34,7 +31,7 @@ class NoticeboardNotes(BrowserView):
 
     def __call__(self):
         self.request.response.setHeader('Content-Type',
-                'application/json; charset=utf-8')
+                                        'application/json; charset=utf-8')
 
 # if self.request.REQUEST_METHOD == 'POST': return self.handle_change()
 
@@ -52,8 +49,8 @@ class NoticeboardNotes(BrowserView):
             if check_perm(permissions.DeleteObjects, item):
                 delete_url = item.absolute_url() \
                     + '/delete_confirmation'
-                actions.append(dict(title=PMF('Delete'), class_='delete'
-                               , url=delete_url))
+                actions.append(dict(title=PMF('Delete'), class_='delete',
+                                    url=delete_url))
             note = INote(item)
             notedata = note.jsonable
             try:
