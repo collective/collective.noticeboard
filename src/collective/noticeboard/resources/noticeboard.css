@@ -29,11 +29,22 @@
     padding: 3px 6px;
 }
 
+#content .note .review-state {
+    display: none;
+    font-size: 80%;
+}
+
+#content .note .review-state.state-private {
+    display: inline;
+    position: absolute;
+    right: 0.5em;
+    top: 0;
+}
+
 .note:hover h3 {
     background-image: url("++resource++collective.noticeboard/handle.png");
     background-repeat: repeat-x;
 }
-
 
 .note .shadow {
     background-repeat: no-repeat;

@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from persistent.dict import PersistentDict
+from Products.CMFCore.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.interface import implements
@@ -92,8 +93,10 @@ class BaseNoteAdapter(object):
 
     @property
     def jsonable(self):
+        workflowTool = getToolByName(self.context, "portal_workflow")
         return dict(
                 portal_type=self.context.portal_type.lower(),
+                review_state=workflowTool.getInfoFor(self.context, 'review_state'),
                 title=self.title,
                 url=self.context.absolute_url() + '/xx',
                 id=self.id_,
