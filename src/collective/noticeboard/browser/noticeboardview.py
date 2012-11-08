@@ -13,6 +13,7 @@ from Products.ATContentTypes.interface import IATTopic
 from AccessControl import getSecurityManager
 from Products.CMFCore import permissions
 from zope.i18nmessageid import MessageFactory
+from datetime import datetime, timedelta
 
 PMF = MessageFactory('plone')
 
@@ -32,16 +33,21 @@ class NoticeboardNotes(BrowserView):
     def __call__(self):
         self.request.response.setHeader('Content-Type',
                                         'application/json; charset=utf-8')
-
-# if self.request.REQUEST_METHOD == 'POST': return self.handle_change()
-
         retval = []
         new = []
         max_zindex = 0
         items = self.contents()
         check_perm = getSecurityManager().checkPermission
         delete_url = None
+        settings = NoticeboardSettings(self.context)
+        hide_after = settings.hide_after_days
+        limit = datetime.now() - timedelta(days=hide_after)
         for item in items:
+            if hide_after:
+                # drop items that are older than the limit
+                created = item.created().utcdatetime()
+                if created <= limit:
+                    continue
             actions = []
             if check_perm(permissions.ModifyPortalContent, item):
                 actions.append(dict(title=PMF('Edit'), class_='edit',
