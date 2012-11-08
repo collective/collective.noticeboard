@@ -26,18 +26,18 @@ class INoticeboardSettings(Interface):
         default="News Item")
 
     create_on_click = schema.Bool(
-        title=_(u"label_Create_on_click", default="Create a new note when clicking on the canvas"),
-        description=_(u"description_Create_on_click", default="Create a new note when clicking on the canvas."),
+        title=_(u"label_Create_on_click", default="New note with click on background"),
+        description=_(u"description_Create_on_click", default=""),
         default=False)
 
     publish_on_creation = schema.Bool(
-        title=_(u"label_Publish_on_create", default="Auto-publish on creation"),
-        description=_(u"description_Publish_on_create", default="Attempt to publish new items on saving."),
+        title=_(u"label_Publish_on_create", default="Publish new items automatically"),
+        description=_(u"description_Publish_on_create", default=""),
         default=False)
 
     hide_after_days = schema.Int(
-        title=_(u"label_Hide_after_days", default="Hide items after x days"),
-        description=_(u"description_Hide_after_days", default="Leave '0' to never hide items."),
+        title=_(u"label_Hide_after_days", default="Hide old items after a number of days"),
+        description=_(u"description_Hide_after_days", default="Items that are older than the number of days entered here are ommitted from the board. Leave 0 to never hide old items."),
         default = 0,
         )
 
