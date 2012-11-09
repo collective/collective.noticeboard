@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+ <rolemap>
+   <permissions>
+     <permission name="collective.noticeboard: manage noticeboards" acquire="False">
+       <role name="Manager"/>
+       <role name="Site Administrator"/>
+       <role name="Owner"/>
+     </permission>
+   </permissions>
+ </rolemap>
