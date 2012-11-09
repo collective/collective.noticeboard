@@ -97,6 +97,10 @@
     border-bottom-style: none !important;
 }
 
+#content ul.actions a:visited {
+    color: #fff !important;
+}
+
 #content .note ul.actions li:first-child {
     padding-left: 0;
 }

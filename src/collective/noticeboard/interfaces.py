@@ -41,6 +41,12 @@ class INoticeboardSettings(Interface):
         default = 0,
         )
 
+#    available_colors = schema.List(
+#        title=_(u"label_Colors", default="Colors"),
+#        description=_(u"description_Colors", default="css-classes"),
+#        default = [u'yellow', u'blue', u'green', u'pink', u'purple'],
+#        )
+
 class INote(Interface):
     '''Interface for objects that can be displayed as a note
     '''

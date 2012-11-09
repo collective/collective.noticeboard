@@ -44,13 +44,13 @@ class NoticeboardNotes(BrowserView):
         limit = datetime.now() - timedelta(days=hide_after)
         for item in items:
             if hide_after:
-                # drop items that are older than the limit
+                # ignore items that are older than the limit
                 created = item.created().utcdatetime()
                 if created <= limit:
                     continue
             actions = []
             if check_perm(permissions.ModifyPortalContent, item):
-                actions.append(dict(title='Change Color',
+                actions.append(dict(title='Color',
                                     class_='change_color',
                                     url=item.absolute_url() + '/change_color'))
                 actions.append(dict(title=PMF('Edit'), class_='edit',
@@ -71,7 +71,7 @@ class NoticeboardNotes(BrowserView):
                 notedata.update(dict(delete_url=delete_url))
             retval.append(notedata)
         for (new_note, new_index) in zip(new, range(max_zindex + 1,
-                max_zindex + len(new) + 1)):
+                                         max_zindex + len(new) + 1)):
             new_note['zIndex'] = new_index
         return json.dumps(retval)
 
