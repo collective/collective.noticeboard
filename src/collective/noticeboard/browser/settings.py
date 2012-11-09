@@ -32,14 +32,11 @@ class NoticeBoardSettingsForm(group.GroupForm, form.EditForm):
     label = _(u'heading_noticeboard_settings_form',
               default=u'Noticeboard')
     description = _(u'description_noticeboard_settings_form',
-                    default=u'Configure the parameters for this noticeboard.'
-                    )
-
+                    default=u'Configure the parameters for this noticeboard.')
     successMessage = _(u'successMessage_noticeboard_settings_form',
                        default=u'Noticeboard Settings Saved.')
     noChangesMessage = _(u'noChangesMessage_noticeboard_settings_form',
-                         default=u'There are no changes in the Noticeboard settings.'
-                         )
+                 default=u'There are no changes in the Noticeboard settings.')
 
     def add_fields_to_group(self, type_, groupname):
         group = None
@@ -49,7 +46,7 @@ class NoticeBoardSettingsForm(group.GroupForm, form.EditForm):
 
         if group is None:
             g = plonegroup.GroupFactory(groupname,
-                    field.Fields(type_.schema))
+                                        field.Fields(type_.schema))
             self.groups.append(g)
         else:
             fields = field.Fields(type_.schema)

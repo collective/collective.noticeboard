@@ -50,6 +50,9 @@ class NoticeboardNotes(BrowserView):
                     continue
             actions = []
             if check_perm(permissions.ModifyPortalContent, item):
+                actions.append(dict(title='Change Color',
+                                    class_='change_color',
+                                    url=item.absolute_url() + '/change_color'))
                 actions.append(dict(title=PMF('Edit'), class_='edit',
                                url=item.absolute_url() + '/edit'))
             if check_perm(permissions.DeleteObjects, item):

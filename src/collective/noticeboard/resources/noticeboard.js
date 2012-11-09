@@ -159,6 +159,15 @@
                             model.save();
                         }
                     });
+                    this.$el.find(".change_color a").click(function(event){
+                        event.preventDefault();
+                        var possible_colors = ['yellow', 'blue', 'green', 'pink', 'purple'];
+                        var color = possible_colors.indexOf(model.get('color'));
+                        var next_color = possible_colors[(color + 1) % (possible_colors.length)];
+                        model.set({color: next_color});
+                        model.save();
+                    })
+
                     this.$el.find(".deletex a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*',

@@ -26,7 +26,8 @@ class BoardTraverser(object):
 
     def publishTraverse(self, request, name):
         if name == 'noticeboardnotes':
-            import pdb;pdb.set_trace()
+            #import pdb;pdb.set_trace()
+            pass
         if name == 'noticeboardnotes' and not request.URL.endswith('noticeboardnotes'):
             if self.request.method == 'PUT':
                 return PUTTraverser(self.context, self.request)
