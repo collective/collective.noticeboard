@@ -240,7 +240,7 @@
                         subtype: 'ajax',
                         filter: '#content>*',
                         formselector: 'form',
-                        noform: 'close'
+                        noform: 'reload'
                     });
                     $("#viewsettings a").prepOverlay({
                         subtype: 'ajax',
