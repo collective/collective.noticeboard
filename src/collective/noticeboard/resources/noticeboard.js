@@ -123,6 +123,9 @@
                     this.$el.css("width", width);
                     this.$el.css("height", height);
                     this.$el.css("position", "absolute");
+                    if(this.model.get("old_color")) {
+                        this.$el.removeClass(this.model.get("old_color"));
+                    }
                     this.$el.addClass(color);
 
                     this.$el.draggable({
@@ -162,8 +165,10 @@
                     this.$el.find(".change_color a").click(function(event){
                         event.preventDefault();
                         var possible_colors = ['yellow', 'blue', 'green', 'pink', 'purple'];
-                        var color = possible_colors.indexOf(model.get('color'));
-                        var next_color = possible_colors[(color + 1) % (possible_colors.length)];
+                        var color = model.get('color')
+                        var color_index = possible_colors.indexOf(color);
+                        var next_color = possible_colors[(color_index + 1) % (possible_colors.length)];
+                        model.set({old_color: color});
                         model.set({color: next_color});
                         model.save();
                     })
