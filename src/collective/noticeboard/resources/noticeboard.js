@@ -198,9 +198,11 @@
                     });
                     this.$el.find(".publish a").click(function(event) {
                         event.preventDefault();
-                        $.post(this.href);
-                        $(this).closest(".note").find("span.review-state").remove();
-                        $(this).parent().remove();
+                        var link = $(this);
+                        $.post(this.href, function() {
+                            link.closest(".note").find("span.review-state").remove();
+                            link.parent().remove();
+                        });
                     });
                     this.$el.bind("click.zindex", this.updateZIndex);
                     this.$el.bind("click.edit", this.updateEditBar);

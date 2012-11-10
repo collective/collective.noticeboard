@@ -27,6 +27,7 @@
     cursor: move;
     position: relative;
     padding: 3px 6px;
+    margin: 0;
 }
 
 #content .note .review-state {
@@ -64,7 +65,7 @@
     display: none;
     height: 20px;
     list-style: none outside none;
-    padding: 2px 10px;
+    padding: 3px 10px 2px;
     position: absolute;
     right: 0;
     top: -24px;
