@@ -124,9 +124,13 @@
     z-index: 500;
 }
 
-#content .templates a {
-    color: #fff;
+#content .templates a:link {
+    color: #fff !important;
     margin-right: 1em;
+}
+
+#content .templates a:visited {
+    color: #fff !important;
 }
 
 #content .templates a:hover {
