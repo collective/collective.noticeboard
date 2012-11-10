@@ -92,11 +92,15 @@ class BaseNoteAdapter(object):
         return self.context.absolute_url()
 
     @property
-    def jsonable(self):
+    def review_state(self):
         workflowTool = getToolByName(self.context, "portal_workflow")
+        return workflowTool.getInfoFor(self.context, 'review_state', '')
+
+    @property
+    def jsonable(self):
         return dict(
                 portal_type=self.context.portal_type.lower(),
-                review_state=workflowTool.getInfoFor(self.context, 'review_state'),
+                review_state=self.review_state,
                 title=self.title,
                 url=self.context.absolute_url() + '/xx',
                 id=self.id_,
