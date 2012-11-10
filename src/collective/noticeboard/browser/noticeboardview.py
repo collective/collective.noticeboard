@@ -26,6 +26,14 @@ class NoticeboardView(BrowserView):
     def note_type(self):
         return self.settings.note_type.replace(' ', '+')
 
+    def can_add(self):
+        check_perm = getSecurityManager().checkPermission
+        return check_perm(permissions.AddPortalContent, self.context)
+
+    def can_edit(self):
+        check_perm = getSecurityManager().checkPermission
+        return check_perm(permissions.ModifyPortalContent, self.context)
+
 
 class NoticeboardNotes(BrowserView):
 

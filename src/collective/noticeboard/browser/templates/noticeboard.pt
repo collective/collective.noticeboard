@@ -99,9 +99,19 @@
         </div>
           <div class="shadow"></div>
         </div>
-
+        <span id="homelink">
+          <a href="#"
+             i18n:domain="plone"
+             i18n:translate=""
+             tal:attributes="href context/@@plone_portal_state/navigation_root_url;
+                             title context/@@plone_portal_state/navigation_root_title">
+             Home
+          </a>
+        </span>
+        <tal:noticeboardsettings tal:condition="view/can_edit">
         <span id="viewsettings">
           <a i18n:domain="plone"
+             i18n:translate="label_choose_template"
              i18n:attributes="title title_choose_default_view"
              href="select_default_view"
              title="">
@@ -112,6 +122,9 @@
           <a href="noticeboard-settings"
              title="Modify the settings of the notice-board">Board settings</a>
         </span>
+        </tal:noticeboardsettings>
+
+        <tal:note tal:condition="view/can_add">
         <span class="add_note">
           <a href="createObject?type_name=News+Item"
              tal:attributes="href string:createObject?type_name=${view/note_type}"
@@ -125,6 +138,7 @@
               Add Image
           </a>
         </span>
+        </tal:note>
         <script type="text/javascript">
           $(document).ready(function(){
             noticeboard.init($("#noticeboardcanvas"), $("#note_template"));
