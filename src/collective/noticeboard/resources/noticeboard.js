@@ -198,10 +198,9 @@
                     });
                     this.$el.find(".publish a").click(function(event) {
                         event.preventDefault();
-                        var link = $(this);
+                        var $this = $(this);
                         $.post(this.href, function() {
-                            link.closest(".note").find("span.review-state").remove();
-                            link.parent().remove();
+                            model.set({review_state: 'published'});
                         });
                     });
                     this.$el.bind("click.zindex", this.updateZIndex);
