@@ -125,8 +125,12 @@
 }
 
 #content .templates a {
-    color: #000;
+    color: #fff;
     margin-right: 1em;
+}
+
+#content .templates a:hover {
+    color: #000 !important;
 }
 
 .ui-resizable-se {

@@ -75,7 +75,7 @@
           <ul class="actions actions_first" style="display: None">
             {{#actions}}
               <li class="{{class_}}">
-                <a href="{{url}}">{{title}}</a>
+                <a href="{{url}}" title="{{title}}">{{content}}</a>
               </li>
             {{/actions}}
           </ul>
@@ -103,12 +103,12 @@
              i18n:attributes="title title_choose_default_view"
              href="select_default_view"
              title="">
-             layout
+             Display
           </a>
         </span>
         <span id="notesettings">
           <a href="noticeboard-settings"
-             title="Modify the settings of the notice-board">board settings</a>
+             title="Modify the settings of the notice-board">Board settings</a>
         </span>
         <span class="add_note">
           <a href="createObject?type_name=News+Item"

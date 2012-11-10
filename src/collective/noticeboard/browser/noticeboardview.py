@@ -14,9 +14,8 @@ from AccessControl import getSecurityManager
 from Products.CMFCore import permissions
 from zope.i18nmessageid import MessageFactory
 from datetime import datetime, timedelta
-
-PMF = MessageFactory('plone')
-
+from collective.noticeboard import _
+from Products.CMFPlone import PloneMessageFactory as PMF
 
 class NoticeboardView(BrowserView):
 
@@ -49,18 +48,32 @@ class NoticeboardNotes(BrowserView):
                 if created <= limit:
                     continue
             actions = []
+            note = INote(item)
             if check_perm(permissions.ModifyPortalContent, item):
-                actions.append(dict(title='Color',
+                if note.review_state == 'private':
+                    actions.append(dict(content=PMF('Publish'),
+                                        title="",
+                                        class_='publish',
+                                        url=item.absolute_url() +
+                            '/content_status_modify?workflow_action=publish'))
+        # alternatively use a popup with the form from /content_status_history
+
+                actions.append(dict(content='Color',
+                                    title=_("Change color"),
                                     class_='change_color',
                                     url=item.absolute_url() + '/change_color'))
-                actions.append(dict(title=PMF('Edit'), class_='edit',
-                               url=item.absolute_url() + '/edit'))
+                actions.append(dict(content=PMF('Edit'),
+                                    title='',
+                                    class_='edit',
+                                    url=item.absolute_url() + '/edit'))
+
             if check_perm(permissions.DeleteObjects, item):
                 delete_url = item.absolute_url() \
                     + '/delete_confirmation'
-                actions.append(dict(title=PMF('Delete'), class_='delete',
+                actions.append(dict(content=PMF('Delete'),
+                                    title='',
+                                    class_='delete',
                                     url=delete_url))
-            note = INote(item)
             notedata = note.jsonable
             try:
                 max_zindex = max(max_zindex, int(note.zIndex))
