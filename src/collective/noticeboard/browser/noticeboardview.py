@@ -12,10 +12,10 @@ from plone.app.collection.interfaces import ICollection
 from Products.ATContentTypes.interface import IATTopic
 from AccessControl import getSecurityManager
 from Products.CMFCore import permissions
-from zope.i18nmessageid import MessageFactory
 from datetime import datetime, timedelta
 from collective.noticeboard import _
 from Products.CMFPlone import PloneMessageFactory as PMF
+
 
 class NoticeboardView(BrowserView):
 
@@ -79,7 +79,9 @@ class NoticeboardNotes(BrowserView):
                 max_zindex = max(max_zindex, int(note.zIndex))
             except ValueError:
                 new.append(notedata)
+            notedata.update(dict(hasactions=bool(actions)))
             notedata.update(dict(actions=actions))
+
             if delete_url:
                 notedata.update(dict(delete_url=delete_url))
             retval.append(notedata)

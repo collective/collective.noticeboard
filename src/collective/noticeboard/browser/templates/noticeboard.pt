@@ -72,6 +72,7 @@
     <div id="content">
       <div class="templates">
         <div id="note_template" class="hiddenStructure">
+          {{#hasactions}}
           <ul class="actions actions_first" style="display: None">
             {{#actions}}
               <li class="{{class_}}">
@@ -85,6 +86,7 @@
             <li class="not_confirm">No</li>
           </ul>
           <span class="review-state state-{{review_state}}">{{review_state}}</span>
+          {{/hasactions}}
           <h3>{{title}}</h3>
           <div class="notecontent portaltype-{{portal_type}}">
             {{#description}}
