@@ -32,9 +32,9 @@ class NoticeBoardSettingsForm(group.GroupForm, form.EditForm):
     label = _(u'heading_noticeboard_settings_form',
               default=u'Noticeboard')
     description = _(u'description_noticeboard_settings_form',
-                    default=u'Configure the parameters for this noticeboard.')
+                    default=u'Configure the settings of this noticeboard.')
     successMessage = _(u'successMessage_noticeboard_settings_form',
-                       default=u'Noticeboard Settings Saved.')
+                       default=u'Noticeboard settings saved.')
     noChangesMessage = _(u'noChangesMessage_noticeboard_settings_form',
                  default=u'There are no changes in the Noticeboard settings.')
 

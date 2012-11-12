@@ -1,0 +1,102 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-11-12 09:16+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: collective/noticeboard/browser/templates/noticeboard.pt:138
+msgid "Add Image"
+msgstr ""
+
+#: collective/noticeboard/browser/templates/noticeboard.pt:130
+msgid "Add Note"
+msgstr ""
+
+#: collective/noticeboard/browser/settings.py:70
+msgid "Apply"
+msgstr ""
+
+#: collective/noticeboard/browser/templates/noticeboard.pt:84
+msgid "Are you sure"
+msgstr ""
+
+#: collective/noticeboard/browser/templates/noticeboard.pt:122
+msgid "Board settings"
+msgstr ""
+
+#: collective/noticeboard/browser/noticeboardview.py:70
+msgid "Change color"
+msgstr ""
+
+#: collective/noticeboard/browser/settings.py:22
+msgid "Main"
+msgstr ""
+
+#: collective/noticeboard/interfaces.py:27
+msgid "description_Create_on_click"
+msgstr ""
+
+#. Default: "Items that are older than the number of days entered here are ommitted from the board. Leave 0 to never hide old items."
+#: collective/noticeboard/interfaces.py:37
+msgid "description_Hide_after_days"
+msgstr ""
+
+#: collective/noticeboard/interfaces.py:32
+msgid "description_Publish_on_create"
+msgstr ""
+
+#. Default: "Select, which content type should be created when adding a note."
+#: collective/noticeboard/interfaces.py:20
+msgid "description_note_type"
+msgstr ""
+
+#. Default: "Configure the settings of this noticeboard."
+#: collective/noticeboard/browser/settings.py:34
+msgid "description_noticeboard_settings_form"
+msgstr ""
+
+#. Default: "Noticeboard"
+#: collective/noticeboard/browser/settings.py:32
+msgid "heading_noticeboard_settings_form"
+msgstr ""
+
+#. Default: "New note with click on background"
+#: collective/noticeboard/interfaces.py:26
+msgid "label_Create_on_click"
+msgstr ""
+
+#. Default: "Hide old items after a number of days"
+#: collective/noticeboard/interfaces.py:36
+msgid "label_Hide_after_days"
+msgstr ""
+
+#. Default: "Note type"
+#: collective/noticeboard/interfaces.py:19
+msgid "label_Note_type"
+msgstr ""
+
+#. Default: "Publish new items automatically"
+#: collective/noticeboard/interfaces.py:31
+msgid "label_Publish_on_create"
+msgstr ""
+
+#. Default: "There are no changes in the Noticeboard settings."
+#: collective/noticeboard/browser/settings.py:38
+msgid "noChangesMessage_noticeboard_settings_form"
+msgstr ""
+
+#. Default: "Noticeboard settings saved."
+#: collective/noticeboard/browser/settings.py:36
+msgid "successMessage_noticeboard_settings_form"
+msgstr ""
+

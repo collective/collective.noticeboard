@@ -18,10 +18,7 @@ class INoticeboardSettings(Interface):
     note_type = schema.Choice(
         title=_(u"label_Note_type", default=u"Note type"),
         description=_(u"description_note_type",
-            default=u"Select, which content type should be created when one"
-            u" adds a note. It is your responsability to check, that the"
-            u" content types can actually be created. Check the required"
-            u" fields!"),
+            default=u"Select, which content type should be created when adding a note."),
         vocabulary="plone.app.vocabularies.ReallyUserFriendlyTypes",
         default="News Item")
 
