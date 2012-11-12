@@ -172,7 +172,6 @@
                         model.set({color: next_color});
                         model.save();
                     })
-
                     this.$el.find(".deletex a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*',

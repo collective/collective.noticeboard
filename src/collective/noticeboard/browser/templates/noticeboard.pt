@@ -120,7 +120,6 @@
         </span>
         <span id="notesettings">
           <a href="noticeboard-settings"
-            i18n:domain="collective.noticeboard"
              i18n:translate=""
              i18n:attributes="title"
              title="Modify the settings of the notice-board">Board settings</a>
@@ -130,7 +129,6 @@
         <tal:note tal:condition="view/can_add">
         <span class="add_note">
           <a href="createObject?type_name=News+Item"
-            i18n:domain="collective.noticeboard"
              i18n:translate=""
              i18n:attributes="title"
              tal:attributes="href string:createObject?type_name=${view/note_type}"
@@ -143,7 +141,7 @@
              i18n:translate=""
              i18n:attributes="title"
              title="Add new image">
-              Add asd
+              Add Image
           </a>
         </span>
         </tal:note>
