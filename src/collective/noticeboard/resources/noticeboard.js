@@ -53,7 +53,6 @@
                     var biggest = _.reduce($(".note"), function (a, b) {
                         return Math.max($(b).zIndex(), a);
                     }, 0);
-                    console.log(biggest);
                     if(this.model.get("zIndex") !== biggest) {
                         this.model.set({
                             zIndex: biggest + 1
