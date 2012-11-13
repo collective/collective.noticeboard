@@ -103,9 +103,7 @@
                         position_x = this.model.get("position_x"),
                         position_y = this.model.get("position_y"),
                         width = this.model.get("width"),
-                        height = this.model.get("height"),
-                        note_height = 0,
-                        h3_height = 0;
+                        height = this.model.get("height");
                     $.extend(data, this.model.toJSON());
                     this.$el.unbind();
 
@@ -124,13 +122,11 @@
                     this.$el.css("width", width);
                     this.$el.css("height", height);
                     this.$el.css("position", "absolute");
-                    note_height = this.$el.innerHeight();
-                    h3_height = this.$el.find("h3").innerHeight();
-                    this.$el.find(".notecontent").height((note_height - h3_height - 20) / note_height * 100 + "%");
                     if(this.model.get("old_color")) {
                         this.$el.removeClass(this.model.get("old_color"));
                     }
                     this.$el.addClass(color);
+                    this.repair_css();
 
                     this.$el.draggable({
                         handle: "h3",
@@ -166,14 +162,19 @@
                             model.save();
                         }
                     });
-                    this.$el.find(".change_color a").click(function(event){
+
+                    this.$el.find(".change_color a").click(function (event) {
+                        var possible_colors = ['yellow', 'blue', 'green', 'pink', 'purple'],
+                            color = model.get('color'),
+                            color_index = possible_colors.indexOf(color),
+                            next_color = possible_colors[(color_index + 1) % (possible_colors.length)];
                         event.preventDefault();
-                        var possible_colors = ['yellow', 'blue', 'green', 'pink', 'purple'];
-                        var color = model.get('color')
-                        var color_index = possible_colors.indexOf(color);
-                        var next_color = possible_colors[(color_index + 1) % (possible_colors.length)];
-                        model.set({old_color: color});
-                        model.set({color: next_color});
+                        model.set({
+                            old_color: color
+                        });
+                        model.set({
+                            color: next_color
+                        });
                         model.save();
                     })
                     this.$el.find(".deletex a").prepOverlay({
@@ -191,25 +192,40 @@
                         afterpost: _.bind(this.update, this),
                         config: {
                             onLoad: function () {
-                                var config = new TinyMCEConfig("text");
-                                config.init();
+                                var config = undefined;
+                                if(window.TinyMCEConfig) {
+                                    config = new TinyMCEConfig("text");
+                                    config.init();
+                                } else {
+                                    config = $.parseJSON($(text).attr('data-mce-config'));
+                                    $(text).tinymce(config);
+                                }
                             },
                             onClose: function () {
                                 delete InitializedTinyMCEInstances.text;
                             }
                         }
                     });
-                    this.$el.find(".publish a").click(function(event) {
+                    this.$el.find(".publish a").click(function (event) {
                         event.preventDefault();
                         var $this = $(this);
-                        $.post(this.href, function() {
-                            model.set({review_state: 'published'});
+                        $.post(this.href, function () {
+                            model.set({
+                                review_state: 'published'
+                            });
                         });
                     });
                     this.$el.bind("click.zindex", this.updateZIndex);
                     this.$el.bind("click.edit", this.updateEditBar);
                     this.$el.find(".delete a").click(this.delete1);
                     return this;
+                },
+                repair_css: function () {
+                    var note_height = this.$el.innerHeight(),
+                        h3_height = this.$el.find("h3").innerHeight();
+                    if(h3_height) {
+                        this.$el.find(".notecontent").height((note_height - h3_height) / note_height * 100 + "%");
+                    }
                 }
             }),
             App = Backbone.View.extend({
@@ -221,7 +237,8 @@
                 },
                 initialize: function () {
                     var notes = this.notes = new Notes(),
-                        update = this.update;
+                        update = this.update,
+                        config = undefined;
                     this.notes.url = this.$el.data('href');
                     this.notes.itemurl = this.$el.data('hrefitem');
                     this.notes.bind("add", this.addOne, this);
@@ -237,8 +254,13 @@
                         afterpost: this.update,
                         config: {
                             onLoad: function () {
-                                var config = new TinyMCEConfig("text");
-                                config.init();
+                                if(window.TinyMCEConfig) {
+                                    config = new TinyMCEConfig("text");
+                                    config.init();
+                                } else {
+                                    config = $.parseJSON($(text).attr('data-mce-config'));
+                                    $(text).tinymce(config);
+                                }
                             },
                             onClose: function () {
                                 delete InitializedTinyMCEInstances.text;
@@ -261,9 +283,10 @@
                         model: note
                     });
                     this.$el.append(view.render().el);
+                    view.repair_css();
                 },
                 addAnonymous: function (event) {
-                    if(event.target.id !== 'noticeboardcanvas'){
+                    if(event.target.id !== 'noticeboardcanvas') {
                         return true;
                     }
                     var add_link = $(".add_note a").attr("href"),
