@@ -103,7 +103,9 @@
                         position_x = this.model.get("position_x"),
                         position_y = this.model.get("position_y"),
                         width = this.model.get("width"),
-                        height = this.model.get("height");
+                        height = this.model.get("height"),
+                        note_height = 0,
+                        h3_height = 0;
                     $.extend(data, this.model.toJSON());
                     this.$el.unbind();
 
@@ -122,6 +124,9 @@
                     this.$el.css("width", width);
                     this.$el.css("height", height);
                     this.$el.css("position", "absolute");
+                    note_height = this.$el.innerHeight();
+                    h3_height = this.$el.find("h3").innerHeight();
+                    this.$el.find(".notecontent").height((note_height - h3_height - 20) / note_height * 100 + "%");
                     if(this.model.get("old_color")) {
                         this.$el.removeClass(this.model.get("old_color"));
                     }
