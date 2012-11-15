@@ -7,10 +7,7 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="collective.noticeboard">
 
-  <!-- Permissions must come first -->
   <include file="permissions.zcml" />
-
-<!--  <include file="indexers.zcml" /> -->
 
   <includeDependencies package="." />
 
@@ -19,17 +16,9 @@
       directory="resources"
       />
 
-
   <include package=".browser" />
-<!--  <include package=".action" />
-  <include package=".behaviors" />
-  <include package=".content" />
-  <include package=".portlets" />
-  <include package=".registry" />
-  <include package=".search" />
-  <include package=".traverser" /> -->
 
-  <i18n:registerTranslations directory="locales" />
+  <i18n:registerTranslations directory="locales"/>
 
 <!--  <genericsetup:importStep
       name="collective.noticeboard.various"
@@ -67,16 +56,6 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
-<!-- <genericsetup:upgradeStep
-      title="Upgrade technical_picture"
-      description="Upgrade technical_picture from single to multiple"
-      source="0017"
-      destination="0018"
-      handler=".setuphandlers.upgradeTechnicalPictureRelations"
-      sortkey="1"
-      profile="collective.noticeboard:default"
-      /> -->
-
 <adapter for="Products.ATContentTypes.interfaces.interfaces.IATContentType"
          provides=".interfaces.INote"
          factory=".adapters.ArchetypesNoteAdapter" />
@@ -85,7 +64,6 @@
 <adapter for="plone.dexterity.interfaces.IDexterityContent"
          provides=".interfaces.INote"
          factory=".adapters.DexterityNoteAdapter" />
-
 
 <adapter for="plone.app.contentlisting.interfaces.IContentListingObject"
          provides=".interfaces.INote"
