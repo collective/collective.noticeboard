@@ -202,7 +202,9 @@
                                 }
                             },
                             onClose: function () {
-                                delete InitializedTinyMCEInstances.text;
+                                if(window.InitializedTinyMCEInstances){
+                                    delete InitializedTinyMCEInstances.text;
+                                }
                             }
                         }
                     });
@@ -263,7 +265,9 @@
                                 }
                             },
                             onClose: function () {
-                                delete InitializedTinyMCEInstances.text;
+                                if(window.InitializedTinyMCEInstances){
+                                    delete InitializedTinyMCEInstances.text;
+                                }
                             }
                         }
                     });
