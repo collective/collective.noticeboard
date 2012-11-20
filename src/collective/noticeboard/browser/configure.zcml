@@ -37,6 +37,13 @@
         class=".noteviews.NoticeJSONView"
         permission="zope2.View" />
 
+    <browser:page
+        for="collective.noticeboard.interfaces.INoticeboard"
+        name="noticeboardarchive"
+        class=".noticeboardview.NoticeboardArchive"
+        template="templates/noticeboardarchive.pt"
+        permission="zope2.View" />
+
 
 
     <!-- non-displaytype views -->

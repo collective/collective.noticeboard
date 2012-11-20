@@ -18,6 +18,8 @@ from Products.CMFPlone import PloneMessageFactory as PMF
 
 
 class NoticeboardView(BrowserView):
+    """ The canvas that contains the notes
+    """
 
     def __call__(self):
         self.settings = NoticeboardSettings(self.context)
@@ -36,6 +38,8 @@ class NoticeboardView(BrowserView):
 
 
 class NoticeboardNotes(BrowserView):
+    """ The json-dump of notes
+    """
 
     def __call__(self):
         self.request.response.setHeader('Content-Type',
@@ -103,10 +107,41 @@ class NoticeboardNotes(BrowserView):
         """
 
         context = aq_inner(self.context)
+        settings = NoticeboardSettings(self.context)
         if IATTopic.providedBy(context):
-            items = context.queryCatalog()
+            # handle old collections
+            items = context.queryCatalog(portal_types=settings.display_types)
         elif ICollection.providedBy(context):
+            # handle new collections
             items = self.context.results(batch=False, brains=False)
         else:
-            items = context.getFolderContents(full_objects=True)
+            # handle folders
+            items = context.getFolderContents(full_objects=True,
+                        contentFilter={"portal_type":settings.display_types,
+                                       "sort_on":"created"})
         return items
+
+
+class NoticeboardArchive(NoticeboardNotes):
+    """ A listing-view of all outdated items
+    """
+
+    def __call__(self):
+        """ Render the content item listing.
+        """
+
+        notes = []
+        items = self.contents()
+        settings = NoticeboardSettings(self.context)
+        hide_after = settings.hide_after_days
+        limit = datetime.now() - timedelta(days=hide_after)
+        for item in items:
+            if hide_after:
+                # ignore items that are newer than the limit
+                created = item.created().utcdatetime()
+                if created >= limit:
+                    continue
+            notes.append(item)
+        self.contents = notes
+        return self.index()
+

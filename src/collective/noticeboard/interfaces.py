@@ -16,11 +16,18 @@ class INoticeboardSettings(Interface):
     '''Marker interface for content types that can be configured for noticeboards
     '''
     note_type = schema.Choice(
-        title=_(u"label_Note_type", default=u"Note type"),
+        title=_(u"label_Note_type", default=u"Default type for notes"),
         description=_(u"description_note_type",
-            default=u"Select, which content type should be created when adding a note."),
+            default=u"Which content type should be created when adding a note."),
         vocabulary="plone.app.vocabularies.ReallyUserFriendlyTypes",
         default="News Item")
+
+    display_types = schema.List(
+        title=_(u"label_Display_types", default=u"Display types"),
+        description=_(u"description_display_types",
+            default=u"Which content types should be shown on the noticeboard. If the board is a collection this setting will be ignored."),
+        value_type=schema.Choice(source="plone.app.vocabularies.ReallyUserFriendlyTypes"),
+        default=[])
 
     create_on_click = schema.Bool(
         title=_(u"label_Create_on_click", default="New note with click on background"),

@@ -1,0 +1,98 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+    <div metal:fill-slot="main">
+        <tal:main-macro metal:define-macro="main">
+
+
+            <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+            <h1 metal:use-macro="here/kss_generic_macros/macros/generic_title_view">
+                Title or id
+            </h1>
+
+            <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+            <p metal:use-macro="here/kss_generic_macros/macros/generic_description_view">
+                Description
+            </p>
+
+            <div tal:replace="structure provider:plone.abovecontentbody" />
+
+            <tal:listing tal:define="items view/contents;
+                                     normalizeString nocall:context/plone_utils/normalizeString;
+                                     toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+                                     wtool context/portal_workflow;
+                                     site_properties context/portal_properties/site_properties;
+                                     use_view_action site_properties/typesUseViewActionInListings|python:();
+                                     ">
+
+                <tal:block tal:repeat="item items">
+                    <div class="tileItem visualIEFloatFix vevent"
+                         tal:define="item_url item/getURL|item/absolute_url;
+                                     item_id item/getId|item/id;
+                                     item_title_or_id item/pretty_title_or_id;
+                                     item_description item/Description;
+                                     item_type item/portal_type;
+                                     item_type_title item/Type;
+                                     item_type_class python: 'contenttype-' + normalizeString(item_type);
+                                     item_modified item/ModificationDate;
+                                     item_created item/CreationDate;
+                                     item_wf_state item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                     item_wf_state_class python:'state-' + normalizeString(item_wf_state);
+                                     item_creator item/Creator;
+                                     item_start item/start/ISO|item/StartDate|nothing;
+                                     item_end item/end/ISO|item/EndDate|nothing;
+                                     "
+                         tal:attributes="class string:tileItem visualIEFloatFix">
+
+                    <a href="#"
+                       tal:condition="exists:item/image_thumb"
+                       tal:attributes="href python:item_type in use_view_action and item_url+'/view' or item_url">
+                        <img src="" alt=""
+                             tal:replace="structure python: path('nocall:item/tag')(scale='thumb', css_class='tileImage')" />
+                    </a>
+
+                        <h2 class="tileHeadline"
+                            metal:define-macro="listitem">
+
+                            <a href="#"
+                               class="summary url"
+                               tal:attributes="href item_url"
+                               tal:content="item_title_or_id">
+                                Item Title
+                            </a>
+                        </h2>
+                        <p class="tileBody">
+                            <span tal:omit-tag="" tal:condition="not:item_description">
+                                &nbsp;
+                            </span>
+                            <span class="description" tal:content="item_description">
+                                description
+                            </span>
+                        </p>
+
+                        <p class="tileFooter">
+                            <a href=""
+                               tal:attributes="href item_url"
+                               i18n:translate="read_more">
+                            Read More&hellip;
+                            </a>
+                        </p>
+
+                        <div class="visualClear"><!-- --></div>
+
+                    </div>
+                </tal:block>
+
+
+            </tal:listing>
+
+            <div tal:replace="structure provider:plone.belowcontentbody" />
+
+        </tal:main-macro>
+    </div>
+</body>
+</html>

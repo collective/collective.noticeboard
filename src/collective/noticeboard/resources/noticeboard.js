@@ -281,6 +281,10 @@
                         subtype: 'ajax',
                         filter: '#content>*'
                     });
+                    $("#notes_archive a").prepOverlay({
+                        subtype: 'ajax',
+                        filter: '#content>*'
+                    });
                 },
                 addOne: function (note) {
                     var view = new NoteView({

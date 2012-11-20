@@ -277,3 +277,9 @@
 .template-noticeboardview .overlay div.formControls input.hidden {
     display: none;
 }
+
+.template-noticeboardview .overlay img.tileImage,
+.template-noticeboardview .overlay div.newsImageContainer {
+    float: right;
+    margin: 0 1em 0.5em;
+}
