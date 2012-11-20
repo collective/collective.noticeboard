@@ -42,6 +42,9 @@
   <class class="Products.CMFPlone.Portal.PloneSite">
       <implements interface=".interfaces.INoticeboard" />
   </class>
+  <class class="plone.app.collection.interfaces.ICollection">
+      <implements interface=".interfaces.INoticeboard" />
+  </class>
 
   <subscriber
       for="Products.CMFCore.interfaces._content.IContentish
