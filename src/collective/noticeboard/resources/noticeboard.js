@@ -103,7 +103,8 @@
                         position_x = this.model.get("position_x"),
                         position_y = this.model.get("position_y"),
                         width = this.model.get("width"),
-                        height = this.model.get("height");
+                        height = this.model.get("height"),
+                        publish_link = undefined;
                     $.extend(data, this.model.toJSON());
                     this.$el.unbind();
 
@@ -208,15 +209,20 @@
                             }
                         }
                     });
-                    this.$el.find(".publish a").click(function (event) {
-                        event.preventDefault();
-                        var $this = $(this);
-                        $.post(this.href, function () {
-                            model.set({
-                                review_state: 'published'
+                    publish_link = this.$el.find(".publish");
+                    if (this,model.get("review_state") == 'published'){
+                        publish_link.hide();
+                    }else{
+                        this.$el.find(".publish a").click(function (event) {
+                            var $this = $(this);
+                            event.preventDefault();
+                            $.post(this.href, function () {
+                                model.set({
+                                    review_state: 'published'
+                                });
                             });
                         });
-                    });
+                    }
                     this.$el.bind("click.zindex", this.updateZIndex);
                     this.$el.bind("click.edit", this.updateEditBar);
                     this.$el.find(".delete a").click(this.delete1);
