@@ -62,6 +62,8 @@ class NoticeboardNotes(BrowserView):
                 created = item.created().utcdatetime()
                 if created <= limit:
                     continue
+            if item.exclude_from_nav():
+                continue
             actions = []
             note = INote(item)
             if check_perm(permissions.ModifyPortalContent, item):

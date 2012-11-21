@@ -82,6 +82,11 @@ body.template-noticeboardview #content {
     display: none;
 }
 
+/* fix for ugly black handle in safari */
+div.ui-resizable-handle.ui-resizable-e,
+div.ui-resizable-handle.ui-resizable-s {
+    background-image: none !important;
+}
 
 /* Actions */
 
