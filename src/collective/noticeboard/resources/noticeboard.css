@@ -152,14 +152,16 @@ body.template-noticeboardview #content {
 /* Navigation */
 
 #content .navigation {
-    position: fixed;
+    box-shadow: 3px 3px 3px #bbb;
     top: 0;
+    line-height: 32px;
     left: 0;
     display: block;
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 1);
+    position: fixed;
     width: 100%;
     padding: 0.3em 1em;
-    z-index: 500;
+    z-index: 1;
 }
 
 body.template-noticeboardview #content .navigation a:link {
@@ -174,11 +176,6 @@ body.template-noticeboardview #content .navigation a:visited {
 
 body.template-noticeboardview #content .navigation a:hover {
     color: #666 !important;
-}
-
-body.template-noticeboardview #content .navigation {
-    background: none repeat scroll 0 0 rgba(255, 255, 255, 1);
-    line-height: 32px;
 }
 
 body.template-noticeboardview #content .navigation a.link-overlay {
