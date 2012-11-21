@@ -134,7 +134,7 @@
            data-notetemplatehref=""
            tal:attributes="data-href string:${context/absolute_url}/noticeboardnotes;
                            data-hrefitem context/absolute_url;
-                           data-addanonymous view/settings/create_on_cli;
+                           data-addanonymous view/settings/create_on_click;
                            data-notetemplatehref string:${portal_url}/++resource++collective.noticeboard/notetemplate.mustache">
       </div>
       <span class="hiddenStructure anonymoustitle" i18n:translate="">Add Note</span>

@@ -37,6 +37,8 @@ class BaseNoteAdapter(object):
 
     @property
     def position_x(self):
+        if self.title == "Neuer Zettel":
+            return self.annotations.get('position_x', '25%')
         return self.annotations.get('position_x', '50%')
 
     @position_x.setter
@@ -45,6 +47,8 @@ class BaseNoteAdapter(object):
 
     @property
     def position_y(self):
+        if self.title == "Neuer Zettel":
+            return self.annotations.get('position_y', '25%')
         return self.annotations.get('position_y', '50%')
 
     @position_y.setter

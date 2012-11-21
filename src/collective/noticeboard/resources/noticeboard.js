@@ -104,7 +104,13 @@
                         width = this.model.get("width"),
                         height = this.model.get("height"),
                         publish_link = undefined,
-                        template = this.model.collection.note_template
+                        template = this.model.collection.note_template;
+                    if(position_x === "25%" && this.model.collection.anon_new_position !== undefined) {
+                        this.model.set({"position_x": this.model.collection.anon_new_position.x,
+                                        "position_y": this.model.collection.anon_new_position.y});
+                        this.model.save();
+                        return this;
+                    }
                     $.extend(data, this.model.toJSON());
                     this.$el.unbind();
 
@@ -312,7 +318,14 @@
                         return true;
                     }
                     var add_link = $(".add_note a").attr("href"),
-                        update = this.update;
+                        update = this.update,
+                        pos_x = event.pageX,
+                        pos_y = event.pageY,
+                        notes = this.notes;
+                    notes.anon_new_position = {
+                        x: event.pageX,
+                        y: event.pageY,
+                    };
                     $.get(add_link, function (response) {
                         var edit_form = $(response).find("form[name=edit_form]");
                         edit_form.find("input[name=title]").val($(".anonymoustitle").text());
