@@ -239,9 +239,7 @@
             App = Backbone.View.extend({
                 el: canvas,
                 events: {
-                    // TODO: make addAnonymous optional (dependend on setting 'create_on_click')
-                    // "click": "addAnonymous"
-                    // "mousedown": "down"
+                    "click": "addAnonymous"
                 },
                 initialize: function () {
                     var notes = this.notes = new Notes(),
@@ -301,6 +299,9 @@
                 },
                 addAnonymous: function (event) {
                     if(event.target.id !== 'noticeboardcanvas') {
+                        return true;
+                    }
+                    if($(event.target).data("addanonymous") !== "True"){
                         return true;
                     }
                     var add_link = $(".add_note a").attr("href"),
