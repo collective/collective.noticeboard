@@ -192,14 +192,16 @@
                         noform: 'close',
                         afterpost: _.bind(this.update, this),
                         config: {
-                            onLoad: function () {
-                                var config = undefined;
+                            onLoad: function (event) {
+                                var config = undefined,
+                                    tiny = undefined;
                                 if(window.TinyMCEConfig) {
                                     config = new TinyMCEConfig("text");
                                     config.init();
                                 } else {
-                                    config = $.parseJSON($(text).attr('data-mce-config'));
-                                    $(text).tinymce(config);
+                                    tiny = event.currentTarget.getOverlay().find(".mce_editable");
+                                    config = tiny.data('mce-config');
+                                    tiny.tinymce(config);
                                 }
                             },
                             onClose: function () {
@@ -244,7 +246,8 @@
                 initialize: function () {
                     var notes = this.notes = new Notes(),
                         update = this.update,
-                        config = undefined;
+                        config = undefined,
+                        tiny = undefined;
                     this.notes.url = this.$el.data('href');
                     this.notes.itemurl = this.$el.data('hrefitem');
                     this.notes.bind("add", this.addOne, this);
@@ -258,13 +261,14 @@
                         noform: 'close',
                         afterpost: this.update,
                         config: {
-                            onLoad: function () {
+                            onLoad: function (event) {
                                 if(window.TinyMCEConfig) {
                                     config = new TinyMCEConfig("text");
                                     config.init();
                                 } else {
-                                    config = $.parseJSON($(text).attr('data-mce-config'));
-                                    $(text).tinymce(config);
+                                    tiny = event.currentTarget.getOverlay().find(".mce_editable");
+                                    config = tiny.data('mce-config');
+                                    tiny.tinymce(config);
                                 }
                             },
                             onClose: function () {
