@@ -1,21 +1,20 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+from AccessControl import getSecurityManager
 from Acquisition import aq_inner
-from Products.Five.browser import BrowserView
-import json
-
 from collective.noticeboard.interfaces import INote
 from collective.noticeboard.settings import NoticeboardSettings
-
+from datetime import datetime, timedelta
 from plone.app.collection.interfaces import ICollection
 from Products.ATContentTypes.interface import IATTopic
-from AccessControl import getSecurityManager
 from Products.CMFCore import permissions
-from datetime import datetime, timedelta
-from collective.noticeboard import _
 from Products.CMFPlone import PloneMessageFactory as PMF
+from Products.Five.browser import BrowserView
+from zope.component import getMultiAdapter
+import json
 
+from collective.noticeboard import _
 
 class NoticeboardView(BrowserView):
     """ The canvas that contains the notes
@@ -29,6 +28,10 @@ class NoticeboardView(BrowserView):
         return self.settings.note_type.replace(' ', '+')
 
     def can_add(self):
+        portal_state = getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
+        if portal_state.anonymous:
+            # we want to show the login-form
+            return True
         check_perm = getSecurityManager().checkPermission
         return check_perm(permissions.AddPortalContent, self.context)
 

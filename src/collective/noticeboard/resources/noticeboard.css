@@ -183,7 +183,6 @@ body.template-noticeboardview #content .navigation a.link-overlay {
 }
 
 /* example for customisation using a logo */
-/*
 body.template-noticeboardview #content .navigation #homelink a:link {
     background: url("http://plone.org/logo.png");
     background-size: 85%;
@@ -196,7 +195,7 @@ body.template-noticeboardview #content .navigation #homelink a:link {
     color: transparent !important;
     margin: 0;
 }
-*/
+
 
 /* Colors */
 
