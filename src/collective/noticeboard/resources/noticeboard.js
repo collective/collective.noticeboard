@@ -2,7 +2,7 @@
 (function init(noticeboard, $, _, Backbone) {
     "use strict"; /*global _: true, jQuery: true, Backbone: true, window: true, Mustache: true, TinyMCEConfig: true, InitializedTinyMCEInstances: true  */
     Backbone.emulateHTTP = true;
-    noticeboard.init = function (canvas, template) {
+    noticeboard.init = function (canvas) {
         var Note = Backbone.Model.extend({
             url: function () {
                 return this.collection.itemurl + '/' + this.id + '/json';
@@ -37,7 +37,6 @@
             }),
             NoteView = Backbone.View.extend({
                 className: "note",
-                template: Mustache.compile(template.html()),
                 initialize: function () {
                     this.model.bind("change", this.render, this);
                     this.model.bind("destroy", this.remove, this);
@@ -104,7 +103,8 @@
                         position_y = this.model.get("position_y"),
                         width = this.model.get("width"),
                         height = this.model.get("height"),
-                        publish_link = undefined;
+                        publish_link = undefined,
+                        template = this.model.collection.note_template
                     $.extend(data, this.model.toJSON());
                     this.$el.unbind();
 
@@ -112,7 +112,7 @@
                     this.$el.removeClass("ui-resizable");
                     this.$el.removeClass("ui-draggable");
                     this.$el.removeData();
-                    this.$el.html(this.template(data));
+                    this.$el.html(Mustache.render(template, data));
                     this.$el.zIndex(this.model.get("zIndex"));
                     if(this.model.get("show_edit")) {
                         this.$el.find(".actions_first").show();
@@ -251,7 +251,6 @@
                     this.notes.bind("reset", this.reset, this);
                     this.notes.bind("all", this.render, this);
                     _.bindAll(this);
-                    this.notes.fetch();
                     $(".add_note a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*',
@@ -288,6 +287,10 @@
                     $("#notes_archive a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*'
+                    });
+                    $.get(this.$el.data("notetemplatehref"), function(data){
+                        notes.note_template = data;
+                        notes.fetch();
                     });
                 },
                 addOne: function (note) {

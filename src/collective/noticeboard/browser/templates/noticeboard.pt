@@ -58,34 +58,6 @@
   <div id="visual-portal-wrapper">
 
     <div id="content">
-      <div id="note_template" class="hiddenStructure">
-        {{#hasactions}}
-        <ul class="actions actions_first" style="display: None">
-          {{#actions}}
-            <li class="{{class_}}">
-              <a href="{{url}}" title="{{title}}">{{content}}</a>
-            </li>
-          {{/actions}}
-        </ul>
-        <ul class="actions delete_confirm" style="display: None">
-          <li classs="question" i18n:translate="">Are you sure</li>
-          <li class="confirm" href="{{delete_url}}">Yes</li>
-          <li class="not_confirm">No</li>
-        </ul>
-        <span class="review-state state-{{review_state}}">{{review_state}}</span>
-        {{/hasactions}}
-        <h3>{{title}}</h3>
-        <div class="notecontent portaltype-{{portal_type}}">
-          {{#description}}
-            <p class="documentDescription">{{description}}</p>
-          {{/description}}
-          {{#image_tag}}
-            <div class="newsImageContainer">{{{image_tag}}}</div>
-          {{/image_tag}}
-          {{{text}}}
-        </div>
-        <div class="shadow"></div>
-      </div>
 
       <div class="navigation">
         <span id="homelink">
@@ -151,7 +123,7 @@
 
         <script type="text/javascript">
           $(document).ready(function(){
-            noticeboard.init($("#noticeboardcanvas"), $("#note_template"));
+            noticeboard.init($("#noticeboardcanvas"));
           });
         </script>
       </div>
@@ -159,9 +131,11 @@
       <div id="noticeboardcanvas"
            data-href=""
            data-addanonymous=""
+           data-notetemplatehref=""
            tal:attributes="data-href string:${context/absolute_url}/noticeboardnotes;
                            data-hrefitem context/absolute_url;
-                           data-addanonymous view/settings/create_on_click">
+                           data-addanonymous view/settings/create_on_cli;
+                           data-notetemplatehref string:${portal_url}/++resource++collective.noticeboard/notetemplate.mustache">
       </div>
       <span class="hiddenStructure anonymoustitle" i18n:translate="">Add Note</span>
     </div>

@@ -1,0 +1,33 @@
+{{#hasactions}}
+<ul class="actions actions_first" style="display: None">
+    <li style="list-style: none">{{#actions}}
+    </li>
+    <li class="{{class_}}">
+        <a href="{{url}}" title="{{title}}">{{content}}</a>
+    </li>
+    <li style="list-style: none">{{/actions}}
+    </li>
+</ul>
+<ul class="actions delete_confirm" style="display: None">
+    <li classs="question" i18n:translate="">Are you sure
+    </li>
+    <li class="confirm" href="{{delete_url}}">Yes
+    </li>
+    <li class="not_confirm">No
+    </li>
+</ul>
+<span class="review-state state-{{review_state}}">{{review_state}}</span>
+{{/hasactions}}
+<h3>
+    {{title}}
+</h3>
+<div class="notecontent portaltype-{{portal_type}}">
+    {{#description}}
+    <p class="documentDescription">
+        {{description}}
+    </p>{{/description}} {{#image_tag}}
+    <div class="newsImageContainer">
+        {{{image_tag}}}
+    </div>{{/image_tag}} {{{text}}}
+</div>
+<div class="shadow"></div>
