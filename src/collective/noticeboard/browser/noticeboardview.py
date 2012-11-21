@@ -113,16 +113,17 @@ class NoticeboardNotes(BrowserView):
 
         context = aq_inner(self.context)
         settings = NoticeboardSettings(self.context)
+        display_types = settings.display_types.append(settings.note_type)
         if IATTopic.providedBy(context):
             # handle old collections
-            items = context.queryCatalog(portal_types=settings.display_types)
+            items = context.queryCatalog(portal_types=display_types)
         elif ICollection.providedBy(context):
             # handle new collections
             items = self.context.results(batch=False, brains=False)
         else:
             # handle folders
             items = context.getFolderContents(full_objects=True,
-                        contentFilter={"portal_type":settings.display_types,
+                        contentFilter={"portal_type":display_types,
                                        "sort_on":"created"})
         return items
 

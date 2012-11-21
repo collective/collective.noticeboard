@@ -25,9 +25,9 @@ class INoticeboardSettings(Interface):
     display_types = schema.List(
         title=_(u"label_Display_types", default=u"Display types"),
         description=_(u"description_display_types",
-            default=u"Which content types should be shown on the noticeboard. If the board is a collection this setting will be ignored."),
+            default=u"Which content types should be shown on the noticeboard? If the board is a collection this setting will be ignored. The default type for notes is always shown."),
         value_type=schema.Choice(source="plone.app.vocabularies.ReallyUserFriendlyTypes"),
-        default=[])
+        default=["News Item", "Image", "Document"])
 
     create_on_click = schema.Bool(
         title=_(u"label_Create_on_click", default="New note with click on background"),
