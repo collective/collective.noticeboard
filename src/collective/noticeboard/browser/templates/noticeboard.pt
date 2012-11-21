@@ -50,55 +50,44 @@
 
 
 <body tal:define="isRTL portal_state/is_rtl;
-                  sl python:plone_view.have_portlets('plone.leftcolumn', view);
-                  sr python:plone_view.have_portlets('plone.rightcolumn', view);
-                  body_class python:plone_view.bodyClass(template, view);
-                  classes python:context.restrictedTraverse('@@sunburstview').getColumnsClasses(view)"
+                  body_class python:plone_view.bodyClass(template, view);"
     tal:attributes="class body_class;
                     dir python:isRTL and 'rtl' or 'ltr'"
     i18n:domain="collective.noticeboard">
 
   <div id="visual-portal-wrapper">
 
-    <div id="portal-top"
-            class="row"
-            i18n:domain="plone"
-            tal:condition="not:ajax_load">
-      <div class="cell width-full position-0">
-        <div tal:replace="structure provider:plone.portaltop" />
-      </div>
-    </div>
-
     <div id="content">
-      <div class="templates">
-        <div id="note_template" class="hiddenStructure">
-          {{#hasactions}}
-          <ul class="actions actions_first" style="display: None">
-            {{#actions}}
-              <li class="{{class_}}">
-                <a href="{{url}}" title="{{title}}">{{content}}</a>
-              </li>
-            {{/actions}}
-          </ul>
-          <ul class="actions delete_confirm" style="display: None">
-            <li classs="question" i18n:translate="">Are you sure</li>
-            <li class="confirm" href="{{delete_url}}">Yes</li>
-            <li class="not_confirm">No</li>
-          </ul>
-          <span class="review-state state-{{review_state}}">{{review_state}}</span>
-          {{/hasactions}}
-          <h3>{{title}}</h3>
-          <div class="notecontent portaltype-{{portal_type}}">
-            {{#description}}
-              <p class="documentDescription">{{description}}</p>
-            {{/description}}
-            {{#image_tag}}
-              <div class="newsImageContainer">{{{image_tag}}}</div>
-            {{/image_tag}}
-            {{{text}}}
+      <div id="note_template" class="hiddenStructure">
+        {{#hasactions}}
+        <ul class="actions actions_first" style="display: None">
+          {{#actions}}
+            <li class="{{class_}}">
+              <a href="{{url}}" title="{{title}}">{{content}}</a>
+            </li>
+          {{/actions}}
+        </ul>
+        <ul class="actions delete_confirm" style="display: None">
+          <li classs="question" i18n:translate="">Are you sure</li>
+          <li class="confirm" href="{{delete_url}}">Yes</li>
+          <li class="not_confirm">No</li>
+        </ul>
+        <span class="review-state state-{{review_state}}">{{review_state}}</span>
+        {{/hasactions}}
+        <h3>{{title}}</h3>
+        <div class="notecontent portaltype-{{portal_type}}">
+          {{#description}}
+            <p class="documentDescription">{{description}}</p>
+          {{/description}}
+          {{#image_tag}}
+            <div class="newsImageContainer">{{{image_tag}}}</div>
+          {{/image_tag}}
+          {{{text}}}
         </div>
-          <div class="shadow"></div>
-        </div>
+        <div class="shadow"></div>
+      </div>
+
+      <div class="navigation">
         <span id="homelink">
           <a href="#"
              i18n:domain="plone"
@@ -108,6 +97,38 @@
              Home
           </a>
         </span>
+
+        <tal:add tal:condition="view/can_add">
+        <span class="add_note">
+          <a href="createObject?type_name=News+Item&ajax_load=1&ajax_include_head=1"
+             i18n:translate=""
+             i18n:attributes="title"
+             tal:attributes="href string:${context/absolute_url}/createObject?type_name=${view/note_type}&ajax_load=1&ajax_include_head=1"
+             title="Add new note">
+              Add Note
+          </a>
+        </span>
+        <span class="add_note">
+          <a href="createObject?type_name=Image&ajax_load=1&ajax_include_head=1"
+             i18n:translate=""
+             i18n:attributes="title"
+             tal:attributes="href string:${context/absolute_url}/createObject?type_name=Image&ajax_load=1&ajax_include_head=1"
+             title="Add new image">
+              Add Image
+          </a>
+        </span>
+        </tal:add>
+
+        <span id="notes_archive">
+          <a href="noticeboardarchive"
+             i18n:translate=""
+             i18n:attributes="title"
+             tal:attributes="href string:${context/absolute_url}/@@noticeboardarchive"
+             title="Show all old notes">
+              Archive
+          </a>
+        </span>
+
         <tal:noticeboardsettings tal:condition="view/can_edit">
         <span id="viewsettings">
           <a i18n:domain="plone"
@@ -128,48 +149,19 @@
         </span>
         </tal:noticeboardsettings>
 
-        <tal:note tal:condition="view/can_add">
-        <span class="add_note">
-          <a href="createObject?type_name=News+Item&ajax_load=1&ajax_include_head=1"
-             i18n:translate=""
-             i18n:attributes="title"
-             tal:attributes="href string:${context/absolute_url}/createObject?type_name=${view/note_type}&ajax_load=1&ajax_include_head=1"
-             title="Add new note">
-              Add Note
-          </a>
-        </span>
-        <span class="add_note">
-          <a href="createObject?type_name=Image&ajax_load=1&ajax_include_head=1"
-             i18n:translate=""
-             i18n:attributes="title"
-             tal:attributes="href string:${context/absolute_url}/createObject?type_name=Image&ajax_load=1&ajax_include_head=1"
-             title="Add new image">
-              Add Image
-          </a>
-        </span>
-        <span id="notes_archive">
-          <a href="noticeboardarchive"
-             i18n:translate=""
-             i18n:attributes="title"
-             tal:attributes="href string:${context/absolute_url}/@@noticeboardarchive"
-             title="Show all old notes">
-              Archive
-          </a>
-        </span>
-        </tal:note>
         <script type="text/javascript">
           $(document).ready(function(){
             noticeboard.init($("#noticeboardcanvas"), $("#note_template"));
           });
         </script>
-
       </div>
-        <div id="noticeboardcanvas"
-             data-href=""
-             tal:attributes="data-href string:${context/absolute_url}/noticeboardnotes;
-                             data-hrefitem context/absolute_url">
-        </div>
-        <span class="hiddenStructure anonymoustitle" i18n:translate="">Add Note</span>
+
+      <div id="noticeboardcanvas"
+           data-href=""
+           tal:attributes="data-href string:${context/absolute_url}/noticeboardnotes;
+                           data-hrefitem context/absolute_url">
+      </div>
+      <span class="hiddenStructure anonymoustitle" i18n:translate="">Add Note</span>
     </div>
   </div>
 </body>
