@@ -39,6 +39,11 @@ class NoticeboardView(BrowserView):
         check_perm = getSecurityManager().checkPermission
         return check_perm(permissions.ModifyPortalContent, self.context)
 
+    def images_visible(self):
+        if "Image" in self.settings.display_types or self.settings.note_type == "Image":
+            return True
+        return False
+
 
 class NoticeboardNotes(BrowserView):
     """ The json-dump of notes

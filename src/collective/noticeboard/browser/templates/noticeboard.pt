@@ -80,7 +80,7 @@
               Add Note
           </a>
         </span>
-        <span class="add_note">
+        <span class="add_note" tal:condition="view/images_visible">
           <a href="createObject?type_name=Image&ajax_load=1&ajax_include_head=1"
              i18n:translate=""
              i18n:attributes="title"
