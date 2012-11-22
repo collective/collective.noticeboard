@@ -44,6 +44,8 @@ class NoticeboardView(BrowserView):
             return True
         return False
 
+    def showhelp(self):
+        return self.settings.showhelp
 
 class NoticeboardNotes(BrowserView):
     """ The json-dump of notes

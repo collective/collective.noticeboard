@@ -121,6 +121,14 @@
         </span>
         </tal:noticeboardsettings>
 
+        <span id="noticeboard-help" tal:condition="view/showhelp">
+          <a href="noticeboard-help"
+             i18n:translate=""
+             i18n:attributes="title"
+             tal:attributes="href string:noticeboard-help"
+             title="Help for the notice-board">Help</a>
+        </span>
+
         <script type="text/javascript">
           $(document).ready(function(){
             noticeboard.init($("#noticeboardcanvas"));
