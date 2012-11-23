@@ -126,7 +126,7 @@ class NoticeboardNotes(BrowserView):
 
         context = aq_inner(self.context)
         settings = NoticeboardSettings(self.context)
-        display_types = settings.display_types
+        display_types = [x for x in settings.display_types]
         display_types.append(settings.note_type)
         display_types = list(set(display_types))
         if IATTopic.providedBy(context):

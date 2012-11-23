@@ -116,13 +116,14 @@ function copyDataForSubmit(name)
     newAttr.nodeValue = name.replace(/-/g, '.')+':list';
     newNode.setAttributeNode(newAttr);
 
+    newAttr = document.createAttribute("value");
+    newAttr.nodeValue = toSel.options[i].value = 'hidden';
+    newNode.setAttributeNode(newAttr);
+    
     newAttr = document.createAttribute("type");
     newAttr.nodeValue = "hidden";
     newNode.setAttributeNode(newAttr);
-
-    newAttr = document.createAttribute("value");
-    newAttr.nodeValue = toSel.options[i].value;
-    newNode.setAttributeNode(newAttr);
+    $(newNode).hide();
 
     // actually append virtual node to DOM tree
     toDataContainer.appendChild(newNode);
