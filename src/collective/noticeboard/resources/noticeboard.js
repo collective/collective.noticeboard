@@ -211,6 +211,7 @@
                                     tiny.tinymce(config);
                                 }
                                 event.currentTarget.getOverlay().find('.ArchetypesKeywordWidget select').multiSelect();
+                                copyDataForSubmit("form-widgets-display_types");
                             },
                             onClose: function () {
                                 if(window.InitializedTinyMCEInstances){
@@ -282,6 +283,7 @@
                                     tiny.tinymce(config);
                                 }
                                 event.currentTarget.getOverlay().find('.ArchetypesKeywordWidget select"').multiSelect();
+                                copyDataForSubmit("form-widgets-display_types");
                             },
                             onClose: function () {
                                 if(window.InitializedTinyMCEInstances){
@@ -294,7 +296,12 @@
                         subtype: 'ajax',
                         filter: '#content>*',
                         formselector: 'form',
-                        noform: 'reload'
+                        noform: 'reload',
+                        config: {
+                            onLoad: function(event){
+                                copyDataForSubmit("form-widgets-display_types");
+                            }
+                        }
                     });
                     $("#viewsettings a").prepOverlay({
                         subtype: 'ajax',
