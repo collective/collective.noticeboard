@@ -117,7 +117,7 @@ function copyDataForSubmit(name)
     newNode.setAttributeNode(newAttr);
 
     newAttr = document.createAttribute("value");
-    newAttr.nodeValue = toSel.options[i].value = 'hidden';
+    newAttr.nodeValue = toSel.options[i].value;
     newNode.setAttributeNode(newAttr);
     
     newAttr = document.createAttribute("type");
