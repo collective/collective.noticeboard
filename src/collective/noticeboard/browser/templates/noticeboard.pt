@@ -36,8 +36,13 @@
         </tal:comment>
         <metal:topslot define-slot="top_slot" />
         <metal:headslot define-slot="head_slot" />
-        <metal:styleslot define-slot="style_slot" />
-        <metal:javascriptslot define-slot="javascript_head_slot" />
+        <metal:styleslot define-slot="style_slot">
+            <link type="text/css" href="#" rel="stylesheet" tal:attributes="href string:${portal_url}/keywordwidget.css" />
+        </metal:styleslot>
+        <metal:javascriptslot define-slot="javascript_head_slot">
+            <script type="text/javascript" src="#" tal:attributes="src string:${portal_url}/widgets/js/keywordmultiselect.js">
+            </script>
+        </metal:javascriptslot>
 
         <meta name="viewport" content="width=device-width, initial-scale=0.6666, maximum-scale=1.0, minimum-scale=0.6666" />
         <meta name="generator" content="Plone - http://plone.org" />

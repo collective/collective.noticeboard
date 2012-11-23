@@ -344,3 +344,10 @@ body.template-noticeboardview #content .navigation #homelink a:link {
     float: right;
     margin: 0 1em 0.5em;
 }
+
+.template-noticeboardview .overlay .selectedTagsSection {
+    float: left;
+    margin-bottom: 0;
+    margin-left: 3em;
+    width: 43%;
+}

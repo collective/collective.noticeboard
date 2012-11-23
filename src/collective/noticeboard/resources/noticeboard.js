@@ -210,6 +210,7 @@
                                     config = tiny.data('mce-config');
                                     tiny.tinymce(config);
                                 }
+                                event.currentTarget.getOverlay().find('.ArchetypesKeywordWidget select').multiSelect();
                             },
                             onClose: function () {
                                 if(window.InitializedTinyMCEInstances){
@@ -280,6 +281,7 @@
                                     config = tiny.data('mce-config');
                                     tiny.tinymce(config);
                                 }
+                                event.currentTarget.getOverlay().find('.ArchetypesKeywordWidget select"').multiSelect();
                             },
                             onClose: function () {
                                 if(window.InitializedTinyMCEInstances){
