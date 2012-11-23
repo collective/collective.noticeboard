@@ -73,7 +73,6 @@
              i18n:translate=""
              tal:attributes="href context/@@plone_portal_state/navigation_root_url;
                              title context/@@plone_portal_state/navigation_root_title">
-             Home
           </a>
         </span>
 
