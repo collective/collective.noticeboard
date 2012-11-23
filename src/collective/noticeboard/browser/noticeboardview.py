@@ -58,6 +58,7 @@ class NoticeboardNotes(BrowserView):
     def __call__(self):
         self.request.response.setHeader('Content-Type',
                                         'application/json; charset=utf-8')
+        self.request.response.setHeader('Expires', '-1')
         retval = []
         new = []
         max_zindex = 0
