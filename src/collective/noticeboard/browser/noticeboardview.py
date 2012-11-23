@@ -62,7 +62,8 @@ class NoticeboardNotes(BrowserView):
         delete_url = None
         settings = NoticeboardSettings(self.context)
         hide_after = settings.hide_after_days
-        limit = datetime.now() - timedelta(days=hide_after)
+        if hide_after:
+            limit = datetime.now() - timedelta(days=hide_after)
         for item in items:
             if hide_after:
                 # ignore items that are older than the limit

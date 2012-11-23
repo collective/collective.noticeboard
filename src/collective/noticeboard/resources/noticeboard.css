@@ -3,8 +3,20 @@ body.template-noticeboardview {
     background: #ddd;
 }
 
-#portal-header {
-    z-index: 0;
+body.template-noticeboardview #portal-header {
+    z-index: 2;
+}
+
+/* Hide header exept login */
+body.template-noticeboardview #portal-header > * {
+    display: none;
+}
+
+body.template-noticeboardview #portal-personaltools,
+body.template-noticeboardview #portal-personaltools-wrapper {
+    position: fixed;
+    display: block;
+    margin-right: 1em;
 }
 
 body.template-noticeboardview #content {
@@ -14,7 +26,6 @@ body.template-noticeboardview #content {
 #noticeboardcanvas {
     position:absolute;
     height: 100%;
-    width: 100%;
 }
 
 .note {
