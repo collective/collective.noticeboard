@@ -134,6 +134,7 @@
                     }
                     this.$el.addClass(color);
                     this.repair_css();
+                    this.fix_links();
 
                     this.$el.draggable({
                         handle: "h3",
@@ -242,6 +243,9 @@
                     if(h3_height) {
                         this.$el.find(".notecontent").height((note_height - h3_height) / note_height * 100 + "%");
                     }
+                },
+                fix_links: function () {
+                    this.$el.find(".notecontent a").attr("target", "_blank")
                 }
             }),
             App = Backbone.View.extend({
@@ -295,6 +299,10 @@
                         filter: '#content>*'
                     });
                     $("#notes_archive a").prepOverlay({
+                        subtype: 'ajax',
+                        filter: '#content>*'
+                    });
+                    $("#noticeboard-help a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*'
                     });

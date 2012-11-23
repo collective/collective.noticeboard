@@ -27,11 +27,15 @@ class NoticeboardView(BrowserView):
     def note_type(self):
         return self.settings.note_type.replace(' ', '+')
 
-    def can_add(self):
+    def show_add_link(self):
         portal_state = getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
         if portal_state.anonymous():
             # we want to show the login-form
             return True
+        check_perm = getSecurityManager().checkPermission
+        return check_perm(permissions.AddPortalContent, self.context)
+
+    def has_add_permission(self):
         check_perm = getSecurityManager().checkPermission
         return check_perm(permissions.AddPortalContent, self.context)
 
