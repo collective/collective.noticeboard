@@ -1,6 +1,6 @@
 /*jslint nomen: true */
 (function init(noticeboard, $, _, Backbone) {
-    "use strict"; /*global _: true, jQuery: true, Backbone: true, window: true, Mustache: true, TinyMCEConfig: true, InitializedTinyMCEInstances: true  */
+    "use strict"; /*global _: true, jQuery: true, Backbone: true, window: true, Mustache: true, TinyMCEConfig: true, InitializedTinyMCEInstances: true, copyDataForSubmit: true  */
     Backbone.emulateHTTP = true;
     noticeboard.init = function (canvas) {
         var Note = Backbone.Model.extend({
@@ -27,7 +27,7 @@
                 },
                 hideEdit: function () {
                     this.each(function (note) {
-                        if(note.get("show_edit")) {
+                        if (note.get("show_edit")) {
                             note.set({
                                 show_edit: 0
                             });
@@ -52,11 +52,11 @@
                     var biggest = _.reduce($(".note"), function (a, b) {
                         return Math.max($(b).zIndex(), a);
                     }, 0);
-                    if(this.model.get("zIndex") !== biggest) {
+                    if (this.model.get("zIndex") !== biggest) {
                         this.model.set({
                             zIndex: biggest + 1
                         });
-                        if(Math.random() * 1001 > 1000 || biggest > 1000) {
+                        if (Math.random() * 1001 > 1000 || biggest > 1000) {
                             this.model.trigger("updateZIndex");
                         } else {
                             this.model.save();
@@ -89,7 +89,7 @@
                                     "form.submitted": 1
                                 }, function () {
                                     model.destroy();
-                                })
+                                });
                             });
                         });
                     });
@@ -103,11 +103,13 @@
                         position_y = this.model.get("position_y"),
                         width = this.model.get("width"),
                         height = this.model.get("height"),
-                        publish_link = undefined,
-                        template = this.model.collection.note_template;
-                    if(position_x === "25%" && this.model.collection.anon_new_position !== undefined) {
-                        this.model.set({"position_x": this.model.collection.anon_new_position.x,
-                                        "position_y": this.model.collection.anon_new_position.y});
+                        template = this.model.collection.note_template,
+                        publish_link;
+                    if (position_x === "25%" && this.model.collection.anon_new_position !== undefined) {
+                        this.model.set({
+                            "position_x": this.model.collection.anon_new_position.x,
+                            "position_y": this.model.collection.anon_new_position.y
+                        });
                         this.model.save();
                         return this;
                     }
@@ -120,7 +122,7 @@
                     this.$el.removeData();
                     this.$el.html(Mustache.render(template, data));
                     this.$el.zIndex(this.model.get("zIndex"));
-                    if(this.model.get("show_edit")) {
+                    if (this.model.get("show_edit")) {
                         this.$el.find(".actions_first").show();
                     }
 
@@ -129,7 +131,7 @@
                     this.$el.css("width", width);
                     this.$el.css("height", height);
                     this.$el.css("position", "absolute");
-                    if(this.model.get("old_color")) {
+                    if (this.model.get("old_color")) {
                         this.$el.removeClass(this.model.get("old_color"));
                     }
                     this.$el.addClass(color);
@@ -184,7 +186,7 @@
                             color: next_color
                         });
                         model.save();
-                    })
+                    });
                     this.$el.find(".deletex a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*',
@@ -200,9 +202,10 @@
                         afterpost: _.bind(this.update, this),
                         config: {
                             onLoad: function (event) {
-                                var config = undefined,
-                                    tiny = undefined;
-                                if(window.TinyMCEConfig) {
+                                event.stopPropagation();
+                                var config,
+                                    tiny;
+                                if (window.TinyMCEConfig) {
                                     config = new TinyMCEConfig("text");
                                     config.init();
                                 } else {
@@ -211,19 +214,21 @@
                                     tiny.tinymce(config);
                                 }
                                 event.currentTarget.getOverlay().find('.ArchetypesKeywordWidget select').multiSelect();
-                                copyDataForSubmit("form-widgets-display_types");
+                                try {
+                                    copyDataForSubmit("form-widgets-display_types");
+                                } catch (err) {}
                             },
                             onClose: function () {
-                                if(window.InitializedTinyMCEInstances){
+                                if (window.InitializedTinyMCEInstances) {
                                     delete InitializedTinyMCEInstances.text;
                                 }
                             }
                         }
                     });
                     publish_link = this.$el.find(".publish");
-                    if (this,model.get("review_state") == 'published'){
+                    if (this.model.get("review_state") === 'published') {
                         publish_link.hide();
-                    }else{
+                    } else {
                         this.$el.find(".publish a").click(function (event) {
                             var $this = $(this);
                             event.preventDefault();
@@ -242,12 +247,12 @@
                 repair_css: function () {
                     var note_height = this.$el.innerHeight(),
                         h3_height = this.$el.find("h3").innerHeight();
-                    if(h3_height) {
+                    if (h3_height) {
                         this.$el.find(".notecontent").height((note_height - h3_height) / note_height * 100 + "%");
                     }
                 },
                 fix_links: function () {
-                    this.$el.find(".notecontent a").attr("target", "_blank")
+                    this.$el.find(".notecontent a").attr("target", "_blank");
                 }
             }),
             App = Backbone.View.extend({
@@ -258,8 +263,8 @@
                 initialize: function () {
                     var notes = this.notes = new Notes(),
                         update = this.update,
-                        config = undefined,
-                        tiny = undefined;
+                        config,
+                        tiny;
                     this.notes.url = this.$el.data('href');
                     this.notes.itemurl = this.$el.data('hrefitem');
                     this.notes.bind("add", this.addOne, this);
@@ -274,7 +279,7 @@
                         afterpost: this.update,
                         config: {
                             onLoad: function (event) {
-                                if(window.TinyMCEConfig) {
+                                if (window.TinyMCEConfig) {
                                     config = new TinyMCEConfig("text");
                                     config.init();
                                 } else {
@@ -283,10 +288,12 @@
                                     tiny.tinymce(config);
                                 }
                                 event.currentTarget.getOverlay().find('.ArchetypesKeywordWidget select"').multiSelect();
-                                copyDataForSubmit("form-widgets-display_types");
+                                try {
+                                    copyDataForSubmit("form-widgets-display_types");
+                                } catch (err) {}
                             },
                             onClose: function () {
-                                if(window.InitializedTinyMCEInstances){
+                                if (window.InitializedTinyMCEInstances) {
                                     delete InitializedTinyMCEInstances.text;
                                 }
                             }
@@ -298,8 +305,10 @@
                         formselector: 'form',
                         noform: 'reload',
                         config: {
-                            onLoad: function(event){
-                                copyDataForSubmit("form-widgets-display_types");
+                            onLoad: function (event) {
+                                try {
+                                    copyDataForSubmit("form-widgets-display_types");
+                                } catch (err) {}
                             }
                         }
                     });
@@ -315,7 +324,7 @@
                         subtype: 'ajax',
                         filter: '#content>*'
                     });
-                    $.get(this.$el.data("notetemplatehref"), function(data){
+                    $.get(this.$el.data("notetemplatehref"), function (data) {
                         notes.note_template = data;
                         notes.fetch();
                     });
@@ -328,10 +337,10 @@
                     view.repair_css();
                 },
                 addAnonymous: function (event) {
-                    if(event.target.id !== 'noticeboardcanvas') {
+                    if (event.target.id !== 'noticeboardcanvas') {
                         return true;
                     }
-                    if($(event.target).data("addanonymous") !== "True"){
+                    if ($(event.target).data("addanonymous") !== "True") {
                         return true;
                     }
                     var add_link = $(".add_note a").attr("href"),
@@ -341,7 +350,7 @@
                         notes = this.notes;
                     notes.anon_new_position = {
                         x: event.pageX,
-                        y: event.pageY,
+                        y: event.pageY
                     };
                     $.get(add_link, function (response) {
                         var edit_form = $(response).find("form[name=edit_form]");
