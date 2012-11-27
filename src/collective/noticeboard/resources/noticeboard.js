@@ -287,7 +287,7 @@
                                     config = tiny.data('mce-config');
                                     tiny.tinymce(config);
                                 }
-                                event.currentTarget.getOverlay().find('.ArchetypesKeywordWidget select"').multiSelect();
+                                event.currentTarget.getOverlay().find('.ArchetypesKeywordWidget select').multiSelect();
                                 try {
                                     copyDataForSubmit("form-widgets-display_types");
                                 } catch (err) {}
