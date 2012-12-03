@@ -44,8 +44,8 @@ class INoticeboardSettings(Interface):
         default=False)
 
     hide_after_days = schema.Int(
-        title=_(u"label_Hide_after_days", default="Hide old items after a number of days"),
-        description=_(u"description_Hide_after_days", default="Items that are older than the number of days entered here are ommitted from the board. Leave 0 to never hide old items."),
+        title=_(u"label_Hide_after_days", default="Hide items a number of days after the last change"),
+        description=_(u"description_Hide_after_days", default="How many days after the last modification should items be ommitted from the board? Leave empty or 0 to never hide old items."),
         required=False,
         default = 0,
         )

@@ -72,8 +72,8 @@ class NoticeboardNotes(BrowserView):
         for item in items:
             if hide_after:
                 # ignore items that are older than the limit
-                created = item.created().utcdatetime()
-                if created <= limit:
+                modified = item.modified().utcdatetime()
+                if modified <= limit:
                     continue
             if item.exclude_from_nav():
                 continue
@@ -139,7 +139,7 @@ class NoticeboardNotes(BrowserView):
             # handle folders
             items = context.getFolderContents(full_objects=True,
                         contentFilter={"portal_type":display_types,
-                                       "sort_on":"created"})
+                                       "sort_on":"sortable_title"})
         return items
 
 
