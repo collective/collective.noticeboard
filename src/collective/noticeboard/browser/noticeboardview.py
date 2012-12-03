@@ -16,6 +16,7 @@ import json
 
 from collective.noticeboard import _
 
+
 class NoticeboardView(BrowserView):
     """ The canvas that contains the notes
     """
@@ -50,6 +51,14 @@ class NoticeboardView(BrowserView):
 
     def showhelp(self):
         return self.settings.showhelp
+
+    def add_url(self):
+        if self.context.portal_type in ["Collection", "Topic"]:
+            container = self.context.__parent__
+        else:
+            container = self.context
+        return container.absolute_url()
+
 
 class NoticeboardNotes(BrowserView):
     """ The json-dump of notes
@@ -165,4 +174,3 @@ class NoticeboardArchive(NoticeboardNotes):
             notes.append(item)
         self.contents = notes
         return self.index()
-

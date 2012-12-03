@@ -93,15 +93,10 @@
                             </span>
                         </div>
 
-                        <p class="tileBody">
-                            <span tal:omit-tag="" tal:condition="not:item_description">
-                                &nbsp;
-                            </span>
+                        <p class="tileBody" tal:condition="item_description">
                             <span class="description" tal:content="item_description">
                                 description
                             </span>
-
-
                         </p>
 
                         <p class="tileFooter">
