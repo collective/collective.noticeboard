@@ -27,6 +27,9 @@
                                      wtool context/portal_workflow;
                                      site_properties context/portal_properties/site_properties;
                                      use_view_action site_properties/typesUseViewActionInListings|python:();
+                                     isAnon context/@@plone_portal_state/anonymous;
+                                     navigation_root_url context/@@plone_portal_state/navigation_root_url;
+                                     pas_member context/@@pas_member;
                                      ">
 
                 <tal:block tal:repeat="item items">
@@ -65,6 +68,31 @@
                                 Item Title
                             </a>
                         </h2>
+                        <div class="documentByLine" tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon">
+                            <tal:name tal:condition="item_creator"
+                                tal:define="author python:pas_member.info(item_creator)">
+                              <span class="documentAuthor" i18n:translate="label_by_author">
+                                by
+                              <a href="#"
+                                 tal:attributes="href string:${navigation_root_url}/author/${item_creator}"
+                                 tal:content="author/name_or_id"
+                                 tal:omit-tag="not:author"
+                                 i18n:name="author">
+                                Bob Dobalina
+                              </a>
+                              </span>
+                            </tal:name>
+                            &mdash;
+                            <span class="documentModified">
+                                  <tal:mod i18n:translate="box_last_modified">
+                                  last modified
+                                  </tal:mod>
+                                  <span tal:replace="python:toLocalizedTime(item_modified,long_format=1)">
+                                          August 16, 2001 at 23:35:59
+                                  </span>
+                            </span>
+                        </div>
+
                         <p class="tileBody">
                             <span tal:omit-tag="" tal:condition="not:item_description">
                                 &nbsp;
@@ -72,6 +100,8 @@
                             <span class="description" tal:content="item_description">
                                 description
                             </span>
+
+
                         </p>
 
                         <p class="tileFooter">
