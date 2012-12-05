@@ -264,6 +264,18 @@ body.template-noticeboardview #content .navigation #homelink a:link {
 }
 
 
+/* More colors */
+.lightblue {
+    background: rgb(197,200,204); /* Old browsers */
+    background: -moz-linear-gradient(45deg,  rgba(197,200,204,1) 0%, rgba(102,153,204,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(197,200,204,1)), color-stop(100%,rgba(102,153,204,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(45deg,  rgba(197,200,204,1) 0%,rgba(102,153,204,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(45deg,  rgba(197,200,204,1) 0%,rgba(102,153,204,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(45deg,  rgba(197,200,204,1) 0%,rgba(102,153,204,1) 100%); /* IE10+ */
+    background: linear-gradient(45deg,  rgba(197,200,204,1) 0%,rgba(102,153,204,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5c8cc', endColorstr='#6699cc',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */
+}
+
 /* Popup */
 
 .template-noticeboardview .overlay .mceIframeContainer iframe {
