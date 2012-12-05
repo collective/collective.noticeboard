@@ -50,6 +50,10 @@
   <class class="Products.ATContentTypes.content.topic.ATTopic">
       <implements interface=".interfaces.INoticeboard" />
   </class>
+  <class class="plone.app.contenttypes.content.Folder"
+         zcml:condition="installed plone.app.contenttypes">
+      <implements interface=".interfaces.INoticeboard" />
+  </class>
 
   <subscriber
       for="Products.CMFCore.interfaces._content.IContentish
