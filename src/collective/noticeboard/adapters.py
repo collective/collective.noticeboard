@@ -158,7 +158,7 @@ class DexterityNoteAdapter(BaseNoteAdapter):
     def text(self):
         text = getattr(self.context, 'text', None)
         if text:
-            return text.render()
+            return text.output
 
     @property
     def image_tag(self):
