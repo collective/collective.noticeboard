@@ -79,12 +79,13 @@ class NoticeboardNotes(BrowserView):
         if hide_after:
             limit = datetime.now() - timedelta(days=hide_after)
         for item in items:
+            item = aq_inner(item)
             if hide_after:
                 # ignore items that are older than the limit
                 modified = item.modified().utcdatetime()
                 if modified <= limit:
                     continue
-            if item.exclude_from_nav():
+            if getattr(item, 'exclude_from_nav', False):
                 continue
             actions = []
             note = INote(item)
