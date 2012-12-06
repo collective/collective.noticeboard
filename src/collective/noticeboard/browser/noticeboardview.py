@@ -85,7 +85,7 @@ class NoticeboardNotes(BrowserView):
                 modified = item.modified().utcdatetime()
                 if modified <= limit:
                     continue
-            if getattr(item, 'exclude_from_nav', False):
+            if item.exclude_from_nav():
                 continue
             actions = []
             note = INote(item)
@@ -135,7 +135,7 @@ class NoticeboardNotes(BrowserView):
         """
 
         context = aq_inner(self.context)
-        settings = NoticeboardSettings(self.context)
+        settings = NoticeboardSettings(context)
         display_types = [x for x in settings.display_types]
         display_types.append(settings.note_type)
         display_types = list(set(display_types))
@@ -144,7 +144,7 @@ class NoticeboardNotes(BrowserView):
             items = context.queryCatalog(portal_types=display_types)
         elif ICollection.providedBy(context):
             # handle new collections
-            items = self.context.results(batch=False, brains=False)
+            items = context.results(batch=False, brains=False)
         else:
             # handle folders
             items = context.getFolderContents(full_objects=True,
