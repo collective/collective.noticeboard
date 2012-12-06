@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-11-12 09:16+0000\n"
+"POT-Creation-Date: 2012-12-06 12:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,51 +14,85 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: collective/noticeboard/browser/templates/noticeboard.pt:138
+#: collective/noticeboard/browser/templates/noticeboard.pt:90
 msgid "Add Image"
 msgstr "Neues Bild"
 
-#: collective/noticeboard/browser/templates/noticeboard.pt:130
+#: collective/noticeboard/browser/templates/noticeboard.pt:81
 msgid "Add Note"
 msgstr "Neuer Zettel"
+
+#: collective/noticeboard/browser/templates/noticeboard.pt:90
+msgid "Add new image"
+msgstr "Neues Bild anlegen"
+
+#: collective/noticeboard/browser/templates/noticeboard.pt:81
+msgid "Add new note"
+msgstr "Neuen Zettel anlegen"
 
 #: collective/noticeboard/browser/settings.py:70
 msgid "Apply"
 msgstr "Anwenden"
 
-#: collective/noticeboard/browser/templates/noticeboard.pt:84
-msgid "Are you sure"
-msgstr "Sind Sie sicher?"
+#: collective/noticeboard/browser/templates/noticeboard.pt:101
+msgid "Archive"
+msgstr "Archiv"
 
 #: collective/noticeboard/browser/templates/noticeboard.pt:122
 msgid "Board settings"
 msgstr "Pinnwand Einstellungen"
 
-#: collective/noticeboard/browser/noticeboardview.py:70
+#: collective/noticeboard/browser/noticeboardview.py:102
 msgid "Change color"
 msgstr "Farbe ändern?"
+
+#: collective/noticeboard/browser/templates/noticeboard.pt:131
+msgid "Help"
+msgstr "Hilfe"
+
+#: collective/noticeboard/browser/templates/noticeboard.pt:131
+msgid "Help for the notice-board"
+msgstr "Eine Anleitung für die Pinnwand"
 
 #: collective/noticeboard/browser/settings.py:22
 msgid "Main"
 msgstr ""
 
-#: collective/noticeboard/interfaces.py:27
+#: collective/noticeboard/browser/templates/noticeboard.pt:122
+msgid "Modify the settings of the notice-board"
+msgstr "Pinnwand Einstellungen bearbeiten"
+
+#: collective/noticeboard/browser/templates/noticeboard.pt:101
+msgid "Show all old notes"
+msgstr "Abgelaufene Zettel anzeigen"
+
+#: collective/noticeboard/interfaces.py:36
 msgid "description_Create_on_click"
 msgstr ""
 
-#. Default: "Items that are older than the number of days entered here are ommitted from the board. Leave 0 to never hide old items."
-#: collective/noticeboard/interfaces.py:37
+#. Default: "How many days after the last modification should items be ommitted from the board? Leave empty or 0 to never hide old items."
+#: collective/noticeboard/interfaces.py:48
 msgid "description_Hide_after_days"
-msgstr "Zettel, die älter als die hier eingebene Zahl von Tagen sind werden nicht mehr angezeigt. 0 bedeutet, dass alte Zettel immer zu sehen sind."
+msgstr "Wie lange nach der letzten Änderung sollen Zettel sichbar sein? 0 bedeutet, dass alte Zettel immer zu sehen sind."
 
-#: collective/noticeboard/interfaces.py:32
+#: collective/noticeboard/interfaces.py:42
 msgid "description_Publish_on_create"
 msgstr ""
 
-#. Default: "Select, which content type should be created when adding a note."
+#. Default: "The link automatically points to a page with the id 'noticeboard-help', you should create one if you enable this."
+#: collective/noticeboard/interfaces.py:55
+msgid "description_Showhelp"
+msgstr ""
+
+#. Default: "Which content types should be shown on the noticeboard? If the board is a collection this setting will be ignored. The default type for notes is always shown."
+#: collective/noticeboard/interfaces.py:28
+msgid "description_display_types"
+msgstr "Welche Inhaltstypen sollen auf der Pinnwand dargestellt werden? Der Standard-typ für Zettel wird immer angezeigt. Wenn die Pinnwand eine Collection ist wird diese Einstellung ignoriert."
+
+#. Default: "Which content type should be created when adding a note."
 #: collective/noticeboard/interfaces.py:20
 msgid "description_note_type"
-msgstr "Welcher Inhaltstyp soll als Zettel hinzugefügt werden. "
+msgstr "Welcher Inhaltstyp soll als Zettel hinzugefügt werden?"
 
 #. Default: "Configure the settings of this noticeboard."
 #: collective/noticeboard/browser/settings.py:34
@@ -71,24 +105,34 @@ msgid "heading_noticeboard_settings_form"
 msgstr "Pinnwand"
 
 #. Default: "New note with click on background"
-#: collective/noticeboard/interfaces.py:26
+#: collective/noticeboard/interfaces.py:35
 msgid "label_Create_on_click"
 msgstr "Neuer Zettel bei Klick auf den Hintergrund"
 
-#. Default: "Hide old items after a number of days"
-#: collective/noticeboard/interfaces.py:36
+#. Default: "Display types"
+#: collective/noticeboard/interfaces.py:27
+msgid "label_Display_types"
+msgstr "Angezeigte Inhaltstypen"
+
+#. Default: "Hide items this many days after the last change"
+#: collective/noticeboard/interfaces.py:47
 msgid "label_Hide_after_days"
 msgstr "Ältere Zettel nach einer Anzahl Tage ausblenden"
 
-#. Default: "Note type"
+#. Default: "Default type for notes"
 #: collective/noticeboard/interfaces.py:19
 msgid "label_Note_type"
 msgstr "Zettel Typ"
 
 #. Default: "Publish new items automatically"
-#: collective/noticeboard/interfaces.py:31
+#: collective/noticeboard/interfaces.py:41
 msgid "label_Publish_on_create"
 msgstr "Neue Zettel automatisch veröffentlichen"
+
+#. Default: "Show a link to a help-page"
+#: collective/noticeboard/interfaces.py:54
+msgid "label_Showhelp"
+msgstr "Einen Link auf eine Hilfe-Seite anzeigen?"
 
 #. Default: "There are no changes in the Noticeboard settings."
 #: collective/noticeboard/browser/settings.py:38
