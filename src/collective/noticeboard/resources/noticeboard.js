@@ -174,7 +174,18 @@
                     });
 
                     this.$el.find(".change_color a").click(function (event) {
-                        var possible_colors = ['yellow', 'blue', 'green', 'pink', 'purple', 'lightblue'],
+                        var possible_colors = ['yellow',
+                                               'blue',
+                                               'green',
+                                               'pink',
+                                               'purple',
+                                               'lightblue',
+                                               'orange',
+                                               'darkgrey',
+                                               'blueish',
+                                               'pearl',
+                                               'yellowish',
+                                               'darkgreen'],
                             color = model.get('color'),
                             color_index = possible_colors.indexOf(color),
                             next_color = possible_colors[(color_index + 1) % (possible_colors.length)];

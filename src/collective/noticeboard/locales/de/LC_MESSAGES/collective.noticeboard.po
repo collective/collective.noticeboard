@@ -82,7 +82,7 @@ msgstr ""
 #. Default: "The link automatically points to a page with the id 'noticeboard-help', you should create one if you enable this."
 #: collective/noticeboard/interfaces.py:55
 msgid "description_Showhelp"
-msgstr ""
+msgstr "Der Link verweist eine Seite mit der id 'noticeboard-help'. Wenn Sie diese Option aktivieren sollen Sie diese Seite anlegen."
 
 #. Default: "Which content types should be shown on the noticeboard? If the board is a collection this setting will be ignored. The default type for notes is always shown."
 #: collective/noticeboard/interfaces.py:28
