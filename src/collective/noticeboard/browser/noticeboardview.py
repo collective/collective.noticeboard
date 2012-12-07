@@ -49,8 +49,11 @@ class NoticeboardView(BrowserView):
             return True
         return False
 
-    def showhelp(self):
-        return self.settings.showhelp
+    def show_help(self):
+        return self.settings.show_help
+
+    def show_archive(self):
+        return self.settings.hide_after_days
 
     def add_url(self):
         if self.context.portal_type in ["Collection", "Topic"]:
@@ -165,6 +168,9 @@ class NoticeboardArchive(NoticeboardNotes):
         items = self.contents()
         settings = NoticeboardSettings(self.context)
         hide_after = settings.hide_after_days
+        if not hide_after:
+            self.contents = ""
+            return self.index()
         limit = datetime.now() - timedelta(days=hide_after)
         for item in items:
             if hide_after:

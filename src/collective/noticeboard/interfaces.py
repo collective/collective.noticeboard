@@ -50,7 +50,7 @@ class INoticeboardSettings(Interface):
         default = 0,
         )
 
-    showhelp = schema.Bool(
+    show_help = schema.Bool(
         title=_(u"label_Showhelp", default="Show a link to a help-page"),
         description=_(u"description_Showhelp", default="The link automatically points to a page with the id 'noticeboard-help', you should create one if you enable this."),
         required=False,

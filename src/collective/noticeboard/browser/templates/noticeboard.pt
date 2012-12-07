@@ -97,7 +97,7 @@
         </span>
         </tal:add>
 
-        <span id="notes_archive">
+        <span id="notes_archive" tal:condition="view/show_archive">
           <a href="noticeboardarchive"
              i18n:translate=""
              i18n:attributes="title"
@@ -127,7 +127,7 @@
         </span>
         </tal:noticeboardsettings>
 
-        <span id="noticeboard-help" tal:condition="view/showhelp">
+        <span id="noticeboard-help" tal:condition="view/show_help">
           <a href="noticeboard-help"
              i18n:translate=""
              i18n:attributes="title"
