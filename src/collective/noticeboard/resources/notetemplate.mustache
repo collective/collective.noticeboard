@@ -1,15 +1,13 @@
 {{#hasactions}}
 <ul class="actions actions_first" style="display: None">
-    <li style="list-style: none">{{#actions}}
-    </li>
+{{#actions}}
     <li class="{{class_}}">
         <a href="{{url}}" title="{{title}}">{{content}}</a>
     </li>
-    <li style="list-style: none">{{/actions}}
-    </li>
+{{/actions}}
 </ul>
 <ul class="actions delete_confirm" style="display: None">
-    <li classs="question" i18n:translate="">Are you sure
+    <li classs="question">{{are_you_sure}}
     </li>
     <li class="confirm" href="{{delete_url}}">Yes
     </li>

@@ -94,18 +94,18 @@ class NoticeboardNotes(BrowserView):
             note = INote(item)
             if check_perm(permissions.ModifyPortalContent, item):
                 if note.review_state == 'private':
-                    actions.append(dict(content=PMF('Publish'),
+                    actions.append(dict(content=self.context.translate(PMF('Publish')),
                                         title="",
                                         class_='publish',
                                         url=item.absolute_url() +
                             '/content_status_modify?workflow_action=publish'))
         # alternatively use a popup with the form from /content_status_history
 
-                actions.append(dict(content='Color',
-                                    title=_("Change color"),
+                actions.append(dict(content=self.context.translate(_('Color')),
+                                    title=self.context.translate(_("Change color")),
                                     class_='change_color',
                                     url=item.absolute_url() + '/change_color'))
-                actions.append(dict(content=PMF('Edit'),
+                actions.append(dict(content=self.context.translate(PMF('Edit')),
                                     title='',
                                     class_='edit',
                                     url=item.absolute_url() + '/edit'))
@@ -113,7 +113,7 @@ class NoticeboardNotes(BrowserView):
             if check_perm(permissions.DeleteObjects, item):
                 delete_url = item.absolute_url() \
                     + '/delete_confirmation'
-                actions.append(dict(content=PMF('Delete'),
+                actions.append(dict(content=self.context.translate(PMF('Delete')),
                                     title='',
                                     class_='delete',
                                     url=delete_url))
@@ -127,6 +127,8 @@ class NoticeboardNotes(BrowserView):
 
             if delete_url:
                 notedata.update(dict(delete_url=delete_url))
+                are_you_sure = self.context.translate(_('Are you sure'))
+                notedata.update(dict(are_you_sure=are_you_sure))
             retval.append(notedata)
         for (new_note, new_index) in zip(new, range(max_zindex + 1,
                                          max_zindex + len(new) + 1)):
@@ -181,3 +183,6 @@ class NoticeboardArchive(NoticeboardNotes):
             notes.append(item)
         self.contents = notes
         return self.index()
+
+#missing translations
+dummy = _("Are you sure")

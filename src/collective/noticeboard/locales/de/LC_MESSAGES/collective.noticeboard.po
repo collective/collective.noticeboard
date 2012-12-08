@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-12-06 12:10+0000\n"
+"POT-Creation-Date: 2012-12-08 11:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,13 +38,21 @@ msgstr "Anwenden"
 msgid "Archive"
 msgstr "Archiv"
 
+#: collective/noticeboard/browser/noticeboardview.py:186
+msgid "Are you sure"
+msgstr "Wirklich löschen?"
+
 #: collective/noticeboard/browser/templates/noticeboard.pt:122
 msgid "Board settings"
 msgstr "Pinnwand Einstellungen"
 
-#: collective/noticeboard/browser/noticeboardview.py:102
+#: collective/noticeboard/browser/noticeboardview.py:105
 msgid "Change color"
 msgstr "Farbe ändern?"
+
+#: collective/noticeboard/browser/noticeboardview.py:104
+msgid "Color"
+msgstr "Farbe"
 
 #: collective/noticeboard/browser/templates/noticeboard.pt:131
 msgid "Help"
