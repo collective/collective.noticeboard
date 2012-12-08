@@ -233,7 +233,10 @@
                                 if (window.InitializedTinyMCEInstances) {
                                     delete InitializedTinyMCEInstances.text;
                                 }
-                            }
+                            },
+                            closeOnClick: false,
+                            fixed: true,
+                            speed: 'fast'
                         }
                     });
                     publish_link = this.$el.find(".publish");
@@ -307,7 +310,10 @@
                                 if (window.InitializedTinyMCEInstances) {
                                     delete InitializedTinyMCEInstances.text;
                                 }
-                            }
+                            },
+                            closeOnClick: false,
+                            fixed: true,
+                            speed: 'fast'
                         }
                     });
                     $("#notesettings a").prepOverlay({
