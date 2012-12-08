@@ -6,20 +6,11 @@
     <div metal:fill-slot="main">
         <tal:main-macro metal:define-macro="main">
 
-
-            <div tal:replace="structure provider:plone.abovecontenttitle" />
-
-            <h1 metal:use-macro="here/kss_generic_macros/macros/generic_title_view">
-                Title or id
+            <h1 class="documentFirstHeading"
+                i18n:domain="collective.noticeboard"
+                i18n:translate="">
+                Archive
             </h1>
-
-            <div tal:replace="structure provider:plone.belowcontenttitle" />
-
-            <p metal:use-macro="here/kss_generic_macros/macros/generic_description_view">
-                Description
-            </p>
-
-            <div tal:replace="structure provider:plone.abovecontentbody" />
 
             <tal:listing tal:define="items view/contents;
                                      normalizeString nocall:context/plone_utils/normalizeString;
@@ -115,7 +106,6 @@
 
             </tal:listing>
 
-            <div tal:replace="structure provider:plone.belowcontentbody" />
 
         </tal:main-macro>
     </div>

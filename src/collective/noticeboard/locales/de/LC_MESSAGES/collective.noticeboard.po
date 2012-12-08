@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-12-08 11:47+0000\n"
+"POT-Creation-Date: 2012-12-08 12:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,10 +35,11 @@ msgid "Apply"
 msgstr "Anwenden"
 
 #: collective/noticeboard/browser/templates/noticeboard.pt:101
+#: collective/noticeboard/browser/templates/noticeboardarchive.pt:11
 msgid "Archive"
 msgstr "Archiv"
 
-#: collective/noticeboard/browser/noticeboardview.py:186
+#: collective/noticeboard/browser/noticeboardview.py:130
 msgid "Are you sure"
 msgstr "Wirklich löschen?"
 
