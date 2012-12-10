@@ -179,8 +179,8 @@ class NoticeboardArchive(NoticeboardNotes):
         for item in items:
             if hide_after:
                 # ignore items that are newer than the limit
-                created = item.created().utcdatetime()
-                if created >= limit:
+                modified = item.modified().utcdatetime()
+                if modified >= limit:
                     continue
             notes.append(item)
         self.contents = notes

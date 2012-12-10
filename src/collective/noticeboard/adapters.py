@@ -65,7 +65,7 @@ class BaseNoteAdapter(object):
 
     @property
     def width(self):
-        return self.annotations.get('width', 200)
+        return self.annotations.get('width', 225)
 
     @width.setter
     def width(self, value):
