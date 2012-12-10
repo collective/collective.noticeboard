@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-12-08 12:32+0000\n"
+"POT-Creation-Date: 2012-12-10 08:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,19 +14,19 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: collective/noticeboard/browser/templates/noticeboard.pt:90
+#: collective/noticeboard/browser/templates/noticeboard.pt:100
 msgid "Add Image"
 msgstr "Neues Bild"
 
-#: collective/noticeboard/browser/templates/noticeboard.pt:81
+#: collective/noticeboard/browser/templates/noticeboard.pt:91
 msgid "Add Note"
 msgstr "Neuer Zettel"
 
-#: collective/noticeboard/browser/templates/noticeboard.pt:90
+#: collective/noticeboard/browser/templates/noticeboard.pt:100
 msgid "Add new image"
 msgstr "Neues Bild anlegen"
 
-#: collective/noticeboard/browser/templates/noticeboard.pt:81
+#: collective/noticeboard/browser/templates/noticeboard.pt:91
 msgid "Add new note"
 msgstr "Neuen Zettel anlegen"
 
@@ -34,46 +34,54 @@ msgstr "Neuen Zettel anlegen"
 msgid "Apply"
 msgstr "Anwenden"
 
-#: collective/noticeboard/browser/templates/noticeboard.pt:101
-#: collective/noticeboard/browser/templates/noticeboardarchive.pt:11
+#: collective/noticeboard/browser/templates/noticeboard.pt:111
+#: collective/noticeboard/browser/templates/noticeboardarchive.pt:9
 msgid "Archive"
 msgstr "Archiv"
 
-#: collective/noticeboard/browser/noticeboardview.py:130
+#: collective/noticeboard/browser/noticeboardview.py:132
 msgid "Are you sure"
 msgstr "Wirklich löschen?"
 
-#: collective/noticeboard/browser/templates/noticeboard.pt:122
+#: collective/noticeboard/browser/templates/noticeboard.pt:132
 msgid "Board settings"
 msgstr "Pinnwand Einstellungen"
 
-#: collective/noticeboard/browser/noticeboardview.py:105
+#: collective/noticeboard/browser/noticeboardview.py:107
 msgid "Change color"
 msgstr "Farbe ändern?"
 
-#: collective/noticeboard/browser/noticeboardview.py:104
+#: collective/noticeboard/browser/noticeboardview.py:106
 msgid "Color"
 msgstr "Farbe"
 
-#: collective/noticeboard/browser/templates/noticeboard.pt:131
+#: collective/noticeboard/browser/templates/noticeboard.pt:141
 msgid "Help"
 msgstr "Hilfe"
 
-#: collective/noticeboard/browser/templates/noticeboard.pt:131
+#: collective/noticeboard/browser/templates/noticeboard.pt:141
 msgid "Help for the notice-board"
 msgstr "Eine Anleitung für die Pinnwand"
+
+#: collective/noticeboard/browser/templates/noticeboard.pt:80
+msgid "Login to add Note"
+msgstr "Anmelden um Zettel anzulegen"
 
 #: collective/noticeboard/browser/settings.py:22
 msgid "Main"
 msgstr ""
 
-#: collective/noticeboard/browser/templates/noticeboard.pt:122
+#: collective/noticeboard/browser/templates/noticeboard.pt:132
 msgid "Modify the settings of the notice-board"
 msgstr "Pinnwand Einstellungen bearbeiten"
 
-#: collective/noticeboard/browser/templates/noticeboard.pt:101
+#: collective/noticeboard/browser/templates/noticeboard.pt:111
 msgid "Show all old notes"
 msgstr "Abgelaufene Zettel anzeigen"
+
+#: collective/noticeboard/browser/templates/noticeboard.pt:80
+msgid "You have to login to add a new note"
+msgstr "Sie müssen sich anmelden um neue Zettel anzulegen"
 
 #: collective/noticeboard/interfaces.py:36
 msgid "description_Create_on_click"
