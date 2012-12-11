@@ -1,10 +1,11 @@
 collective.noticeboard
 ======================
 
-A fancy noticeboard.
+A fancy noticeboard for Plone inspired by corkboard.me
 
-collective.noticeboard transforms folders or collections into a fancy noticeboard where users can add and modify notes.
-Notes display the content of a content-type (by default a News Item) and are editable in overlays. They are draggable, resizeable and can change color.
+This Plone-Addon allow suser to transform folders or collections into a fancy noticeboard where users can add and modify postit-like notes.
+Notes display the content of a content-type (by default News Items) and are editable in overlays.
+Notes are draggable, resizeable and can change color.
 
 In the configuration you can:
 
@@ -12,19 +13,20 @@ In the configuration you can:
 - select types that should be displayed
 - enable adding notes by clicking on the canvas
 - enable auto-publishing of notes
-- select if notes should be hidden after a number of days after the last change
+- select if notes should be hidden when the were not updated for a number of days
 - display a link to a help-page
 
-Items that are excluded from navigation are not shown on the noticeboard (e.g. you might want to exclude the help-page)
+Items that were excluded from the navigation are not shown on the noticeboard (you might want to exclude the help-page).
 
 collective.noticeboard works with Archetypes and Dexterity.
 
 
 Installation
 ------------
-Add this line in the eggs section of your buildout.cfg
 
-    eggs=
+Add this line in the eggs section of your buildout.cfg::
+
+    eggs =
         ...
         collective.noticeboard
 
