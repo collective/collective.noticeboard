@@ -353,6 +353,7 @@
                         return true;
                     }
                     if ($(event.target).data("addanonymous") !== "True") {
+                        $(".actions_first:visible").hide();
                         return true;
                     }
                     var add_link = $(".add_note a").attr("href"),
