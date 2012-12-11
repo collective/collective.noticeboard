@@ -43,11 +43,9 @@ Credits
 -------
 
 Written by:
-
 [Starzel.de](http://www.starzel.de)
 
 Sponsored by:
-
 [DIPF](http://www.dipf.de)
 
 
