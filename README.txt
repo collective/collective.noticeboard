@@ -42,9 +42,9 @@ Editing in overlays works with the version of Products.TinyMCE shipped with Plon
 Credits
 -------
 
-Written by [Starzel.de](http://www.starzel.de)
+Written by Starzel.de - http://www.starzel.de
 
-Sponsored by [DIPF](http://www.dipf.de)
+Sponsored by DIPF - http://www.dipf.de
 
 
 Contributors
@@ -52,4 +52,3 @@ Contributors
 
 - Philip Bauer
 - Patrick Gerken
-

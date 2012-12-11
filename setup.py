@@ -9,16 +9,11 @@ long_description = (
     '=======\n'
     + '\n\n' +
     open('CHANGES.txt').read()
-    + '\n\n' +
-    'Contributors\n'
-    '============\n'
-    + '\n\n' +
-    open('CONTRIBUTORS.txt').read()
     + '\n')
 
 setup(name='collective.noticeboard',
       version=version,
-      description="",
+      description="A fancy noticeboard for Plone",
       long_description=long_description,
       # Get more strings from
       # http://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -37,7 +32,7 @@ setup(name='collective.noticeboard',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'Products.CMFPlone',
+          'Plone',
           'collective.js.backbone',
           'collective.js.underscore',
           'collective.js.jqueryui',
