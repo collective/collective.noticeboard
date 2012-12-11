@@ -109,9 +109,11 @@ div.ui-resizable-handle.ui-resizable-s {
     height: 20px;
     list-style: none outside none;
     padding: 2px 10px;
+    margin-left: 0;
     position: absolute;
     right: 0;
     top: -24px;
+    white-space: nowrap;
 }
 
 #content .note ul.actions li {
