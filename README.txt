@@ -44,7 +44,7 @@ Credits
 
 Written by [Starzel.de](http://www.starzel.de)
 
-Sponsored by [Deutsches Institut für Internationale Pädagogische Forschung](http://www.dipf.de)
+Sponsored by [DIPF](http://www.dipf.de)
 
 
 Contributors
