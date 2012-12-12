@@ -179,8 +179,9 @@
                                                'green',
                                                'pink',
                                                'purple',
-                                               'blue2',
-                                               'grey'],
+                                               'lightblue',
+                                               'grey',
+                                               'beige'],
                             color = model.get('color'),
                             color_index = possible_colors.indexOf(color),
                             next_color = possible_colors[(color_index + 1) % (possible_colors.length)];
