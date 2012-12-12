@@ -67,6 +67,8 @@ body.template-noticeboardview #content {
     overflow: hidden;
     height: 85%;
     padding: 0 6px 0px 6px;
+    position: relative;
+    z-index: 1;
 }
 
 .note .notecontent:hover {
