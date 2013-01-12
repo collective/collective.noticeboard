@@ -114,13 +114,11 @@ class BaseNoteAdapter(object):
 
     def modified(self):
         util = getToolByName(self.context, 'translation_service')
-        return util.ulocalized_time(self.context.ModificationDate(), True, False, self.context)
+        return util.ulocalized_time(self.context.ModificationDate(), False, False, self.context)
 
     @property
     def byline(self):
-        label_by_author = self.context.translate(PMF('label_by_author'))[:-9]
-        box_last_modified = self.context.translate(PMF('box_last_modified'))
-        return label_by_author + self.authorname() + u" — " + box_last_modified + self.modified()
+        return self.modified() + u" — " + self.authorname()
 
     @property
     def jsonable(self):
