@@ -6,6 +6,7 @@ from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.interface import implements
 from collective.noticeboard.interfaces import INote
+from Products.CMFPlone import PloneMessageFactory as PMF
 
 ANNOTATION_KEY = 'collective.noticeboard'
 
@@ -100,9 +101,31 @@ class BaseNoteAdapter(object):
         workflowTool = getToolByName(self.context, "portal_workflow")
         return workflowTool.getInfoFor(self.context, 'review_state', '')
 
+    def creator(self):
+        return self.context.Creator()
+
+    def author(self):
+        membership = getToolByName(self.context, 'portal_membership')
+        return membership.getMemberInfo(self.creator())
+
+    def authorname(self):
+        author = self.author()
+        return author and author['fullname'] or self.creator()
+
+    def modified(self):
+        util = getToolByName(self.context, 'translation_service')
+        return util.ulocalized_time(self.context.ModificationDate(), True, False, self.context)
+
+    @property
+    def byline(self):
+        label_by_author = self.context.translate(PMF('label_by_author'))[:-9]
+        box_last_modified = self.context.translate(PMF('box_last_modified'))
+        return label_by_author + self.authorname() + u" — " + box_last_modified + self.modified()
+
     @property
     def jsonable(self):
         return dict(
+                byline=self.byline,
                 portal_type=self.context.portal_type.lower(),
                 review_state=self.review_state,
                 title=self.title,
