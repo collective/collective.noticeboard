@@ -19,7 +19,7 @@ class NoticeJSONView(BrowserView):
                           )](note))
 
     def get(self, note):
-        logging.info('Object retrieved %s' % str(note.jsonable))
+        logging.debug('Object retrieved %s' % str(note.jsonable))
         return note.jsonable
 
     def put(self, note):
@@ -36,5 +36,5 @@ class NoticeJSONView(BrowserView):
         note.width = data['width']
         note.color = data['color']
         note.zIndex = data['zIndex']
-        logging.info('Object updated %s' % str(data))
+        logging.debug('Object updated %s' % str(data))
         return True
