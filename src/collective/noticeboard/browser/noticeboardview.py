@@ -44,7 +44,7 @@ class NoticeboardView(BrowserView):
 
     def can_edit(self):
         check_perm = getSecurityManager().checkPermission
-        return check_perm(permissions.ModifyPortalContent, self.context)
+        return check_perm("collective.noticeboard: manage noticeboards", self.context)
 
     def images_visible(self):
         if "Image" in self.settings.display_types or self.settings.note_type == "Image":
