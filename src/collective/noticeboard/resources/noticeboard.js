@@ -1,7 +1,9 @@
 /*jslint nomen: true */
 (function init(noticeboard, $, _, Backbone) {
     "use strict"; /*global _: true, jQuery: true, Backbone: true, window: true, Mustache: true, TinyMCEConfig: true, InitializedTinyMCEInstances: true, copyDataForSubmit: true, alert: true */
+
     Backbone.emulateHTTP = true;
+
     noticeboard.init = function (canvas) {
         var Note = Backbone.Model.extend({
             url: function () {
@@ -15,10 +17,10 @@
                     this.on("hide_edit", this.hideEdit);
                     this.on("error", this.error);
                 },
-                error: function (model, xhr, options) {
-                    alert("Error " + xhr.status + " Message: " + xhr.statusText);
-                },
                 model: Note,
+                error: function (model, xhr, options) {
+                    alert("An error occured! Errorcode: " + xhr.status + " Message: " + xhr.statusText);
+                },
                 updateZIndex: function () {
                     _.each(_.sortBy(this.models, function (note) {
                         return note.get("zIndex");
@@ -39,6 +41,7 @@
                     });
                 }
             }),
+
             NoteView = Backbone.View.extend({
                 className: "note",
                 initialize: function () {
@@ -60,6 +63,7 @@
                         this.model.set({
                             zIndex: biggest + 1
                         });
+                        // Every once in a while we should decrease zIndex numbers
                         if (Math.random() * 1001 > 1000 || biggest > 1000) {
                             this.model.trigger("updateZIndex");
                         } else {
@@ -75,6 +79,7 @@
                     });
                 },
                 delete1: function () {
+                    // Two steps. to allow confirmation
                     var model = this.model;
                     this.$el.find(".delete_confirm").show("slide", {
                         direction: "right"
@@ -114,6 +119,8 @@
                     $.extend(data, this.model.toJSON());
                     this.$el.unbind();
 
+                    // A lot of messing with dom is necessary to work properly
+                    // with draggable and resizable
                     this.$el.empty();
                     this.$el.removeClass("ui-resizable");
                     this.$el.removeClass("ui-draggable");
@@ -142,6 +149,11 @@
                         cursor: "move",
                         stack: ".note",
                         stop: function (object, event) {
+                            // We can't prevent draggable from actually
+                            // changing the position before we store the
+                            // updated position in the model.
+                            // So we accept it and update the model without
+                            // triggering events that would rerender
                             model.set({
                                 position_x: event.position.left,
                                 position_y: event.position.top,
@@ -161,6 +173,7 @@
                         minWidth: 100,
                         autoHide: true,
                         stop: function (object, event) {
+                            // Same tricks as with draggable
                             model.set({
                                 width: event.size.width,
                                 height: event.size.height
@@ -202,6 +215,7 @@
                             onLoad: function (event) {
                                 event.stopPropagation();
                                 var config, tiny;
+                                // old tiny, new tiny
                                 if (window.TinyMCEConfig) {
                                     config = new TinyMCEConfig("text");
                                     config.init();
@@ -210,6 +224,7 @@
                                     config = tiny.data('mce-config');
                                     tiny.tinymce(config);
                                 }
+                                // Various required form hacks
                                 event.currentTarget.getOverlay().find('.ArchetypesKeywordWidget select').multiSelect();
                                 try {
                                     copyDataForSubmit("form-widgets-display_types");
@@ -245,6 +260,7 @@
                     return this;
                 },
                 repair_css: function () {
+                    // There is no way to implement the right heights in css
                     var note_height = this.$el.innerHeight(),
                         h3_height = this.$el.find("h3").innerHeight();
                     if (h3_height) {
@@ -279,6 +295,7 @@
                         config: {
                             onLoad: function (event) {
                                 var config;
+                                // several hacks, similar to prepOveray for edit
                                 if (window.TinyMCEConfig) {
                                     config = new TinyMCEConfig("text");
                                     config.init();
