@@ -13,7 +13,11 @@
                 initialize: function () {
                     this.on("updateZIndex", this.updateZIndex);
                     this.on("hide_edit", this.hideEdit);
+                    this.on("error", this.error)
                 },
+            error: function(model, xhr, options){
+                alert("Error " + xhr.status + " Message: " + xhr.statusText)
+            },
                 model: Note,
                 updateZIndex: function () {
                     _.each(_.sortBy(this.models, function (note) {
@@ -82,15 +86,7 @@
                         });
                         $this.find(".confirm").click(function () {
                             var href = $(this).attr("href");
-                            $.get(href, function (reply) {
-                                var token = $(reply).find("input[name=_authenticator]").val();
-                                $.post(href, {
-                                    _authenticator: token,
-                                    "form.submitted": 1
-                                }, function () {
-                                    model.destroy();
-                                });
-                            });
+                            model.destroy({wait: true});
                         });
                     });
                     return false;

@@ -65,6 +65,7 @@ class NoticeboardView(BrowserView):
         return container.absolute_url()
 
 
+
 class NoticeboardNotes(BrowserView):
     """ The json-dump of notes
     """
@@ -100,7 +101,7 @@ class NoticeboardNotes(BrowserView):
                                         title="",
                                         class_='publish',
                                         url=item.absolute_url() +
-                            '/content_status_modify?workflow_action=publish'))
+                                        '/content_status_modify?workflow_action=publish'))
         # alternatively use a popup with the form from /content_status_history
 
                 actions.append(dict(content=self.context.translate(_('Color')),
