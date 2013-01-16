@@ -15,6 +15,7 @@ from zope.component import getMultiAdapter
 import json
 
 from collective.noticeboard import _
+from collective.noticeboard import permissions as own_permissions
 
 
 class NoticeboardView(BrowserView):
@@ -44,7 +45,7 @@ class NoticeboardView(BrowserView):
 
     def can_edit(self):
         check_perm = getSecurityManager().checkPermission
-        return check_perm("collective.noticeboard: manage noticeboards", self.context)
+        return check_perm(own_permissions.manage_noticeboard, self.context)
 
     def images_visible(self):
         if "Image" in self.settings.display_types or self.settings.note_type == "Image":

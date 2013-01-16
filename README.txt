@@ -20,6 +20,15 @@ Items that were excluded from the navigation are not shown on the noticeboard (y
 
 collective.noticeboard works with Archetypes and Dexterity.
 
+.. attention::
+    In Plone, one needs delete permission on an object AND its parent folder.
+    Most often, a user has the edit permission on containing folders, so that does not matter.
+
+    On a noticeboard though, it makes sense that users are only allowed to add notes and not to modify the noticeboard itself.
+    To allow deletion of content, our delete functionality only checks the Delete permission on the object itself and not on the folder.
+
+    This should not create any trouble for you, but we note it here because it is a small deviation from plone behavior.
+
 
 Installation
 ------------

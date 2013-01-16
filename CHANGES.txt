@@ -2,7 +2,10 @@
 0.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Reimplement Delete functionality. Now deletion of a note is possible
+  even without edit rights on the folder. This behavior is different
+  to plone stock behavior!
+  [do3cc]
 
 
 0.2 (2013-01-12)
