@@ -1,6 +1,6 @@
 /*jslint nomen: true */
 (function init(noticeboard, $, _, Backbone) {
-    "use strict"; /*global _: true, jQuery: true, Backbone: true, window: true, Mustache: true, TinyMCEConfig: true, InitializedTinyMCEInstances: true, copyDataForSubmit: true  */
+    "use strict"; /*global _: true, jQuery: true, Backbone: true, window: true, Mustache: true, TinyMCEConfig: true, InitializedTinyMCEInstances: true, copyDataForSubmit: true, alert: true */
     Backbone.emulateHTTP = true;
     noticeboard.init = function (canvas) {
         var Note = Backbone.Model.extend({
@@ -13,11 +13,11 @@
                 initialize: function () {
                     this.on("updateZIndex", this.updateZIndex);
                     this.on("hide_edit", this.hideEdit);
-                    this.on("error", this.error)
+                    this.on("error", this.error);
                 },
-            error: function(model, xhr, options){
-                alert("Error " + xhr.status + " Message: " + xhr.statusText)
-            },
+                error: function (model, xhr, options) {
+                    alert("Error " + xhr.status + " Message: " + xhr.statusText);
+                },
                 model: Note,
                 updateZIndex: function () {
                     _.each(_.sortBy(this.models, function (note) {
@@ -86,7 +86,9 @@
                         });
                         $this.find(".confirm").click(function () {
                             var href = $(this).attr("href");
-                            model.destroy({wait: true});
+                            model.destroy({
+                                wait: true
+                            });
                         });
                     });
                     return false;
@@ -170,14 +172,7 @@
                     });
 
                     this.$el.find(".change_color a").click(function (event) {
-                        var possible_colors = ['yellow',
-                                               'blue',
-                                               'green',
-                                               'pink',
-                                               'purple',
-                                               'lightblue',
-                                               'grey',
-                                               'beige'],
+                        var possible_colors = ['yellow', 'blue', 'green', 'pink', 'purple', 'lightblue', 'grey', 'beige'],
                             color = model.get('color'),
                             color_index = possible_colors.indexOf(color),
                             next_color = possible_colors[(color_index + 1) % (possible_colors.length)];
@@ -206,8 +201,7 @@
                         config: {
                             onLoad: function (event) {
                                 event.stopPropagation();
-                                var config,
-                                    tiny;
+                                var config, tiny;
                                 if (window.TinyMCEConfig) {
                                     config = new TinyMCEConfig("text");
                                     config.init();
@@ -269,7 +263,6 @@
                 initialize: function () {
                     var notes = this.notes = new Notes(),
                         update = this.update,
-                        config,
                         tiny;
                     this.notes.url = this.$el.data('href');
                     this.notes.itemurl = this.$el.data('hrefitem');
@@ -285,6 +278,7 @@
                         afterpost: this.update,
                         config: {
                             onLoad: function (event) {
+                                var config;
                                 if (window.TinyMCEConfig) {
                                     config = new TinyMCEConfig("text");
                                     config.init();
