@@ -7,6 +7,7 @@ from collective.noticeboard.interfaces import INote
 from collective.noticeboard.settings import NoticeboardSettings
 from datetime import datetime, timedelta
 from plone.app.collection.interfaces import ICollection
+from plone.app.contentlisting.catalog import CatalogContentListingObject
 from Products.ATContentTypes.interface import IATTopic
 from Products.CMFCore import permissions
 from Products.CMFPlone import PloneMessageFactory as PMF
@@ -86,6 +87,8 @@ class NoticeboardNotes(BrowserView):
         if hide_after:
             limit = datetime.now() - timedelta(days=hide_after)
         for item in items:
+            if isinstance(item, CatalogContentListingObject):
+                item = item.getObject()
             item = aq_inner(item)
             if hide_after:
                 # ignore items that are older than the limit
