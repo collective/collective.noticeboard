@@ -1,5 +1,5 @@
 
-0.3 (unreleased)
+0.3 (2013-02-05)
 ----------------
 
 - Fix use with collections
