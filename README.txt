@@ -7,20 +7,27 @@ This Plone-Addon allow suser to transform folders or collections into a fancy no
 Notes display the content of a content-type (by default News Items) and are editable in overlays.
 Notes are draggable, resizeable and can change color.
 
+collective.noticeboard works with Archetypes and Dexterity. By default it displays
+
+- Title
+- Description
+- Image (if one exists)
+- Author
+- Modification-Date
+
 In the configuration you can:
 
 - select the default type used for notes
 - select types that should be displayed
 - enable adding notes by clicking on the canvas
 - enable auto-publishing of notes
-- select if notes should be hidden when the were not updated for a number of days
-- display a link to a help-page
+- select if notes should be hidden when the were not updated for a certain number of days
+- display a link to a help-page (with the id 'noticeboard-help')
 
 Items that were excluded from the navigation are not shown on the noticeboard (you might want to exclude the help-page).
 
-collective.noticeboard works with Archetypes and Dexterity.
-
 .. attention::
+
     In Plone, one needs delete permission on an object AND its parent folder.
     Most often, a user has the edit permission on containing folders, so that does not matter.
 

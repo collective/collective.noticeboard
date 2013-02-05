@@ -2,6 +2,9 @@
 0.3 (unreleased)
 ----------------
 
+- Fix use with collections
+  [pbauer]
+
 - Reimplement Delete functionality. Now deletion of a note is possible
   even without edit rights on the folder. This behavior is different
   to plone stock behavior!
