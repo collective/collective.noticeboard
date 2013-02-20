@@ -2,7 +2,14 @@
 0.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Improve error-message on trying to delete a locked object.
+  [pbauer]
+
+- Better Cache Control
+  [pgerken]
+
+- remove obsolte code
+  [pbauer]
 
 
 0.3 (2013-02-05)
