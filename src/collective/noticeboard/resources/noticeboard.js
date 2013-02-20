@@ -19,7 +19,12 @@
                 },
                 model: Note,
                 error: function (model, xhr, options) {
-                    alert("An error occured! Errorcode: " + xhr.status + " Message: " + xhr.statusText);
+
+                    if (xhr.status === 423) {
+                        alert("This note is currently being edited by another user!");
+                    } else {
+                        alert("An error occured! Errorcode: " + xhr.status + " Message: " + xhr.statusText);
+                    }
                 },
                 updateZIndex: function () {
                     _.each(_.sortBy(this.models, function (note) {
