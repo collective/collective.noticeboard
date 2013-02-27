@@ -32,3 +32,5 @@ lib/
 local/
 .codeintel/
 src-mrd/
+.project
+.pydevproject
