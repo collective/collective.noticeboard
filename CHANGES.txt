@@ -2,10 +2,13 @@
 0.4 (unreleased)
 ----------------
 
-- Improve error-message on trying to delete a locked object.
+- make buildout use buildout.plonetest
+  [toutpt]
+
+- Improve error-message when trying to delete a locked object.
   [pbauer]
 
-- Better Cache Control
+- Better Cache Control (prevent anonymous users lock the noticeboard for the next 10 minutes...)
   [pgerken]
 
 - remove obsolte code
