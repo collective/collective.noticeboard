@@ -67,7 +67,6 @@ class NoticeboardView(BrowserView):
         return container.absolute_url()
 
 
-
 class NoticeboardNotes(BrowserView):
     """ The json-dump of notes
     """
@@ -160,9 +159,11 @@ class NoticeboardNotes(BrowserView):
             items = context.results(batch=False, brains=False)
         else:
             # handle folders
-            items = context.getFolderContents(full_objects=True,
-                        contentFilter={"portal_type":display_types,
-                                       "sort_on":"sortable_title"})
+            items = context.getFolderContents(
+                full_objects=True,
+                contentFilter={
+                    "portal_type": display_types,
+                    "sort_on": "sortable_title"})
         return items
 
 

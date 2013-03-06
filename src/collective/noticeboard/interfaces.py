@@ -17,7 +17,8 @@ class INoticeboardSettings(Interface):
     '''
     note_type = schema.Choice(
         title=_(u"label_Note_type", default=u"Default type for notes"),
-        description=_(u"description_note_type",
+        description=_(
+            u"description_note_type",
             default=u"Which content type should be created when adding a note."),
         vocabulary="plone.app.vocabularies.ReallyUserFriendlyTypes",
         required=True,
@@ -25,7 +26,8 @@ class INoticeboardSettings(Interface):
 
     display_types = schema.List(
         title=_(u"label_Display_types", default=u"Display types"),
-        description=_(u"description_display_types",
+        description=_(
+            u"description_display_types",
             default=u"Which content types should be shown on the noticeboard? If the board is a collection this setting will be ignored. The default type for notes is always shown."),
         value_type=schema.Choice(source="plone.app.vocabularies.ReallyUserFriendlyTypes"),
         required=True,
@@ -47,8 +49,7 @@ class INoticeboardSettings(Interface):
         title=_(u"label_Hide_after_days", default="Hide items this many days after the last change"),
         description=_(u"description_Hide_after_days", default="How many days after the last modification should items be ommitted from the board? Leave empty or 0 to never hide old items."),
         required=False,
-        default = 0,
-        )
+        default=0)
 
     show_help = schema.Bool(
         title=_(u"label_Showhelp", default="Show a link to a help-page"),
@@ -70,7 +71,6 @@ class INoticeboardSettings(Interface):
 #        source=ContextSourceBinder({'object_provides' : IFolderish.__identifier__},default_query='path:'))
 
 
-
 class INote(Interface):
     '''Interface for objects that can be displayed as a note
     '''
@@ -81,4 +81,4 @@ class INote(Interface):
     zIndex = Attribute('zIndex')
     position_x = Attribute('Position X')
     position_y = Attribute('Position Y')
-    id_ = Attribute('An identifier to recognize an object again')
+    id_=Attribute('An identifier to recognize an object again')

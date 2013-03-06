@@ -23,15 +23,15 @@ setup(name='collective.noticeboard',
           "Framework :: Zope2",
           "License :: OSI Approved :: GNU General Public License (GPL)",
           "Operating System :: OS Independent",
-          "Programming Language :: Python",
-        ],
+          "Programming Language :: Python :: 2.6",
+          "Programming Language :: Python :: 2.7", ],
       keywords='Plone javascript',
       author='Philip Bauer',
       author_email='bauer@starzel.de',
       url='http://github.com/starzel/collective.noticeboard',
       license='gpl',
       packages=find_packages('src'),
-      package_dir = {'': 'src'},
+      package_dir={'': 'src'},
       namespace_packages=['collective'],
       include_package_data=True,
       zip_safe=False,
@@ -46,7 +46,7 @@ setup(name='collective.noticeboard',
       extras_require={'test': ['plone.app.testing']},
       entry_points="""
       # -*- Entry points: -*-
-  	  [z3c.autoinclude.plugin]
-  	  target = plone
+      [z3c.autoinclude.plugin]
+      target = plone
       """,
       )

@@ -12,7 +12,6 @@ from collective.noticeboard.settings import NoticeboardSettings
 
 
 class INothing(Interface):
-
     pass
 
 
@@ -35,8 +34,9 @@ class NoticeBoardSettingsForm(group.GroupForm, form.EditForm):
                     default=u'Configure the settings of this noticeboard.')
     successMessage = _(u'successMessage_noticeboard_settings_form',
                        default=u'Noticeboard settings saved.')
-    noChangesMessage = _(u'noChangesMessage_noticeboard_settings_form',
-                 default=u'There are no changes in the Noticeboard settings.')
+    noChangesMessage = _(
+        u'noChangesMessage_noticeboard_settings_form',
+        default=u'There are no changes in the Noticeboard settings.')
 
     def add_fields_to_group(self, type_, groupname):
         group = None
@@ -83,6 +83,5 @@ class NoticeBoardSettingsForm(group.GroupForm, form.EditForm):
 
         self.set_status_message(settings, has_changes)
         return self.request.response.redirect(self.context.absolute_url())
-
 
 NoticeboardSettingsView = wrap_form(NoticeBoardSettingsForm)

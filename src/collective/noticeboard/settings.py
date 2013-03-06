@@ -62,13 +62,11 @@ class NoticeboardSettings(object):
             self.default_settings = None
 
     def __setattr__(self, name, value):
-        if name in (
-            'context',
-            '_metadata',
-            'defaults',
-            'storage',
-            'default_settings',
-            ):
+        if name in ('context',
+                    '_metadata',
+                    'defaults',
+                    'storage',
+                    'default_settings'):
             self.__dict__[name] = value
         else:
             self.storage.put(name, value)

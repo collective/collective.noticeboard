@@ -6,7 +6,6 @@ from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.interface import implements
 from collective.noticeboard.interfaces import INote
-from Products.CMFPlone import PloneMessageFactory as PMF
 
 ANNOTATION_KEY = 'collective.noticeboard'
 
@@ -26,6 +25,7 @@ def image_tag(object, field):
 
 class BaseNoteAdapter(object):
     implements(INote)
+
     def __init__(self, context):
         self.context = context
         try:
@@ -123,22 +123,21 @@ class BaseNoteAdapter(object):
     @property
     def jsonable(self):
         return dict(
-                byline=self.byline,
-                portal_type=self.context.portal_type.lower(),
-                review_state=self.review_state,
-                title=self.title,
-                url=self.context.absolute_url() + '/xx',
-                id=self.id_,
-                description=self.description,
-                text=self.text,
-                image_tag=self.image_tag,
-                color=self.color,
-                zIndex=self.zIndex,
-                height=self.height,
-                width=self.width,
-                position_x=self.position_x,
-                position_y=self.position_y,
-                )
+            byline=self.byline,
+            portal_type=self.context.portal_type.lower(),
+            review_state=self.review_state,
+            title=self.title,
+            url=self.context.absolute_url() + '/xx',
+            id=self.id_,
+            description=self.description,
+            text=self.text,
+            image_tag=self.image_tag,
+            color=self.color,
+            zIndex=self.zIndex,
+            height=self.height,
+            width=self.width,
+            position_x=self.position_x,
+            position_y=self.position_y)
 
 
 class ArchetypesNoteAdapter(BaseNoteAdapter):
