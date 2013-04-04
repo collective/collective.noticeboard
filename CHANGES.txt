@@ -2,7 +2,8 @@
 0.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Add compatibility with Plone 4.3
+  [pbauer]
 
 
 0.4 (2013-03-06)
