@@ -9,7 +9,7 @@
     i18n_domain="collective.noticeboard">
 
     <include package="plone.app.contentmenu" />
-    <include package="zope.app.publisher.xmlrpc" file="meta.zcml" />
+    <include package="zope.publisher.xmlrpc" file="meta.zcml" />
 
     <browser:page
         name="noticeboard-settings"

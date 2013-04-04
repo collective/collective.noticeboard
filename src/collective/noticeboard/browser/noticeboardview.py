@@ -95,8 +95,11 @@ class NoticeboardNotes(BrowserView):
                 modified = item.modified().utcdatetime()
                 if modified <= limit:
                     continue
-            if item.exclude_from_nav():
+            if isinstance(item.exclude_from_nav, bool) and item.exclude_from_nav:
                 continue
+            else:
+                if item.exclude_from_nav():
+                    continue
             actions = []
             note = INote(item)
             if check_perm(permissions.ModifyPortalContent, item):
