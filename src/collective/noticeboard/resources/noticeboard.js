@@ -48,7 +48,7 @@
             }),
 
             NoteView = Backbone.View.extend({
-                className: "note",
+                className: "boardnote",
                 initialize: function () {
                     this.model.bind("change", this.render, this);
                     this.model.bind("destroy", this.remove, this);
@@ -61,7 +61,7 @@
                     this.$el.remove();
                 },
                 updateZIndex: function () {
-                    var biggest = _.reduce($(".note"), function (a, b) {
+                    var biggest = _.reduce($(".boardnote"), function (a, b) {
                         return Math.max($(b).zIndex(), a);
                     }, 0);
                     if (this.model.get("zIndex") !== biggest) {
@@ -152,7 +152,7 @@
                         handle: "h3",
                         containment: "window",
                         cursor: "move",
-                        stack: ".note",
+                        stack: ".boardnote",
                         stop: function (object, event) {
                             // We can't prevent draggable from actually
                             // changing the position before we store the

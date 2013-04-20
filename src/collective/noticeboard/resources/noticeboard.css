@@ -29,11 +29,11 @@ body.template-noticeboardview #content {
     width: 100%;
 }
 
-.note {
+.boardnote {
     box-shadow: 3px 3px 10px 2px #666
 }
 
-.note h3 {
+.boardnote h3 {
     display: block;
     cursor: move;
     position: relative;
@@ -46,24 +46,24 @@ body.template-noticeboardview #content {
     background-repeat: repeat-x;
 }
 
-#content .note .documentDescription {
+#content .boardnote .documentDescription {
     font-size: 1.1em;
 }
 
 
-#content .note .review-state {
+#content .boardnote .review-state {
     display: none;
     font-size: 80%;
 }
 
-#content .note .review-state.state-private {
+#content .boardnote .review-state.state-private {
     display: inline;
     position: absolute;
     right: 0.5em;
     top: 0;
 }
 
-.note .notecontent {
+.boardnote .notecontent {
     overflow: hidden;
     height: 85%;
     padding: 0 6px 0px 6px;
@@ -71,11 +71,11 @@ body.template-noticeboardview #content {
     z-index: 1;
 }
 
-.note .notecontent:hover {
+.boardnote .notecontent:hover {
     overflow-y: auto;
 }
 
-.note .shadow {
+.boardnote .shadow {
     background-repeat: no-repeat;
     bottom: -15px;
     height: 114px;
@@ -87,12 +87,12 @@ body.template-noticeboardview #content {
     z-index: 0;
 }
 
-.note .ui-resizable-se {
+.boardnote .ui-resizable-se {
     height: 16px;
     width: 16px;
 }
 
-.note .ui-resizable-s {
+.boardnote .ui-resizable-s {
     display: none;
 }
 
@@ -104,7 +104,7 @@ div.ui-resizable-handle.ui-resizable-s {
 
 /* Actions */
 
-#content .note ul.actions {
+#content .boardnote ul.actions {
     background-color: #999999;
     border-radius: 10px 10px 0 0;
     display: none;
@@ -118,13 +118,13 @@ div.ui-resizable-handle.ui-resizable-s {
     white-space: nowrap;
 }
 
-#content .note ul.actions li {
+#content .boardnote ul.actions li {
     display: inline;
     padding-left: 0.5em;
     color: #fff;
 }
 
-#content .note ul.actions li.confirm {
+#content .boardnote ul.actions li.confirm {
     color: transparent;
     cursor: pointer;
     background-image: url("++resource++collective.noticeboard/yes.png");
@@ -132,7 +132,7 @@ div.ui-resizable-handle.ui-resizable-s {
     background-position: -5px -13px;
 }
 
-#content .note ul.actions li.not_confirm {
+#content .boardnote ul.actions li.not_confirm {
     color: transparent;
     cursor: pointer;
     background-image: url("++resource++collective.noticeboard/no.png");
@@ -149,22 +149,22 @@ div.ui-resizable-handle.ui-resizable-s {
     color: #fff !important;
 }
 
-#content .note ul.actions li:first-child {
+#content .boardnote ul.actions li:first-child {
     padding-left: 0;
 }
 
-#content .note ul.actions a:hover {
+#content .boardnote ul.actions a:hover {
     color: #000 !important;
 }
 
 
 
 /* Images */
-#content .note div.newsImageContainer {
+#content .boardnote div.newsImageContainer {
     margin-right: 0;
 }
 
-#content .note .portaltype-image div.newsImageContainer {
+#content .boardnote .portaltype-image div.newsImageContainer {
     float: none;
     margin: 0;
 }
