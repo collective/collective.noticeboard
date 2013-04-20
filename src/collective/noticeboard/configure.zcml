@@ -57,7 +57,7 @@
 
   <subscriber
       for="Products.CMFCore.interfaces._content.IContentish
-           zope.app.container.interfaces.IObjectAddedEvent"
+           zope.container.interfaces.IObjectAddedEvent"
       handler=".events.auto_publish" />
 
   <genericsetup:registerProfile
