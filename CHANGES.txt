@@ -3,7 +3,7 @@
 ----------------
 
 - Add compatibility with Plone 4.3
-  [pbauer]
+  [pbauer, do3cc]
 
 
 0.4 (2013-03-06)

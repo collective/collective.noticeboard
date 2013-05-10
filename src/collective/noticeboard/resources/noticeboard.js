@@ -169,10 +169,20 @@
                             model.save();
                         }
                     });
-                    this.$el.data('draggable').position = this.$el.data('draggable').offset = {
-                        top: position_y,
-                        left: position_y
-                    };
+                    if (this.$el.data('draggable')) {
+                        // If there is a data element draggable, we have
+                        // to set the position from hand, else movements
+                        // somehow mess up the old position
+                        // jqueryui 1.10 does not have the data element,
+                        // also, it does not behave that way any longer.
+                        // 1.10 is the default for Plone 4.3
+                        // so expect this clause to get removed when Plone 4.2
+                        // is not supported any longer
+                        this.$el.data('draggable').position = this.$el.data('draggable').offset = {
+                            top: position_y,
+                            left: position_y
+                        };
+                    }
                     this.$el.resizable({
                         minHeight: 150,
                         minWidth: 100,
