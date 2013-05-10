@@ -31,7 +31,7 @@ setup(name='collective.noticeboard',
           "Programming Language :: Python :: 2.7", ],
       keywords='Plone javascript',
       author='Philip Bauer',
-      author_email='bauer@starzel.de',
+      author_email='team@starzel.de',
       url='http://github.com/collective/collective.noticeboard',
       issue_tracker='https://github.com/collective/collective.noticeboard/issues',
       license='gpl',
@@ -48,7 +48,7 @@ setup(name='collective.noticeboard',
           'collective.js.jqueryui',
           # -*- Extra requirements: -*-
       ],
-      extras_require={'test': ['plone.app.testing']},
+      extras_require={'test': ['plone.app.testing', 'plone.testing']},
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]

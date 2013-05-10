@@ -8,7 +8,8 @@ logger = logging.getLogger("collective.noticeboard")
 
 
 def auto_publish(note, event):
-    if INoticeboard.providedBy(event.newParent) and getattr(event.newParent, 'layout', '') == 'noticeboardview':
+    if INoticeboard.providedBy(event.newParent)\
+            and getattr(event.newParent, 'layout', '') == 'noticeboardview':
         settings = NoticeboardSettings(event.newParent)
         if settings.publish_on_creation:
             workflowTool = getToolByName(note, "portal_workflow")

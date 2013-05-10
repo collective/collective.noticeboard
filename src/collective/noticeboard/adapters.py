@@ -114,7 +114,8 @@ class BaseNoteAdapter(object):
 
     def modified(self):
         util = getToolByName(self.context, 'translation_service')
-        return util.ulocalized_time(self.context.ModificationDate(), False, False, self.context)
+        return util.ulocalized_time(self.context.ModificationDate(),
+            False, False, self.context)
 
     @property
     def byline(self):
