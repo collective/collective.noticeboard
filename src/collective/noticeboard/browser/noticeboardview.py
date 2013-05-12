@@ -10,6 +10,7 @@ from plone.app.collection.interfaces import ICollection
 from plone.app.contentlisting.catalog import CatalogContentListingObject
 from Products.ATContentTypes.interface import IATTopic
 from Products.CMFCore import permissions
+from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as PMF
 from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
@@ -20,7 +21,7 @@ from collective.noticeboard import permissions as own_permissions
 
 
 class NoticeboardView(BrowserView):
-    """ The canvas that contains the notes
+    """ The canvas that contains the notes and the UI
     """
 
     def __call__(self):
@@ -28,7 +29,7 @@ class NoticeboardView(BrowserView):
         return self.index()
 
     def note_type(self):
-        return self.settings.note_type.replace(' ', '+')
+        return self.settings.note_type
 
     def show_login_as_add_link(self):
         if self.show_add_link():
@@ -65,6 +66,15 @@ class NoticeboardView(BrowserView):
         else:
             container = self.context
         return container.absolute_url()
+
+    def add_method(self, type_name):
+        pt = getToolByName(self.context, 'portal_types')
+        type_info = pt.getTypeInfo(self.settings.note_type)
+        if type_info.content_meta_type.startswith("Dexterity"):
+            return "++add++%s" % type_name.replace(' ', '%20')
+        else:
+            return "createObject?type_name=%s&ajax_load=1&ajax_include_head=1" \
+                % type_name.replace(' ', '+')
 
 
 class NoticeboardNotes(BrowserView):

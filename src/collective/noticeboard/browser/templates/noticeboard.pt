@@ -77,7 +77,7 @@
         </span>
 
         <span class="add_note discussion" tal:condition="view/show_login_as_add_link">
-          <a href="createObject?type_name=News+Item&ajax_load=1&ajax_include_head=1"
+          <a href="login_form"
              i18n:translate=""
              i18n:attributes="title"
              tal:attributes="href string:${context/absolute_url}/login_form"
@@ -88,19 +88,23 @@
 
         <tal:add tal:condition="view/show_add_link">
         <span class="add_note">
-          <a href="createObject?type_name=News+Item&ajax_load=1&ajax_include_head=1"
+          <a href="#"
              i18n:translate=""
              i18n:attributes="title"
-             tal:attributes="href string:${view/add_url}/createObject?type_name=${view/note_type}&ajax_load=1&ajax_include_head=1"
+             tal:define="note_type python:view.note_type();
+                         add_method python:view.add_method(note_type)"
+             tal:attributes="href string:${view/add_url}/${add_method}"
              title="Add new note">
               Add Note
           </a>
         </span>
+
         <span class="add_note" tal:condition="view/images_visible">
-          <a href="createObject?type_name=Image&ajax_load=1&ajax_include_head=1"
+          <a href="#"
              i18n:translate=""
              i18n:attributes="title"
-             tal:attributes="href string:${view/add_url}/createObject?type_name=Image&ajax_load=1&ajax_include_head=1"
+             tal:define="add_method python:view.add_method('Image')"
+             tal:attributes="href string:${view/add_url}/${add_method}"
              title="Add new image">
               Add Image
           </a>
