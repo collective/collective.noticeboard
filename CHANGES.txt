@@ -8,7 +8,10 @@
 0.5 (2013-05-12)
 ----------------
 
-- Fix add-url to be caompatible with AT and Dexterity
+- fix bug when checking if the item is excluded from navigation
+  [pbauer]
+
+- Fix add-url to be compatible with AT and Dexterity
   [pbauer]
 
 - Add compatibility with Plone 4.3
