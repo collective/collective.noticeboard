@@ -2,6 +2,9 @@
 0.5 (unreleased)
 ----------------
 
+- Fix add-url to be caompatible with AT and Dexterity
+  [pbauer]
+
 - Add compatibility with Plone 4.3
   [pbauer, do3cc]
 
