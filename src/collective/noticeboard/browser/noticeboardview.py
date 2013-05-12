@@ -95,8 +95,9 @@ class NoticeboardNotes(BrowserView):
                 modified = item.modified().utcdatetime()
                 if modified <= limit:
                     continue
-            if isinstance(item.exclude_from_nav, bool) and item.exclude_from_nav:
-                continue
+            if isinstance(item.exclude_from_nav, bool):
+                if item.exclude_from_nav:
+                    continue
             else:
                 if item.exclude_from_nav():
                     continue
