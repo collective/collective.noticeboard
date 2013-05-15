@@ -56,7 +56,7 @@ Dependencies
 
 Take care to choose the right version of collective.js.jqueryui. They offer different versions for each minor Plone Release, so we cannot suggest minimum versions.
 
-To get collective.noticeboard working on Plone 4.3 you need at least ``collective.js.jqueryui = 1.10.3.1`` which has not been released at the time of writing.
+To get collective.noticeboard working on Plone 4.3 you need at least ``collective.js.jqueryui = 1.10.3`` which has not been released at the time of writing.
 
 Editing in overlays should work with the differnt version of Products.TinyMCE shipped with Plone 4.1, 4.2 and 4.3.
 
