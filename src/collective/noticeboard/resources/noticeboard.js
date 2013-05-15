@@ -83,10 +83,10 @@
                         'show_edit': 1
                     });
                 },
-                delete1: function () {
+                delete1: function (event) {
                     // Two steps. to allow confirmation
                     var model = this.model;
-                    this.$el.find(".delete_confirm").show("slide", {
+                    this.$el.find(".delete_confirm").effect("slide", {
                         direction: "right"
                     }, function () {
                         var $this = $(this);
@@ -101,6 +101,7 @@
                             });
                         });
                     });
+                    event.preventDefault();
                     return false;
                 },
                 render: function () {
@@ -223,7 +224,7 @@
                     this.$el.find(".edit a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*',
-                        formselector: 'form[name=edit_form]',
+                        formselector: 'form[name=edit_form],form#form',
                         noform: 'close',
                         afterpost: _.bind(this.update, this),
                         config: {
@@ -304,7 +305,7 @@
                     $(".add_note a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*',
-                        formselector: 'form[name=edit_form]',
+                        formselector: 'form[name=edit_form],form#form',
                         noform: 'close',
                         afterpost: this.update,
                         config: {

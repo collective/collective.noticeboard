@@ -56,6 +56,9 @@ Dependencies
 
 Editing in overlays works with the version of Products.TinyMCE shipped with Plone 4.x as well as with the latest version compatible with IE9 (>= 1.3b7)
 
+Be aware that you choose the right version of collective.js.jqueryui. They offer different versions for each minor Plone Release, so we cannot suggest minimum versions.
+For Plone 4.3 you need > 1.10.2
+
 
 Credits
 -------
