@@ -28,13 +28,13 @@ Items that were excluded from the navigation are not shown on the noticeboard (y
 
 .. attention::
 
-    In Plone, one needs delete permission on an object AND its parent folder.
+    In Plone, one needs delete permission on an object AND its parent folder to delete an item.
     Most often, a user has the edit permission on containing folders, so that does not matter.
 
     On a noticeboard though, it makes sense that users are only allowed to add notes and not to modify the noticeboard itself.
-    To allow deletion of content, our delete functionality only checks the Delete permission on the object itself and not on the folder.
+    To allow deletion of content, our delete functionality only checks for the delete permission on the object itself and not on the folder.
 
-    This should not create any trouble for you, but we note it here because it is a small deviation from plone behavior.
+    This should not create any trouble for you, but we note it here because it is a small deviation from Plones default behavior.
 
 
 Installation
@@ -54,10 +54,12 @@ Dependencies
 - collective.js.backbone
 - collective.js.underscore
 
-Editing in overlays works with the version of Products.TinyMCE shipped with Plone 4.x as well as with the latest version compatible with IE9 (>= 1.3b7)
+Take care to choose the right version of collective.js.jqueryui. They offer different versions for each minor Plone Release, so we cannot suggest minimum versions.
 
-Be aware that you choose the right version of collective.js.jqueryui. They offer different versions for each minor Plone Release, so we cannot suggest minimum versions.
-For Plone 4.3 you need > 1.10.2
+To get collective.noticeboard working on Plone 4.3 you need at least ``collective.js.jqueryui = 1.10.3.1`` which has not been released at the time of writing.
+
+Editing in overlays should work with the differnt version of Products.TinyMCE shipped with Plone 4.1, 4.2 and 4.3.
+
 
 
 Credits

@@ -4,6 +4,7 @@
 
 - Add the right js hooks to support dexterity add and edit forms.
   [do3cc]
+
 - Stop using show, but effect. show from jquery and jqueryui have
   different calling args. We actually want to use show from jqueryui
   to have fancy easing effects.
@@ -18,6 +19,9 @@
 
 - Fix add-url to be compatible with AT and Dexterity
   [pbauer]
+
+- Add some tests
+  [do3cc]
 
 - Add compatibility with Plone 4.3
   [pbauer, do3cc]
