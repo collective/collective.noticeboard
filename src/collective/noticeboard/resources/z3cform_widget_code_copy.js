@@ -103,12 +103,13 @@ function copyDataForSubmit(name)
   var toDataContainer = document.getElementById(name+"-toDataContainer");
 
   // delete all child nodes (--> complete content) of "toDataContainer" span
-  while (toDataContainer.hasChildNodes())
+  while (toDataContainer !== null && toDataContainer.hasChildNodes())
       toDataContainer.removeChild(toDataContainer.firstChild);
 
   // create new hidden input fields - one for each selection item of
   // "to" selection
-  for (var i = 0; i < toSel.options.length; i++)
+  if (toSel !== null){
+    for (var i = 0; i < toSel.options.length; i++)
     {
     // create virtual node with suitable attributes
     var newNode = document.createElement("input");
@@ -119,7 +120,7 @@ function copyDataForSubmit(name)
     newAttr = document.createAttribute("value");
     newAttr.nodeValue = toSel.options[i].value;
     newNode.setAttributeNode(newAttr);
-    
+
     newAttr = document.createAttribute("type");
     newAttr.nodeValue = "hidden";
     newNode.setAttributeNode(newAttr);
@@ -129,6 +130,8 @@ function copyDataForSubmit(name)
     toDataContainer.appendChild(newNode);
     }
   }
+  }
+
 
 // error message for missing selection
 function selectionError()
