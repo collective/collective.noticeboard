@@ -3,7 +3,7 @@
         meta_type="Plone Types Tool">
 
     <object name="Folder"/>
-    <object name="Topic"/>
+    <object name="Topic" deprecated="True"/>
     <object name="Collection"/>
     <object name="Plone Site"/>
 
