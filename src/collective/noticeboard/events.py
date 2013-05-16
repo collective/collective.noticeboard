@@ -16,4 +16,7 @@ def auto_publish(note, event):
             try:
                 workflowTool.doActionFor(note, "publish")
             except WorkflowException:
-                logger.info("Could not publish:" + str(note.getId()))
+                try:
+                    workflowTool.doActionFor(note, "publish_internally")
+                except WorkflowException:
+                    logger.info("Could not publish:" + str(note.getId()))
