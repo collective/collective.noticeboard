@@ -36,7 +36,7 @@ Items that were excluded from the navigation are not shown on the noticeboard (y
     add notes and not to modify the noticeboard itself.
 
     To allow deletion of content, our delete functionality only checks for the
-     delete permission on the object itself and not on the folder.
+    delete permission on the object itself and not on the folder.
 
     This should not create any trouble for you, but we note it here because
     it is a small deviation from Plones default behavior.

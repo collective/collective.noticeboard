@@ -43,7 +43,7 @@ setup(name='collective.noticeboard',
           'setuptools',
           'Plone',
           'collective.js.backbone',
-          'collective.js.underscore > 1.5.0',
+          'collective.js.underscore < 1.5.0',
           'collective.js.jqueryui',
           # -*- Extra requirements: -*-
       ],
