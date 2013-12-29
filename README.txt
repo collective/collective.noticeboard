@@ -26,15 +26,20 @@ In the configuration you can:
 
 Items that were excluded from the navigation are not shown on the noticeboard (you might want to exclude the help-page).
 
-.. attention::
+.. warning::
 
-    In Plone, one needs delete permission on an object AND its parent folder to delete an item.
-    Most often, a user has the edit permission on containing folders, so that does not matter.
+    In Plone, one needs delete permission on an object AND its parent folder
+    to delete an item. Most often, a user has the edit permission on
+    containing folders, so that does not matter.
 
-    On a noticeboard though, it makes sense that users are only allowed to add notes and not to modify the noticeboard itself.
-    To allow deletion of content, our delete functionality only checks for the delete permission on the object itself and not on the folder.
+    On a noticeboard though, it makes sense that users are only allowed to
+    add notes and not to modify the noticeboard itself.
 
-    This should not create any trouble for you, but we note it here because it is a small deviation from Plones default behavior.
+    To allow deletion of content, our delete functionality only checks for the
+     delete permission on the object itself and not on the folder.
+
+    This should not create any trouble for you, but we note it here because
+    it is a small deviation from Plones default behavior.
 
 
 Installation
@@ -56,7 +61,9 @@ Dependencies
 
 Take care to choose the right version of collective.js.jqueryui. They offer different versions for each minor Plone Release, so we cannot suggest minimum versions.
 
-To get collective.noticeboard working on Plone 4.3 you need at least ``collective.js.jqueryui = 1.10.3`` which has not been released at the time of writing.
+To get collective.noticeboard working on Plone 4.3.x you need at least ``collective.js.jqueryui = 1.10.3`` which is not pinned by Plone 4.3.2.
+
+Noticeboard breaks with underscore 1.5.0, so we declared ``collective.js.underscore < 1.5.0`` as a dependency in setup.py.
 
 Editing in overlays should work with the differnt version of Products.TinyMCE shipped with Plone 4.1, 4.2 and 4.3.
 
