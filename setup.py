@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '0.6.dev0'
+version = '0.7.dev0'
 
 long_description = (
     open('README.txt').read()
@@ -43,7 +43,7 @@ setup(name='collective.noticeboard',
           'setuptools',
           'Plone',
           'collective.js.backbone',
-          'collective.js.underscore',
+          'collective.js.underscore < 1.5.0',
           'collective.js.jqueryui',
           # -*- Extra requirements: -*-
       ],

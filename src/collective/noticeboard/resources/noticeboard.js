@@ -22,7 +22,10 @@
 
                     if (xhr.status === 423) {
                         alert("This note is currently being edited by another user!");
-                    } else {
+                    } else if (xhr.status === 0) {
+                        //don't alert when there is no real error
+                    }
+                    else {
                         alert("An error occured! Errorcode: " + xhr.status + " Message: " + xhr.statusText);
                     }
                 },

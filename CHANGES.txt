@@ -1,6 +1,21 @@
 
-0.6 (unreleased)
+0.7 (unreleased)
 ----------------
+
+- Nothing changed yet.
+
+
+0.6 (2013-12-29)
+----------------
+
+- Pinn collective.js.underscore to < 1.5.0 to prevent breaking
+  [pbauer]
+
+- Prevent empty js-alerts when there is no real error
+  [pbauer]
+
+- Try publishing with publish_internally if publish does not work
+  [pbauer]
 
 - Add the right js hooks to support dexterity add and edit forms.
   [do3cc]
