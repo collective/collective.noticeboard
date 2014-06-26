@@ -2,7 +2,11 @@
 0.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Set a effective_date on auto-publishing notes
+  [pbauer]
+
+- Update to work with newest setuptools
+  [pgerken]
 
 
 0.6 (2013-12-29)

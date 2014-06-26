@@ -1,3 +1,4 @@
+from DateTime import DateTime
 from Products.CMFCore.WorkflowCore import WorkflowException
 from collective.noticeboard.settings import NoticeboardSettings
 from collective.noticeboard.interfaces import INoticeboard
@@ -20,3 +21,8 @@ def auto_publish(note, event):
                     workflowTool.doActionFor(note, "publish_internally")
                 except WorkflowException:
                     logger.info("Could not publish:" + str(note.getId()))
+                    return
+            utils = getToolByName(note, 'plone_utils')
+            kwargs = {}
+            kwargs['effective_date'] = DateTime()
+            utils.contentEdit(note, **kwargs)
