@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from persistent.dict import PersistentDict
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_unicode
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.interface import implements
@@ -110,7 +111,8 @@ class BaseNoteAdapter(object):
 
     def authorname(self):
         author = self.author()
-        return author and author['fullname'] or self.creator()
+        authorname = author['fullname'] if author else self.creator()
+        return safe_unicode(authorname)
 
     def modified(self):
         util = getToolByName(self.context, 'translation_service')

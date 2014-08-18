@@ -2,6 +2,9 @@
 0.7 (unreleased)
 ----------------
 
+- Fix UnicodeError in byline
+  [pbauer]
+
 - Set a effective_date on auto-publishing notes
   [pbauer]
 
