@@ -129,7 +129,7 @@ class AdapterTests(unittest.TestCase):
     def test_authorname(self):
         from collective.noticeboard.interfaces import INote
         note = INote(self.news)
-        self.assertEquals('test_user_1_', note.authorname())
+        self.assertEquals(u'test_user_1_', note.authorname())
 
     def test_modified(self):
         from collective.noticeboard.interfaces import INote

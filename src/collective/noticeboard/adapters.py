@@ -111,7 +111,10 @@ class BaseNoteAdapter(object):
 
     def authorname(self):
         author = self.author()
-        authorname = author['fullname'] if author else self.creator()
+        if author:
+            authorname = author['fullname']
+            if not authorname:
+                authorname = self.creator()
         return safe_unicode(authorname)
 
     def modified(self):
