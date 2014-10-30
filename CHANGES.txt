@@ -2,7 +2,9 @@
 0.8 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fix security issue, anonymous users could modify notes positions.
+  Fixes #6
+  [do3cc]
 
 
 0.7 (2014-10-04)
