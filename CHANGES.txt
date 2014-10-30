@@ -1,6 +1,6 @@
 
-0.8 (unreleased)
-----------------
+0.7.1 (2014-10-31)
+------------------
 
 - Fix security issue, anonymous users could modify notes positions.
   Fixes #6
