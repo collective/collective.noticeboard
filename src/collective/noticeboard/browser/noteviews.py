@@ -42,6 +42,7 @@ class NoticeJSONView(BrowserView):
         return note.jsonable
 
     def put(self, note):
+        self._check_permission(permissions.ModifyPortalContent)
         pos = self.request.stdin.tell()
         self.request.stdin.seek(0)
         try:
