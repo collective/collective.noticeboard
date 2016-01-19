@@ -8,7 +8,7 @@ from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import login
 from plone.app.testing import setRoles
 import json
-import unittest2 as unittest
+import unittest
 
 
 class BrowserTests(unittest.TestCase):
@@ -25,7 +25,7 @@ class BrowserTests(unittest.TestCase):
 
     def test_check_permission_on_edit(self):
         setRoles(self.portal, TEST_USER_ID, [])
-        self.assertRaises(Unauthorized, 
+        self.assertRaises(Unauthorized,
             self.portal.news.restrictedTraverse, '@@json')
 
         setRoles(self.portal, TEST_USER_ID, ['Reader'])
@@ -37,8 +37,8 @@ class BrowserTests(unittest.TestCase):
             'width': 4,
             'color': 5,
             'zIndex': 6}))
-        
+
         self.assertRaises(Unauthorized, view.put, self.portal.news)
-        
+
         setRoles(self.portal, TEST_USER_ID, ['Editor'])
         self.assertTrue(view.put(self.portal.news))

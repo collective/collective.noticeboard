@@ -1,4 +1,4 @@
-import unittest2 as unittest
+import unittest
 
 from collective.noticeboard.testing import \
     COLLECTIVENOTICEBOARD_INTEGRATION_TESTING
