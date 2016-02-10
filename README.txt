@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.org/collective/collective.noticeboard.svg?branch=master
+    :target: https://travis-ci.org/collective/collective.noticeboard
+
 collective.noticeboard
 ======================
 
