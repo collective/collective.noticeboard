@@ -2,7 +2,11 @@
 0.7.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Updated buildout using bobotemplates.plone as a template
+  [pbauer]
+
+- Enable travis
+  [pbauer]
 
 
 0.7.1 (2014-10-31)
