@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import unittest
 
 from collective.noticeboard.testing import \
@@ -11,15 +12,16 @@ class AdapterTests(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        self.portal.invokeFactory("News Item", "news",
-            image=getData('../resources/no.png'))
+        self.portal.invokeFactory(
+            "News Item", "news", image=getData('../resources/no.png'))
         self.news = self.portal['news']
 
     def test_image_tag(self):
         from collective.noticeboard.adapters import image_tag
         retval = image_tag(self.news, 'image')
         self.assertIn('<img src="http://nohost/plone/news/@@images/', retval)
-        self.assertIn('.png" alt="news" title="news" height="40" width="40" />',
+        self.assertIn(
+            '.png" alt="news" title="news" height="40" width="40" />',
             retval)
 
     def test_position_x_default(self):
@@ -212,8 +214,9 @@ class AdapterTests(unittest.TestCase):
     def test_image_tag_from_adapter(self):
         from collective.noticeboard.interfaces import INote
         note = INote(self.news)
-        self.assertIn('<img src="http://nohost/plone/news/@@images/',
+        self.assertIn(
+            '<img src="http://nohost/plone/news/@@images/',
             note.image_tag)
-        self.assertIn('.png" alt="news" title="news" height="40" width="40" />',
+        self.assertIn(
+            '.png" alt="news" title="news" height="40" width="40" />',
             note.image_tag)
-

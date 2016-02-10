@@ -70,7 +70,7 @@ class CollectiveNoticeboardClassTest(unittest.TestCase):
         portal_types = getattr(self.portal, 'portal_types')
         self.assertIn('noticeboardview', portal_types['Folder'].view_methods)
         self.assertIn('noticeboardview', portal_types['Topic'].view_methods)
-        self.assertIn('noticeboardview',
-            portal_types['Collection'].view_methods)
-        self.assertIn('noticeboardview',
-            portal_types['Plone Site'].view_methods)
+        self.assertIn(
+            'noticeboardview', portal_types['Collection'].view_methods)
+        self.assertIn(
+            'noticeboardview', portal_types['Plone Site'].view_methods)

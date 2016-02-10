@@ -1,16 +1,14 @@
-import doctest
-
-from zope.configuration import xmlconfig
-
-from plone.testing import z2
-
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import setRoles
-from plone.app.testing import login
+# -*- coding: utf-8 -*-
 from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import TEST_USER_ID
 from plone.app.testing import applyProfile
+from plone.app.testing import login
+from plone.app.testing import setRoles
 from plone.app.testing.layers import FunctionalTesting
 from plone.app.testing.layers import IntegrationTesting
+from plone.testing import z2
+from zope.configuration import xmlconfig
+import doctest
 
 
 class CollectiveNoticboardLayer(PloneSandboxLayer):

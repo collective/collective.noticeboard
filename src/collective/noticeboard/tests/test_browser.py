@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from AccessControl import Unauthorized
 from StringIO import StringIO
 from collective.noticeboard.testing import \
@@ -18,14 +19,15 @@ class BrowserTests(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         login(self.portal, 'admin')
-        self.portal.invokeFactory("News Item", "news",
-            image=getData('../resources/no.png'))
+        self.portal.invokeFactory(
+            "News Item", "news", image=getData('../resources/no.png'))
         login(self.portal, TEST_USER_NAME)
         self.news = self.portal['news']
 
     def test_check_permission_on_edit(self):
         setRoles(self.portal, TEST_USER_ID, [])
-        self.assertRaises(Unauthorized,
+        self.assertRaises(
+            Unauthorized,
             self.portal.news.restrictedTraverse, '@@json')
 
         setRoles(self.portal, TEST_USER_ID, ['Reader'])

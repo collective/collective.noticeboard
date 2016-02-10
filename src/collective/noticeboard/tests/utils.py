@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from os.path import dirname, join
 from collective.noticeboard import tests
 

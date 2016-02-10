@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 from DateTime import DateTime
 from Products.CMFCore.WorkflowCore import WorkflowException
-from collective.noticeboard.settings import NoticeboardSettings
-from collective.noticeboard.interfaces import INoticeboard
 from Products.CMFCore.utils import getToolByName
+from collective.noticeboard.interfaces import INoticeboard
+from collective.noticeboard.settings import NoticeboardSettings
 import logging
 
 logger = logging.getLogger("collective.noticeboard")

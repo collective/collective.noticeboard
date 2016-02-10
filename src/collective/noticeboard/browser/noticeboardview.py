@@ -1,23 +1,20 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
-
 from AccessControl import getSecurityManager
 from Acquisition import aq_inner
-from collective.noticeboard.interfaces import INote
-from collective.noticeboard.settings import NoticeboardSettings
-from datetime import datetime, timedelta
-from plone.app.collection.interfaces import ICollection
-from plone.app.contentlisting.catalog import CatalogContentListingObject
 from Products.ATContentTypes.interface import IATTopic
 from Products.CMFCore import permissions
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as PMF
 from Products.Five.browser import BrowserView
-from zope.component import getMultiAdapter
-import json
-
 from collective.noticeboard import _
 from collective.noticeboard import permissions as own_permissions
+from collective.noticeboard.interfaces import INote
+from collective.noticeboard.settings import NoticeboardSettings
+from datetime import datetime, timedelta
+from plone.app.collection.interfaces import ICollection
+from plone.app.contentlisting.catalog import CatalogContentListingObject
+from zope.component import getMultiAdapter
+import json
 
 
 class NoticeboardView(BrowserView):
@@ -34,7 +31,8 @@ class NoticeboardView(BrowserView):
     def show_login_as_add_link(self):
         if self.show_add_link():
             return False
-        portal_state = getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
+        portal_state = getMultiAdapter(
+            (self.context, self.request), name=u'plone_portal_state')
         return portal_state.anonymous()
 
     def show_add_link(self):
@@ -50,7 +48,7 @@ class NoticeboardView(BrowserView):
         return check_perm(own_permissions.manage_noticeboard, self.context)
 
     def images_visible(self):
-        if "Image" in self.settings.display_types or self.settings.note_type == "Image":
+        if "Image" in self.settings.display_types or self.settings.note_type == "Image":  # noqa
             return True
         return False
 
@@ -81,7 +79,7 @@ class NoticeboardNotes(BrowserView):
     """ The json-dump of notes
     """
 
-    def __call__(self):
+    def __call__(self):  # noqa
         self.request.response.setHeader('Content-Type',
                                         'application/json; charset=utf-8')
         self.request.response.setHeader('Expires', '-1')
@@ -115,29 +113,33 @@ class NoticeboardNotes(BrowserView):
             note = INote(item)
             if check_perm(permissions.ModifyPortalContent, item):
                 if note.review_state == 'private':
-                    actions.append(dict(content=self.context.translate(PMF('Publish')),
-                                        title="",
-                                        class_='publish',
-                                        url=item.absolute_url() +
-                                        '/content_status_modify?workflow_action=publish'))
+                    actions.append(
+                        dict(content=self.context.translate(PMF('Publish')),
+                             title="",
+                             class_='publish',
+                             url=item.absolute_url() +
+                             '/content_status_modify?workflow_action=publish'))
         # alternatively use a popup with the form from /content_status_history
 
-                actions.append(dict(content=self.context.translate(_('Color')),
-                                    title=self.context.translate(_("Change color")),
-                                    class_='change_color',
-                                    url=item.absolute_url() + '/change_color'))
-                actions.append(dict(content=self.context.translate(PMF('Edit')),
-                                    title='',
-                                    class_='edit',
-                                    url=item.absolute_url() + '/edit'))
+                actions.append(
+                    dict(content=self.context.translate(_('Color')),
+                         title=self.context.translate(_("Change color")),
+                         class_='change_color',
+                         url=item.absolute_url() + '/change_color'))
+                actions.append(
+                    dict(content=self.context.translate(PMF('Edit')),
+                         title='',
+                         class_='edit',
+                         url=item.absolute_url() + '/edit'))
 
             if check_perm(permissions.DeleteObjects, item):
                 delete_url = item.absolute_url() \
                     + '/delete_confirmation'
-                actions.append(dict(content=self.context.translate(PMF('Delete')),
-                                    title='',
-                                    class_='delete',
-                                    url=delete_url))
+                actions.append(
+                    dict(content=self.context.translate(PMF('Delete')),
+                         title='',
+                         class_='delete',
+                         url=delete_url))
             notedata = note.jsonable
             try:
                 max_zindex = max(max_zindex, int(note.zIndex))
@@ -207,5 +209,5 @@ class NoticeboardArchive(NoticeboardNotes):
         self.contents = notes
         return self.index()
 
-#missing translations
+# missing translations
 dummy = _("Are you sure")
