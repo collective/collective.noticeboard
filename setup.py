@@ -42,8 +42,6 @@ setup(name='collective.noticeboard',
       install_requires=[
           'setuptools',
           'Plone',
-          'collective.js.backbone',
-          'collective.js.underscore < 1.5.0',
           'collective.js.jqueryui',
           # -*- Extra requirements: -*-
       ],

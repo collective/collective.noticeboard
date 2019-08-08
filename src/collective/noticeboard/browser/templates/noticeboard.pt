@@ -2,67 +2,56 @@
 <tal:doctype tal:replace="structure string:&lt;!DOCTYPE html&gt;" />
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-    tal:define="portal_state context/@@plone_portal_state;
-        context_state context/@@plone_context_state;
-        plone_view context/@@plone;
-        lang portal_state/language;
-        view nocall:view | nocall: plone_view;
-        dummy python: plone_view.mark_view(view);
-        portal_url portal_state/portal_url;
-        checkPermission nocall: context/portal_membership/checkPermission;
-        site_properties context/portal_properties/site_properties;
-        ajax_load request/ajax_load | nothing;
-        ajax_include_head request/ajax_include_head | nothing;
-        dummy python:request.RESPONSE.setHeader('X-UA-Compatible', 'IE=edge,chrome=1');"
-    tal:attributes="lang lang;">
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      tal:define="portal_state python:context.restrictedTraverse('@@plone_portal_state');
+          context_state python:context.restrictedTraverse('@@plone_context_state');
+          plone_view python:context.restrictedTraverse('@@plone');
+          plone_layout python:context.restrictedTraverse('@@plone_layout');
+          lang python:portal_state.language();
+          view nocall:view | nocall: plone_view;
+          dummy python: plone_layout.mark_view(view);
+          portal_url python:portal_state.portal_url();
+          checkPermission python:context.restrictedTraverse('portal_membership').checkPermission;
+          site_properties python:context.restrictedTraverse('portal_properties').site_properties;
+          ajax_include_head python:request.get('ajax_include_head', False);
+          ajax_load python:False;"
+      i18n:domain="plone"
+      tal:attributes="lang lang;">
 
-    <metal:cache use-macro="context/global_cache_settings/macros/cacheheaders">
-    Get the global cache headers located in global_cache_settings.
-    </metal:cache>
+    <metal:cache tal:replace="structure provider:plone.httpheaders" />
 
-<head>
+  <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <metal:baseslot define-slot="base">
-        <base tal:attributes="href plone_view/renderBase" /><!--[if lt IE 7]></base><![endif]-->
-    </metal:baseslot>
+    <div tal:replace="structure provider:plone.htmlhead" />
 
-    <tal:notajax tal:condition="python:not ajax_load or ajax_include_head">
-        <div tal:replace="structure provider:plone.htmlhead" />
-        <link tal:replace="structure provider:plone.htmlhead.links" />
+    <tal:comment replace="nothing">
+        Various slots where you can insert elements in the header from a template.
+    </tal:comment>
+    <metal:topslot define-slot="top_slot" />
+    <metal:headslot define-slot="head_slot" />
+    <metal:styleslot define-slot="style_slot" />
 
-        <tal:comment replace="nothing">
-            Various slots where you can insert elements in the header from a template.
-        </tal:comment>
-        <metal:topslot define-slot="top_slot" />
-        <metal:headslot define-slot="head_slot" />
-        <metal:styleslot define-slot="style_slot">
-            <link type="text/css" href="#" rel="stylesheet" tal:attributes="href string:${portal_url}/keywordwidget.css" />
-        </metal:styleslot>
-        <metal:javascriptslot define-slot="javascript_head_slot">
-            <script type="text/javascript" src="#" tal:attributes="src string:${portal_url}/widgets/js/keywordmultiselect.js">
-            </script>
-        </metal:javascriptslot>
+    <div tal:replace="structure provider:plone.scripts" />
+    <metal:javascriptslot define-slot="javascript_head_slot" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=0.6666, maximum-scale=1.0, minimum-scale=0.6666" />
-        <meta name="generator" content="Plone - http://plone.org" />
-    </tal:notajax>
-</head>
+    <link tal:replace="structure provider:plone.htmlhead.links" />
+    <meta name="generator" content="Plone - http://plone.com" />
 
+  </head>
 
-<metal:block tal:define="disable_column_one python:request.set('disable_plone.leftcolumn',1);
-                         disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
-
-
-<body tal:define="isRTL portal_state/is_rtl;
-                  body_class python:plone_view.bodyClass(template, view);"
-    tal:attributes="class body_class;
-                    dir python:isRTL and 'rtl' or 'ltr'"
-    i18n:domain="collective.noticeboard">
+  <body tal:define="isRTL portal_state/is_rtl;
+                    sl python:plone_layout.have_portlets('plone.leftcolumn', view);
+                    sr python:plone_layout.have_portlets('plone.rightcolumn', view);
+                    body_class python:plone_layout.bodyClass(template, view);"
+        tal:attributes="class body_class;
+                        dir python:isRTL and 'rtl' or 'ltr';
+                        python:plone_view.patterns_settings()"
+        id="visual-portal-wrapper">
 
   <div id="visual-portal-wrapper">
-
-    <div tal:replace="structure provider:plone.portaltop" />
 
     <div id="content">
 
@@ -149,11 +138,6 @@
              title="Help for the notice-board">Help</a>
         </span>
 
-        <script type="text/javascript">
-          $(document).ready(function(){
-            noticeboard.init($("#noticeboardcanvas"));
-          });
-        </script>
       </div>
 
       <div id="noticeboardcanvas"
@@ -169,6 +153,19 @@
       <span class="hiddenStructure anonymoustitle" i18n:translate="">Add Note</span>
     </div>
   </div>
+
+  <link rel="stylesheet" href="++resource++collective.noticeboard/noticeboard.css" />
+
+  <script type="text/javascript" src="++resource++collective.noticeboard/underscore.min.js"></script>
+  <script type="text/javascript" src="++resource++collective.noticeboard/backbone.min.js"></script>
+  <script type="text/javascript" src="++resource++collective.noticeboard/mustache.js"></script>
+  <script type="text/javascript" src="++resource++collective.noticeboard/noticeboard.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      noticeboard.init($("#noticeboardcanvas"));
+    });
+  </script>
+
 </body>
 </html>
 </metal:page>
