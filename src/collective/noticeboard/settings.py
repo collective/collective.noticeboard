@@ -4,7 +4,7 @@ from persistent.dict import PersistentDict
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from zope.annotation.interfaces import IAnnotations
-from zope.interface import implements
+from zope.interface import implementer
 
 from collective.noticeboard.interfaces import INoticeboardSettings
 
@@ -32,13 +32,12 @@ class AnnotationStorage(object):
         return self._metadata.get(name, default)
 
 
+@implementer(INoticeboardSettings)
 class NoticeboardSettings(object):
-
     '''
     Just uses Annotation storage to save and retrieve the data...
     '''
 
-    implements(INoticeboardSettings)
 
     # these are settings for defaults that are not listed in the
     # interface because I don't want them to show up in the schema

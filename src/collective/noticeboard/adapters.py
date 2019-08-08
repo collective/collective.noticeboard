@@ -5,7 +5,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
-from zope.interface import implements
+from zope.interface import implementer
 from collective.noticeboard.interfaces import INote
 
 ANNOTATION_KEY = 'collective.noticeboard'
@@ -24,8 +24,8 @@ def image_tag(object, field):
     return False
 
 
+@implementer(INote)
 class BaseNoteAdapter(object):
-    implements(INote)
 
     def __init__(self, context):
         self.context = context
