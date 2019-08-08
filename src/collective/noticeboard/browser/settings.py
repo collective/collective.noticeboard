@@ -52,7 +52,7 @@ class NoticeBoardSettingsForm(group.GroupForm, form.EditForm):
             fields = field.Fields(type_.schema)
             toadd = []
             for f in fields._data_values:
-                if f.__name__ not in group.fields.keys():
+                if f.__name__ not in list(group.fields.keys()):
                     toadd.append(f)
 
             group.fields = field.Fields(group.fields, *toadd)

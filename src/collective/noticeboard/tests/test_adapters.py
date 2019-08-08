@@ -187,7 +187,7 @@ class AdapterTests(unittest.TestCase):
                          'image_tag',
                          'id']
         retval = note.jsonable
-        self.assertEquals(expected_keys, retval.keys())
+        self.assertEquals(expected_keys, list(retval.keys()))
         retval.pop('byline')
         retval.pop('image_tag')
         self.assertEquals(expected_dict, retval)

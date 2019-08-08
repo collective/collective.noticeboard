@@ -15,6 +15,8 @@ from zope.component import getMultiAdapter
 from plone.app.contenttypes.interfaces import ICollection
 
 import json
+from six.moves import range
+from six.moves import zip
 
 try:
     from plone.app.collection.interfaces import ICollection as IATCollection
@@ -165,8 +167,8 @@ class NoticeboardNotes(BrowserView):
                 are_you_sure = self.context.translate(_('Are you sure'))
                 notedata.update(dict(are_you_sure=are_you_sure))
             retval.append(notedata)
-        for (new_note, new_index) in zip(new, range(max_zindex + 1,
-                                         max_zindex + len(new) + 1)):
+        for (new_note, new_index) in zip(new, list(range(max_zindex + 1,
+                                         max_zindex + len(new) + 1))):
             new_note['zIndex'] = new_index
         return json.dumps(retval)
 
