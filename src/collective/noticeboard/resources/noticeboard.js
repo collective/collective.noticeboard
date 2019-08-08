@@ -217,6 +217,7 @@
                         });
                         model.save();
                     });
+                    if($.fn.prepOverlay){
                     this.$el.find(".deletex a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*',
@@ -224,6 +225,8 @@
                         formselector: 'form#delete_confirmation',
                         afterpost: _.bind(this.remove, this)
                     });
+                    }
+                    if($.fn.prepOverlay){
                     this.$el.find(".edit a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*',
@@ -259,6 +262,7 @@
                             speed: 'fast'
                         }
                     });
+                    }
                     publish_link = this.$el.find(".publish");
                     if (this.model.get("review_state") === 'published') {
                         publish_link.hide();
@@ -305,6 +309,7 @@
                     this.notes.bind("reset", this.reset, this);
                     this.notes.bind("all", this.render, this);
                     _.bindAll(this);
+                    if($.fn.prepOverlay){
                     $(".add_note a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*',
@@ -338,6 +343,8 @@
                             speed: 'fast'
                         }
                     });
+                    };
+                    if($.fn.prepOverlay){
                     $("#notesettings a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*',
@@ -351,10 +358,14 @@
                             }
                         }
                     });
+                };
+                if($.fn.prepOverlay){
                     $("#viewsettings a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*'
                     });
+                };
+                if($.fn.prepOverlay){
                     $("#notes_archive a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*'
@@ -367,6 +378,7 @@
                         notes.note_template = data;
                         notes.fetch();
                     });
+                };
                 },
                 addOne: function (note) {
                     var view = new NoteView({
