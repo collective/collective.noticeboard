@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from AccessControl import getSecurityManager
 from Acquisition import aq_inner
-from Products.ATContentTypes.interface import IATTopic
 from Products.CMFCore import permissions
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as PMF
@@ -11,10 +10,23 @@ from collective.noticeboard import permissions as own_permissions
 from collective.noticeboard.interfaces import INote
 from collective.noticeboard.settings import NoticeboardSettings
 from datetime import datetime, timedelta
-from plone.app.collection.interfaces import ICollection
 from plone.app.contentlisting.catalog import CatalogContentListingObject
 from zope.component import getMultiAdapter
+from plone.app.contenttypes.interfaces import ICollection
+
 import json
+
+try:
+    from plone.app.collection.interfaces import ICollection as IATCollection
+    HAS_AT_COLLECTIONS = True
+except ImportError:
+    HAS_AT_COLLECTIONS = False
+
+try:
+    from Products.ATContentTypes.interface import IATTopic
+    HAS_AT_TOPIC = True
+except ImportError:
+    HAS_AT_TOPIC = False
 
 
 class NoticeboardView(BrowserView):
@@ -167,12 +179,16 @@ class NoticeboardNotes(BrowserView):
         display_types = [x for x in settings.display_types]
         display_types.append(settings.note_type)
         display_types = list(set(display_types))
-        if IATTopic.providedBy(context):
-            # handle old collections
+        if HAS_AT_TOPIC and IATTopic.providedBy(context):
+            # handle very old collections
             items = context.queryCatalog(portal_types=display_types)
-        elif ICollection.providedBy(context):
-            # handle new collections
+        elif HAS_AT_COLLECTIONS and IATCollection.providedBy(context):
+            # handle AT collections
             items = context.results(batch=False, brains=False)
+        elif ICollection.providedBy(context):
+            # handle DX collections
+            items = context.results(batch=False, brains=False)
+
         else:
             # handle folders
             items = context.getFolderContents(
@@ -208,6 +224,7 @@ class NoticeboardArchive(NoticeboardNotes):
             notes.append(item)
         self.contents = notes
         return self.index()
+
 
 # missing translations
 dummy = _("Are you sure")

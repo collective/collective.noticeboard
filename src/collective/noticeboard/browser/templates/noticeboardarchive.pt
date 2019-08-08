@@ -59,7 +59,7 @@
                                 Item Title
                             </a>
                         </h2>
-                        <div class="documentByLine" tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon">
+                        <div class="documentByLine" tal:condition="python:not isAnon or context.portal_registry['plone.allow_anon_views_about']">
                             <tal:name tal:condition="item_creator"
                                 tal:define="author python:pas_member.info(item_creator)">
                               <span class="documentAuthor" i18n:translate="label_by_author">

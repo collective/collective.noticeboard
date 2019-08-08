@@ -44,8 +44,6 @@
         template="templates/noticeboardarchive.pt"
         permission="zope2.View" />
 
-
-
     <!-- non-displaytype views -->
     <browser:menuItem
             for="collective.noticeboard.interfaces.INoticeboard"

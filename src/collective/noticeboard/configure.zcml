@@ -3,14 +3,12 @@
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    xmlns:grok="http://namespaces.zope.org/grok"
+    xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="collective.noticeboard">
 
   <include file="permissions.zcml" />
-
-  <includeDependencies package="." />
 
   <browser:resourceDirectory
       name="collective.noticeboard"
@@ -21,35 +19,35 @@
 
   <i18n:registerTranslations directory="locales"/>
 
-<!--  <genericsetup:importStep
-      name="collective.noticeboard.various"
-      title="Collective Noticeboard: miscellaneous import steps"
-      description="Various import steps that are not handled by GS import/export handlers."
-      handler="collective.noticeboard.setuphandlers.setupVarious">
-    <depends name="skins"/>
-  </genericsetup:importStep> -->
-
   <adapter
       for="collective.noticeboard.interfaces.INoticeboard"
       provides="collective.noticeboard.interfaces.INoticeboardSettings"
       factory="collective.noticeboard.settings.NoticeboardSettings" />
 
-  <class class="Products.ATContentTypes.content.folder.ATFolder">
+  <class class="Products.ATContentTypes.content.folder.ATFolder"
+         zcml:condition="installed Products.ATContentTypes">
       <implements interface=".interfaces.INoticeboard" />
   </class>
-  <class class="Products.ATContentTypes.content.folder.ATBTreeFolder">
+
+  <class class="Products.ATContentTypes.content.folder.ATBTreeFolder"
+         zcml:condition="installed Products.ATContentTypes">
       <implements interface=".interfaces.INoticeboard" />
   </class>
+
   <class class="Products.CMFPlone.Portal.PloneSite">
       <implements interface=".interfaces.INoticeboard" />
   </class>
+
   <class class="plone.app.collection.collection.Collection"
          zcml:condition="installed plone.app.collection">
       <implements interface=".interfaces.INoticeboard" />
   </class>
-  <class class="Products.ATContentTypes.content.topic.ATTopic">
+
+  <class class="Products.ATContentTypes.content.topic.ATTopic"
+         zcml:condition="installed Products.ATContentTypes">
       <implements interface=".interfaces.INoticeboard" />
   </class>
+
   <class class="plone.app.contenttypes.content.Folder"
          zcml:condition="installed plone.app.contenttypes">
       <implements interface=".interfaces.INoticeboard" />
@@ -68,14 +66,15 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
-<adapter for="Products.ATContentTypes.interfaces.interfaces.IATContentType"
-         provides=".interfaces.INote"
-         factory=".adapters.ArchetypesNoteAdapter" />
+  <adapter zcml:condition="installed Products.ATContentTypes"
+           for="Products.ATContentTypes.interfaces.interfaces.IATContentType"
+           provides=".interfaces.INote"
+           factory=".adapters.ArchetypesNoteAdapter" />
 
-<adapter for="plone.dexterity.interfaces.IDexterityContent"
-         zcml:condition="installed plone.app.dexterity"
-         provides=".interfaces.INote"
-         factory=".adapters.DexterityNoteAdapter" />
+  <adapter zcml:condition="installed plone.app.dexterity"
+           for="plone.dexterity.interfaces.IDexterityContent"
+           provides=".interfaces.INote"
+           factory=".adapters.DexterityNoteAdapter" />
 
 <!--
 <adapter for="plone.app.contentlisting.interfaces.IContentListingObject"
