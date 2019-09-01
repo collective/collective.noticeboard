@@ -4,6 +4,8 @@ import unittest
 from collective.noticeboard.testing import \
     COLLECTIVENOTICEBOARD_INTEGRATION_TESTING
 from collective.noticeboard.tests.utils import getData
+from plone.app.textfield.value import RichTextValue
+from plone.namedfile.file import NamedBlobImage
 
 
 class AdapterTests(unittest.TestCase):
@@ -12,8 +14,12 @@ class AdapterTests(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
+        image_data = getData('../resources/no.png')
         self.portal.invokeFactory(
-            "News Item", "news", image=getData('../resources/no.png'))
+            "News Item",
+            "news",
+            title="news",
+            image=NamedBlobImage(data=image_data, filename='no.png'))
         self.news = self.portal['news']
 
     def test_image_tag(self):
@@ -156,38 +162,41 @@ class AdapterTests(unittest.TestCase):
     def test_jsonable(self):
         from collective.noticeboard.interfaces import INote
         note = INote(self.news)
-        expected_dict = {'description': '',
-                         'title': '',
-                         'color': 'yellow',
-                         'text': '',
-                         'portal_type':
-                         'news item',
-                         'height': 150,
-                         'zIndex': 'top',
-                         'width': 225,
-                         'url': 'http://nohost/plone/news/xx',
-                         'position_x': '50%',
-                         'position_y': '50%',
-                         'review_state':
-                         'private',
-                         'id': 'news'}
-        expected_keys = ['byline',
-                         'description',
-                         'title',
-                         'color',
-                         'text',
-                         'portal_type',
-                         'height',
-                         'zIndex',
-                         'width',
-                         'url',
-                         'position_x',
-                         'position_y',
-                         'review_state',
-                         'image_tag',
-                         'id']
+        expected_dict = {
+            'description': '',
+            'title': 'news',
+            'color': 'yellow',
+            'text': None,
+            'portal_type': 'news item',
+            'height': 150,
+            'zIndex': 'top',
+            'width': 225,
+            'url': 'http://nohost/plone/news/xx',
+            'position_x': '50%',
+            'position_y': '50%',
+            'review_state':
+            'private',
+            'id': 'news',
+            }
+        expected_keys = [
+            'byline',
+            'color',
+            'description',
+            'height',
+            'id',
+            'image_tag',
+            'portal_type',
+            'position_x',
+            'position_y',
+            'review_state',
+            'text',
+            'title',
+            'url',
+            'width',
+            'zIndex',
+            ]
         retval = note.jsonable
-        self.assertEquals(expected_keys, list(retval.keys()))
+        self.assertEquals(expected_keys, sorted(retval.keys()))
         retval.pop('byline')
         retval.pop('image_tag')
         self.assertEquals(expected_dict, retval)
@@ -201,9 +210,9 @@ class AdapterTests(unittest.TestCase):
     def test_text(self):
         from collective.noticeboard.interfaces import INote
         note = INote(self.news)
-        self.news.setText('testtext')
+        self.news.text = RichTextValue('testtext', 'text/html', 'text/x-html-safe')
         # Not sure if this is actually a bug...
-        self.assertEquals('<p>testtext</p>', note.text)
+        self.assertEquals('testtext', note.text)
 
     def test_description(self):
         from collective.noticeboard.interfaces import INote

@@ -5,4 +5,4 @@ from collective.noticeboard import tests
 
 def getData(filename):
     filename = join(dirname(tests.__file__), filename)
-    return open(filename, 'r').read()
+    return open(filename, 'rb').read()

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import applyProfile
@@ -7,18 +8,16 @@ from plone.app.testing import setRoles
 from plone.app.testing.layers import FunctionalTesting
 from plone.app.testing.layers import IntegrationTesting
 from plone.testing import z2
-from zope.configuration import xmlconfig
 import doctest
 
 
 class CollectiveNoticboardLayer(PloneSandboxLayer):
 
+    defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
+
     def setUpZope(self, app, configurationContext):
         import collective.noticeboard
-        xmlconfig.file(
-            'configure.zcml',
-            collective.noticeboard,
-            context=configurationContext)
+        self.loadZCML(package=collective.noticeboard)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'collective.noticeboard:default')

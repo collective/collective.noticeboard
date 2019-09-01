@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from AccessControl import Unauthorized
-from StringIO import StringIO
+from six import StringIO
 from collective.noticeboard.testing import \
     COLLECTIVENOTICEBOARD_INTEGRATION_TESTING
 from collective.noticeboard.tests.utils import getData
@@ -8,6 +8,7 @@ from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import login
 from plone.app.testing import setRoles
+from plone.namedfile.file import NamedBlobImage
 import json
 import unittest
 
@@ -19,8 +20,12 @@ class BrowserTests(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         login(self.portal, 'admin')
+        image_data = getData('../resources/no.png')
         self.portal.invokeFactory(
-            "News Item", "news", image=getData('../resources/no.png'))
+            "News Item",
+            "news",
+            title="news",
+            image=NamedBlobImage(data=image_data, filename='no.png'))
         login(self.portal, TEST_USER_NAME)
         self.news = self.portal['news']
 
