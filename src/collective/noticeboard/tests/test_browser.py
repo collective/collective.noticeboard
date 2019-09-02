@@ -24,8 +24,8 @@ class BrowserTests(unittest.TestCase):
         self.portal.invokeFactory(
             "News Item",
             "news",
-            title="news",
-            image=NamedBlobImage(data=image_data, filename='no.png'))
+            title=u"news",
+            image=NamedBlobImage(data=image_data, filename=u'no.png'))
         login(self.portal, TEST_USER_NAME)
         self.news = self.portal['news']
 

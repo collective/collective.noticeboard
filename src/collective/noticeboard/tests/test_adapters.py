@@ -18,8 +18,8 @@ class AdapterTests(unittest.TestCase):
         self.portal.invokeFactory(
             "News Item",
             "news",
-            title="news",
-            image=NamedBlobImage(data=image_data, filename='no.png'))
+            title=u"news",
+            image=NamedBlobImage(data=image_data, filename=u'no.png'))
         self.news = self.portal['news']
 
     def test_image_tag(self):
