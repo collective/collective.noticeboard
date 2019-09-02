@@ -38,7 +38,6 @@ class NoticeboardSettings(object):
     Just uses Annotation storage to save and retrieve the data...
     '''
 
-
     # these are settings for defaults that are not listed in the
     # interface because I don't want them to show up in the schema
 

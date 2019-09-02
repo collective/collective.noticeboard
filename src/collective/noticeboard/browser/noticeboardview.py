@@ -85,8 +85,7 @@ class NoticeboardView(BrowserView):
         if type_info.content_meta_type.startswith("Dexterity"):
             return "++add++%s" % type_name.replace(' ', '%20')
         else:
-            return "createObject?type_name=%s&ajax_load=1&ajax_include_head=1" \
-                % type_name.replace(' ', '+')
+            return "createObject?type_name=%s&ajax_load=1&ajax_include_head=1".format(type_name.replace(' ', '+'))  # noqa: E501
 
 
 class NoticeboardNotes(BrowserView):

@@ -210,7 +210,8 @@ class AdapterTests(unittest.TestCase):
     def test_text(self):
         from collective.noticeboard.interfaces import INote
         note = INote(self.news)
-        self.news.text = RichTextValue('testtext', 'text/html', 'text/x-html-safe')
+        self.news.text = RichTextValue(
+            'testtext', 'text/html', 'text/x-html-safe')
         # Not sure if this is actually a bug...
         self.assertEquals('testtext', note.text)
 

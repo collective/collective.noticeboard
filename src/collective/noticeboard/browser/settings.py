@@ -84,4 +84,5 @@ class NoticeBoardSettingsForm(group.GroupForm, form.EditForm):
         self.set_status_message(settings, has_changes)
         return self.request.response.redirect(self.context.absolute_url())
 
+
 NoticeboardSettingsView = wrap_form(NoticeBoardSettingsForm)

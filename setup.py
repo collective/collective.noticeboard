@@ -45,7 +45,11 @@ setup(name='collective.noticeboard',
           'collective.js.jqueryui',
           # -*- Extra requirements: -*-
       ],
-      extras_require={'test': ['plone.app.testing', 'plone.testing']},
+      extras_require={'test': [
+        'plone.app.testing',
+        'plone.testing',
+        'plone.app.robotframework [debug,reload]',
+      ]},
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
