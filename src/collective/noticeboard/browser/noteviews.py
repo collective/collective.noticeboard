@@ -12,6 +12,8 @@ import json
 
 from collective.noticeboard import _
 from collective.noticeboard.interfaces import INote
+from plone.protect.interfaces import IDisableCSRFProtection
+from zope.interface import alsoProvides
 
 logging = getLogger(__name__)
 
@@ -19,6 +21,7 @@ logging = getLogger(__name__)
 class NoticeJSONView(BrowserView):
 
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
         actions = dict(PUT=self.put, GET=self.get, DELETE=self.delete)
         note = INote(self.context)
         key = self.request.getHeader('HTTP_X_HTTP_METHOD_OVERRIDE',

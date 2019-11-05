@@ -153,7 +153,7 @@
       <span class="hiddenStructure anonymoustitle" i18n:translate="">Add Note</span>
 
     <link rel="stylesheet" href="++resource++collective.noticeboard/noticeboard.css" />
-    <link rel="stylesheet" href="++resource++collective.noticeboard/jquery-ui.min.css" />
+    <link rel="stylesheet" href="++resource++collective.noticeboard/jquery-ui-min.css" />
     <!-- Todo add correct jq link -->
     <script type="text/javascript" src="++resource++collective.noticeboard/jquery.js"></script>
     <script type="text/javascript" src="++resource++collective.noticeboard/jquery-ui.min.js"></script>
