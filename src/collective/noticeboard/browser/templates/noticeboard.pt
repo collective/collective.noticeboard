@@ -153,11 +153,13 @@
       <span class="hiddenStructure anonymoustitle" i18n:translate="">Add Note</span>
 
     <link rel="stylesheet" href="++resource++collective.noticeboard/noticeboard.css" />
+    <link rel="stylesheet" href="++resource++collective.noticeboard/jquery-ui.min.css" />
     <!-- Todo add correct jq link -->
-    <script type="text/javascript" src="++plone++static/components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="++resource++collective.noticeboard/jquery.js"></script>
+    <script type="text/javascript" src="++resource++collective.noticeboard/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="++resource++collective.noticeboard/mustache.js"></script>
     <script type="text/javascript" src="++resource++collective.noticeboard/underscore.min.js"></script>
     <script type="text/javascript" src="++resource++collective.noticeboard/backbone.min.js"></script>
-    <script type="text/javascript" src="++resource++collective.noticeboard/mustache.js"></script>
     <script type="text/javascript" src="++resource++collective.noticeboard/noticeboard.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){

@@ -370,15 +370,17 @@
                         subtype: 'ajax',
                         filter: '#content>*'
                     });
+                };
+                if($.fn.prepOverlay){
                     $("#noticeboard-help a").prepOverlay({
                         subtype: 'ajax',
                         filter: '#content>*'
                     });
-                    $.get(this.$el.data("notetemplatehref"), function (data) {
-                        notes.note_template = data;
-                        notes.fetch();
-                    });
                 };
+                $.get(this.$el.data("notetemplatehref"), function (data) {
+                    notes.note_template = data;
+                    notes.fetch();
+                });
                 },
                 addOne: function (note) {
                     var view = new NoteView({
