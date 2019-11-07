@@ -23,6 +23,16 @@ body.template-noticeboardview #content {
     margin: 0;
 }
 
+/* Hide toolbar on plone5 */
+
+#visual-portal-wrapper #edit-bar {
+  display: none;
+}
+
+#visual-portal-wrapper.plone-toolbar-left {
+    padding-left: 0;
+}
+
 #noticeboardcanvas {
     position:absolute;
     height: 100%;
