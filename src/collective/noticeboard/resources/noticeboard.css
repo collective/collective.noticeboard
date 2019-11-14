@@ -1,6 +1,12 @@
 /* Structure */
 body.template-noticeboardview {
     background: #ddd;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    font-size: 13px;
+}
+
+h1, h2, h3, h6 {
+    font-weight: normal;
 }
 
 body.template-noticeboardview #portal-header {
@@ -114,7 +120,7 @@ div.ui-resizable-handle.ui-resizable-s {
     margin-left: 0;
     position: absolute;
     right: 0;
-    top: -24px;
+    top: -37px;
     white-space: nowrap;
 }
 
