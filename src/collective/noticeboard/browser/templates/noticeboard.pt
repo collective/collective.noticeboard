@@ -169,7 +169,11 @@
       <span class="hiddenStructure anonymoustitle" i18n:translate="">Add Note</span>
 
     <link rel="stylesheet" href="++resource++collective.noticeboard/noticeboard.css" />
-
+        <script type="text/javascript">
+          $(document).ready(function(){
+            noticeboard.init($("#noticeboardcanvas"));
+          });
+        </script>
     </div>
   </div>
 
