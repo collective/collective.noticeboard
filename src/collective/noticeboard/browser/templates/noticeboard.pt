@@ -17,7 +17,7 @@
           site_properties python:context.restrictedTraverse('portal_properties').site_properties;
           ajax_include_head python:request.get('ajax_include_head', False);
           ajax_load python:False;"
-      i18n:domain="plone"
+      i18n:domain="collective.noticeboard"
       tal:attributes="lang lang;">
 
     <metal:cache tal:replace="structure provider:plone.httpheaders" />
