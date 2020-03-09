@@ -37,6 +37,7 @@ class NoticeboardView(BrowserView):
 
     def __call__(self):
         self.settings = NoticeboardSettings(self.context)
+        self.request.response.setHeader('X-Theme-Disabled', '1')
         return self.index()
 
     def note_type(self):
@@ -85,7 +86,7 @@ class NoticeboardView(BrowserView):
         if type_info.content_meta_type.startswith("Dexterity"):
             return "++add++%s" % type_name.replace(' ', '%20')
         else:
-            return "createObject?type_name=%s&ajax_load=1&ajax_include_head=1".format(type_name.replace(' ', '+'))  # noqa: E501
+            return "createObject?type_name=%s&ajax_load=1&ajax_include_head=1".format(type_name.replace(' ', '+'))
 
 
 class NoticeboardNotes(BrowserView):
